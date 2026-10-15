@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "reply.schema.json",
+  "title": "ClassifiedReply",
+  "description": "Output contract for the reply classifier. The rules engine and the Claude prompt (prompts/reply-classifier.md) must both return this shape. Anything else is rejected and goes to human review.",
+  "type": "object",
+  "required": ["id", "label", "confidence", "next_action"],
+  "additionalProperties": true,
+  "properties": {
+    "id": { "type": "string" },
+    "label": {
+      "enum": [
+        "interested",
+        "question",
+        "meeting_request",
+        "wrong_person",
+        "not_now",
+        "not_interested",
+        "unsubscribe",
+        "out_of_office",
+        "bounce",
+        "unknown"
+      ]
+    },
+    "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+    "next_action": { "enum": ["reply", "book", "reroute", "nurture", "close", "suppress", "pause", "review"] },
+    "follow_up_on": { "type": "string", "format": "date", "description": "For not_now: the date they named, or the first of that month." },
+    "resume_on": { "type": "string", "format": "date", "description": "For out_of_office: day after return." },
+    "referred_email": { "type": "string", "description": "For wrong_person: who to contact instead." },
+    "draft_reply": { "type": "string", "description": "LLM only. Must pass the copy lint before it is shown for approval." }
+  }
+}

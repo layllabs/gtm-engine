@@ -1,0 +1,29 @@
+source,source_id,business_name,category,address,city,state,zip,phone,website,email,contact_name,signal_type,signal_date,signal_text,review_count,rating
+county_permits,PRM-24811,Rosas Taqueria LLC,restaurant,1418 Pine Ave,Long Beach,CA,90813,(562) 555-0141,,,Rosa Medina,new_health_permit,2026-09-22,New retail food facility permit issued,,
+maps,mp-88213,Rosa's Taqueria,restaurant,1418 Pine Avenue,Long Beach,CA,90813,562-555-0141,rosastaqueria.example,rosa@rosastaqueria.example,Rosa Medina,listing_only,2026-09-30,Listed on maps,38,4.7
+reddit,rd-t3_9xk2,Harbor Brake & Tire,auto_repair,,San Pedro,CA,,,,,,processor_complaint,2026-09-27,"Owner post: my processor raised fees twice this year and I can't read the statement",,
+maps,mp-77120,Harbor Brake and Tire,auto_repair,920 S Gaffey St,San Pedro,CA,90731,(310) 555-0198,harborbrake.example,service@harborbrake.example,Dave Kim,listing_only,2026-09-30,Listed on maps,212,4.5
+sos_filings,SOS-5530912,Golden Hour Bakery,bakery,77 E Main St,Ventura,CA,93001,(805) 555-0110,,,Lena Ortiz,new_business_filing,2026-09-18,LLC registration filed,,
+maps,mp-66001,Golden Hour Bakery,bakery,77 E Main St,Ventura,CA,93001,805-555-0110,goldenhourbakery.example,hello@goldenhourbakery.example,Lena Ortiz,review_spike,2026-09-25,24 new reviews in 14 days,61,4.9
+maps,mp-66002,Fade Factory Barbers,barbershop,301 State St,Santa Maria,CA,93454,(805) 555-0187,,,Marco Ruiz,hiring_post,2026-09-12,Now hiring two barbers,144,4.8
+craigslist,cl-7781234,Fade Factory Barbers,barbershop,,Santa Maria,CA,,,,,,hiring_post,2026-09-12,Chair rental available plus commission barber wanted,,
+maps,mp-66003,Bright Spin Dry Cleaners,dry_cleaner,1120 Higuera St,San Luis Obispo,CA,93401,(805) 555-0123,brightspin.example,info@brightspin.example,Helen Park,ownership_change,2026-08-28,Under new ownership banner on listing,97,4.4
+maps,mp-66004,Corner Bean Coffee,cafe,45 N Euclid Ave,Pasadena,CA,91101,(626) 555-0164,cornerbean.example,owner@cornerbean.example,Sam Taylor,review_spike,2026-09-29,31 new reviews in 21 days,288,4.6
+maps,mp-66005,Paws & Claws Vet Clinic,veterinary,2200 E Thompson Blvd,Ventura,CA,93001,(805) 555-0172,pawsclaws.example,frontdesk@pawsclaws.example,Dr. Amy Chen,listing_only,2026-09-30,Listed on maps,156,4.7
+maps,mp-66006,Burger Kingdom #4412,franchise_corporate,500 Mall Dr,Oxnard,CA,93030,(805) 555-0100,,,,listing_only,2026-09-30,Corporate franchise location,900,3.9
+county_permits,PRM-24830,Tacos El Guero Truck,food_truck,,Oxnard,CA,93030,(805) 555-0155,,,Luis Herrera,new_health_permit,2026-09-26,Mobile food facility permit issued,,
+reddit,rd-t3_9zz1,Sunset Nail Studio,salon,,Torrance,CA,,,,,,processor_complaint,2026-07-02,"Owner post: square fees are killing me, any alternatives",,
+maps,mp-66007,Sunset Nail Studio,salon,18200 Hawthorne Blvd,Torrance,CA,90504,(310) 555-0136,sunsetnails.example,,Tina Vo,listing_only,2026-09-30,Listed on maps,73,4.3
+maps,mp-66008,Mesa Verde Market,retail,610 W Valley Pkwy,Escondido,CA,92025,(760) 555-0119,mesaverdemarket.example,manager@mesaverdemarket.example,Jorge Alvarez,listing_only,2026-09-30,Listed on maps,8,4.1
+maps,mp-66009,Desert Sun Auto Care,auto_repair,73-400 Twentynine Palms Hwy,Twentynine Palms,CA,92277,(760) 555-0144,,,Ray Collins,ownership_change,2026-09-08,New owner announced on listing,52,4.2
+maps,mp-66010,Pier Avenue Books,retail,1200 Pier Ave,Hermosa Beach,CA,90254,(310) 555-0191,pierbooks.example,books@pierbooks.example,Nora Field,listing_only,2026-09-30,Listed on maps,41,4.8
+maps,mp-66011,First Coastal Bank,bank,100 Ocean Blvd,Long Beach,CA,90802,(562) 555-0101,,,,listing_only,2026-09-30,Listed on maps,120,3.5
+partner_scan,ps-1001,Coastline Restaurant Supply,restaurant_supply,3300 E 7th St,Los Angeles,CA,90023,(323) 555-0177,coastlinesupply.example,sales@coastlinesupply.example,Greg Watts,partner_program_page,2026-09-15,Site lists vendor partners for customers,186,4.6
+partner_scan,ps-1002,Valley POS Systems,pos_reseller,14500 Roscoe Blvd,Panorama City,CA,91402,(818) 555-0129,valleypos.example,info@valleypos.example,Priya Shah,hiring_post,2026-09-20,Hiring field install tech,64,4.5
+partner_scan,ps-1003,Ledger & Co Bookkeeping,bookkeeper,920 Marsh St,San Luis Obispo,CA,93401,(805) 555-0150,ledgerco.example,team@ledgerco.example,Carla Ruiz,listing_only,2026-09-30,Small business bookkeeping firm,29,5.0
+partner_scan,ps-1004,Inland Kitchen Repair,equipment_repair,8800 Archibald Ave,Rancho Cucamonga,CA,91730,(909) 555-0182,,,Tom Bryant,review_spike,2026-09-21,18 new reviews in 30 days,97,4.7
+partner_scan,ps-1005,SwiftPay Merchant Services,payments_competitor,1 Market St,San Diego,CA,92101,(619) 555-0100,swiftpay.example,sales@swiftpay.example,,listing_only,2026-09-30,Competitor,300,4.0
+partner_scan,ps-1006,Downtown Business Alliance,business_association,400 Main St,Riverside,CA,92501,(951) 555-0161,dtbusiness.example,director@dtbusiness.example,Maria Lopez,new_business_filing,2026-08-01,New association chartered,12,4.9
+maps,mp-66012,Lucky Wok Express,restaurant,2850 Main St,Morro Bay,CA,93442,(805) 555-0133,luckywok.example,luckywok@mail.example,Kevin Wu,review_spike,2026-09-24,22 new reviews in 14 days,133,4.4
+maps,mp-66013,Glow Up Salon,salon,99 Palm Canyon Dr,Palm Springs,CA,92262,(760) 555-0149,glowup.example,book@glowup.example,Jasmine Reed,hiring_post,2026-06-15,Hiring stylists,210,4.6
+maps,mp-66014,Neon Taco Co,restaurant,12 Ocean Front Walk,Venice,NV,89101,(702) 555-0122,neontaco.example,hi@neontaco.example,Chris Day,review_spike,2026-09-28,Out of state duplicate name,80,4.2

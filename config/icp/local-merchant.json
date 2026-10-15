@@ -1,0 +1,55 @@
+{
+  "id": "local-merchant",
+  "name": "Local card-accepting merchant",
+  "lane": "direct",
+  "description": "Owner-operated businesses that take card payments in person and feel processing fees. Sold direct by the rep.",
+  "include_categories": [
+    "restaurant",
+    "cafe",
+    "bakery",
+    "auto_repair",
+    "salon",
+    "barbershop",
+    "retail",
+    "dry_cleaner",
+    "food_truck",
+    "veterinary"
+  ],
+  "exclude_categories": [
+    "franchise_corporate",
+    "bank",
+    "government",
+    "nonprofit"
+  ],
+  "geo": {
+    "states": [
+      "CA"
+    ]
+  },
+  "weights": {
+    "category_fit": 25,
+    "signal_strength": 30,
+    "recency": 20,
+    "reachability": 15,
+    "size_proxy": 10
+  },
+  "signal_strength": {
+    "processor_complaint": 1.0,
+    "new_health_permit": 0.9,
+    "new_business_filing": 0.85,
+    "ownership_change": 0.85,
+    "review_spike": 0.6,
+    "hiring_post": 0.5,
+    "listing_only": 0.2
+  },
+  "recency_half_life_days": 30,
+  "size_proxy": {
+    "review_count_floor": 10,
+    "review_count_ceiling": 400
+  },
+  "tiers": {
+    "A": 80,
+    "B": 62,
+    "C": 40
+  }
+}

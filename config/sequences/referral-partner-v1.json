@@ -1,0 +1,40 @@
+{
+  "id": "referral-partner-v1",
+  "lane": "partner",
+  "goal": "Book a 15 minute call to set up a referral arrangement.",
+  "constraints": {
+    "max_words": 100,
+    "max_links": 0,
+    "max_questions": 1
+  },
+  "openers": {
+    "partner_program_page": "Saw {{business_name}} already partners with a few vendors for your customers.",
+    "hiring_post": "Saw {{business_name}} is growing the team in {{city}}.",
+    "review_spike": "Your customers clearly like working with {{business_name}}. The reviews say it.",
+    "new_business_filing": "Saw {{business_name}} recently set up shop in {{city}}.",
+    "listing_only": "You work with a lot of {{customer_noun}} around {{city}}."
+  },
+  "steps": [
+    {
+      "day": 0,
+      "channel": "email",
+      "variant": "A",
+      "subject": "your customers' card fees",
+      "body": "Hi {{first_name}},\n\n{{signal_line}}\n\nA lot of those owners are overpaying on card processing and don't know it. I do free statement reviews. When one of your customers switches, you get a share of the revenue for as long as they stay. You don't sell anything, you just make the intro.\n\nOpen to a 15 minute call to see if it fits?\n\n{{sender_name}}"
+    },
+    {
+      "day": 4,
+      "channel": "call",
+      "variant": "A",
+      "subject": null,
+      "body": "Call script: ask how many merchant customers they serve monthly and whether anyone asks them about payments. Offer a one page referral card they can hand out."
+    },
+    {
+      "day": 9,
+      "channel": "email",
+      "variant": "A",
+      "subject": "the one pager",
+      "body": "{{first_name}}, one more thought. Partners usually start by sending me the one customer who complains about fees the most. If the review saves them money, you look good and you get paid. Want me to send over the one pager?\n\n{{sender_name}}"
+    }
+  ]
+}

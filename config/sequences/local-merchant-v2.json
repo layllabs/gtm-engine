@@ -1,0 +1,56 @@
+{
+  "id": "local-merchant-v2",
+  "lane": "direct",
+  "goal": "Get the last processing statement so we can run a side-by-side fee comparison.",
+  "constraints": {
+    "max_words": 90,
+    "max_links": 0,
+    "max_questions": 1
+  },
+  "openers": {
+    "processor_complaint": "Saw your post about card fees eating into margin. That one comes up a lot with {{category_noun}} owners in {{city}}.",
+    "new_health_permit": "Congrats on the new permit for {{business_name}}. Opening month is usually when the processing contract gets signed in a rush.",
+    "new_business_filing": "Saw {{business_name}} just got registered with the state. Congrats on making it official.",
+    "ownership_change": "Heard {{business_name}} recently changed hands. New owners usually inherit the old processing contract without looking at it.",
+    "review_spike": "{{business_name}} picked up a lot of new reviews lately. More volume means fees matter more every month.",
+    "hiring_post": "Saw {{business_name}} is hiring. Growing shops usually feel processing fees most right about now.",
+    "listing_only": "I work with a lot of {{category_noun}} owners around {{city}}."
+  },
+  "steps": [
+    {
+      "day": 0,
+      "channel": "email",
+      "variant": "A",
+      "subject": "{{business_name}} card fees",
+      "body": "Hi {{first_name}},\n\n{{signal_line}}\n\nMost owners I talk to are paying a markup they never agreed to, buried in the statement. If you send me one recent statement, I'll show you line by line what you're paying and what it should be. No pitch until you've seen the math.\n\nWorth a look?\n\n{{sender_name}}"
+    },
+    {
+      "day": 0,
+      "channel": "email",
+      "variant": "B",
+      "subject": "quick question, {{first_name}}",
+      "body": "Hi {{first_name}},\n\n{{signal_line}}\n\nDo you know your effective rate, all fees in, divided by what you processed last month? Most owners guess low by about a point. I can work it out from one statement and send it back the same day.\n\n{{sender_name}}"
+    },
+    {
+      "day": 3,
+      "channel": "email",
+      "variant": "A",
+      "subject": "one photo is enough",
+      "body": "{{first_name}}, the fastest version: snap a photo of page one of your statement and reply here. I'll send back your effective rate and where the extra is coming from.\n\n{{sender_name}}"
+    },
+    {
+      "day": 7,
+      "channel": "call",
+      "variant": "A",
+      "subject": null,
+      "body": "Call script: reference the email, ask who handles the processing statement, offer the free statement review. Voicemail: name, one line on the review, callback number."
+    },
+    {
+      "day": 12,
+      "channel": "email",
+      "variant": "A",
+      "subject": "closing the loop",
+      "body": "{{first_name}}, I'll stop here. If fees ever come up, reply with a statement and I'll run the numbers. Good luck with {{business_name}}.\n\n{{sender_name}}"
+    }
+  ]
+}

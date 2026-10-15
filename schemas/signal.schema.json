@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "signal.schema.json",
+  "title": "Signal",
+  "description": "Something that happened to a business that makes now a good time to reach out. Every discovery agent emits this shape.",
+  "type": "object",
+  "required": ["type", "source"],
+  "properties": {
+    "type": {
+      "enum": [
+        "processor_complaint",
+        "new_health_permit",
+        "new_business_filing",
+        "ownership_change",
+        "review_spike",
+        "hiring_post",
+        "partner_program_page",
+        "listing_only"
+      ]
+    },
+    "date": { "type": ["string", "null"], "format": "date" },
+    "source": {
+      "enum": ["maps", "county_permits", "sos_filings", "reddit", "craigslist", "partner_scan"],
+      "description": "Which discovery agent found it."
+    },
+    "source_id": { "type": "string", "description": "ID in the source system, for audit and dedupe." },
+    "text": { "type": "string", "description": "The raw evidence. Used to write the opener." }
+  }
+}

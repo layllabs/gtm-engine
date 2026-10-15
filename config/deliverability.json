@@ -1,0 +1,16 @@
+{
+  "description": "Guardrails checked before every send day. Breaching a 'pause' line pulls the mailbox out of rotation automatically.",
+  "bounce_rate": { "watch": 0.015, "pause": 0.02 },
+  "spam_complaint_rate": { "watch": 0.0005, "pause": 0.001 },
+  "min_warmup_days": 14,
+  "min_warmup_reputation": 0.95,
+  "max_daily_sends_per_mailbox": 30,
+  "min_sample_for_rates": 50,
+  "reply_rate_floor_per_variant": 0.01,
+  "rules": [
+    "Cold email never sends from the primary brand domain.",
+    "Every list is verified before enrollment. Catch-all and unknown results do not enroll.",
+    "Placement test weekly per sending domain.",
+    "A domain with two paused mailboxes in 30 days is retired and replaced."
+  ]
+}

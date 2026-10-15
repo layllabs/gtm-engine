@@ -1,0 +1,16 @@
+{
+  "as_of": "2026-10-01",
+  "mailboxes": [
+    { "id": "mbx-01", "domain": "sender-one.example", "provider": "google", "warmup_days": 32, "warmup_reputation": 1.0, "sent_7d": 180, "bounced_7d": 2, "spam_complaints_7d": 0, "replies_7d": 6 },
+    { "id": "mbx-02", "domain": "sender-one.example", "provider": "microsoft", "warmup_days": 32, "warmup_reputation": 0.99, "sent_7d": 175, "bounced_7d": 3, "spam_complaints_7d": 0, "replies_7d": 4 },
+    { "id": "mbx-03", "domain": "sender-two.example", "provider": "google", "warmup_days": 30, "warmup_reputation": 0.98, "sent_7d": 170, "bounced_7d": 5, "spam_complaints_7d": 0, "replies_7d": 3 },
+    { "id": "mbx-04", "domain": "sender-two.example", "provider": "microsoft", "warmup_days": 30, "warmup_reputation": 0.97, "sent_7d": 160, "bounced_7d": 1, "spam_complaints_7d": 1, "replies_7d": 2 },
+    { "id": "mbx-05", "domain": "sender-three.example", "provider": "google", "warmup_days": 9, "warmup_reputation": 0.92, "sent_7d": 0, "bounced_7d": 0, "spam_complaints_7d": 0, "replies_7d": 0 },
+    { "id": "mbx-06", "domain": "sender-three.example", "provider": "microsoft", "warmup_days": 21, "warmup_reputation": 0.96, "sent_7d": 140, "bounced_7d": 2, "spam_complaints_7d": 0, "replies_7d": 5 }
+  ],
+  "variants": [
+    { "sequence": "local-merchant-v2", "variant": "A", "sent": 420, "replies": 9, "positive": 4 },
+    { "sequence": "local-merchant-v2", "variant": "B", "sent": 405, "replies": 5, "positive": 1 },
+    { "sequence": "referral-partner-v1", "variant": "A", "sent": 200, "replies": 6, "positive": 3 }
+  ]
+}

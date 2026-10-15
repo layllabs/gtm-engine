@@ -1,0 +1,11 @@
+id,business_name,label,confidence,next_action,applied,follow_up_on,resume_on,referred_email,needs_llm,body
+r-001,Rosa's Taqueria,interested,0.9,reply,-> engaged,,,,False,"Sure, here is last month's statement. Honestly no idea what half these fees are."
+r-002,Harbor Brake and Tire,not_now,0.9,nurture,-> nurture,2027-03-01,,,False,We're locked in a contract until March. Reach out then.
+r-003,Corner Bean Coffee,question,0.6,reply,-> engaged,,,,True,How much does it cost to switch? Is there a cancellation fee with my current processor?
+r-004,Golden Hour Bakery,wrong_person,0.9,reroute,-> rerouted,,,tom@goldenhourbakery.example,False,"I'm not the right person, my husband Tom handles the payments side. tom@goldenhourbakery.example"
+r-005,Bright Spin Dry Cleaners,unsubscribe,0.9,suppress,-> suppressed,,,,False,Please remove me from your list.
+r-006,Coastline Restaurant Supply,meeting_request,0.9,book,-> meeting,,,,False,Interesting. We have about 200 restaurant accounts. Can you do Thursday at 2?
+r-007,Valley POS Systems,out_of_office,0.9,pause,-> paused,,2026-10-09,,False,I'm out of the office until October 8 with limited access to email.
+r-008,Lucky Wok Express,not_interested,0.9,close,-> closed_no,,,,False,"We already have a guy for this, rates are fine. Not interested."
+r-009,,bounce,0.9,suppress,"unmatched sender, matched later by message id",,,,False,Delivery Status Notification (Failure). 550 5.1.1 The email account that you tried to reach does not exist.
+r-010,Downtown Business Alliance,not_now,0.9,nurture,-> nurture,2027-01-01,,,False,"Not right now, maybe after the holidays. Ping me in January."

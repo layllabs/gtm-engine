@@ -1,0 +1,54 @@
+{
+  "as_of": "2026-10-01",
+  "raw_signals": 28,
+  "accounts_after_dedupe": 23,
+  "tiers": {
+    "A": 8,
+    "B": 8,
+    "C": 3,
+    "DQ": 4
+  },
+  "actions": {
+    "sequence_and_call": 2,
+    "visit_and_sequence": 6,
+    "call_first": 5,
+    "sequence": 3,
+    "suppress": 2,
+    "nurture": 1,
+    "disqualify": 4
+  },
+  "drafts": 40,
+  "drafts_failing_lint": 0,
+  "replies": {
+    "interested": 1,
+    "not_now": 2,
+    "question": 1,
+    "wrong_person": 1,
+    "unsubscribe": 1,
+    "meeting_request": 1,
+    "out_of_office": 1,
+    "not_interested": 1,
+    "bounce": 1
+  },
+  "mailboxes": {
+    "ok": 2,
+    "watch": 1,
+    "pause": 2,
+    "warming": 1
+  },
+  "domains_to_retire": [
+    "sender-two.example"
+  ],
+  "final_states": {
+    "meeting": 1,
+    "nurture": 3,
+    "rerouted": 1,
+    "engaged": 2,
+    "paused": 1,
+    "closed_no": 1,
+    "suppressed": 3,
+    "task_pending": 5,
+    "sequenced": 2,
+    "disqualified": 4
+  }
+}

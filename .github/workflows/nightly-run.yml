@@ -1,0 +1,35 @@
+name: nightly engine run
+
+# Reruns the engine on the sample data every night and commits the
+# scoreboard if anything changed. In production the same job points at
+# live exports instead of data/sample.
+
+on:
+  schedule:
+    - cron: "17 13 * * 1-5"   # 06:17 Pacific, weekdays
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run engine
+        run: python -m gtm run
+      - name: Commit scoreboard if changed
+        run: |
+          git config user.name "engine-bot"
+          git config user.email "engine-bot@users.noreply.github.com"
+          git add examples/output
+          if git diff --cached --quiet; then
+            echo "no change"
+          else
+            git commit -m "nightly engine run $(date -u +%F)"
+            git push
+          fi

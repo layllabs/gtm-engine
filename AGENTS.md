@@ -1,0 +1,50 @@
+# For agents reading this repo
+
+This file is for an LLM or agent that has been pointed at this repository
+to understand what it is and how to work in it.
+
+## What this is
+
+A signal-based outbound engine for selling card payment processing to
+owner-operated local businesses, plus a referral partner lane. Python,
+standard library only. One command runs the whole pipeline on synthetic
+data and writes a scoreboard.
+
+## Fastest way to understand it
+
+1. Run `python -m gtm run`, then read `examples/output/scoreboard.md`.
+2. Read `docs/architecture.md` for the system diagram.
+3. Each step is one module in `gtm/` and one doc in `docs/workflows/`,
+   numbered in pipeline order.
+
+## Invariants (do not break these)
+
+- No account enters a sequence without an email address and a clean lint.
+- Suppression is checked before routing and is terminal.
+- Every score carries a non-empty `reasons` list.
+- Every LLM call has a JSON schema in `schemas/` and a non-LLM fallback.
+- `docs/crm/lifecycle.md` and `gtm/lifecycle.py` describe the same state
+  machine; a test enforces it.
+- Copy contains no em dashes or en dashes. The linter enforces it.
+- No real business, person, domain or phone number appears anywhere.
+  All sample data is synthetic and uses `.example` domains and 555 numbers.
+
+## Where to change what
+
+| Want to | Edit |
+|---|---|
+| Add a vertical or territory | `config/icp/<new>.json` (schema: `schemas/icp.schema.json`) |
+| Change who gets called vs emailed | `config/routing.json` |
+| Change copy | `config/sequences/*.json`, then `python -m gtm lint-copy` |
+| Change deliverability thresholds | `config/deliverability.json` |
+| Add a signal type | `schemas/signal.schema.json`, each ICP's `signal_strength`, each sequence's `openers` |
+| Add a lifecycle state | `gtm/lifecycle.py` TRANSITIONS and the Mermaid in `docs/crm/lifecycle.md` |
+| Change a prompt | `prompts/*.md` |
+
+## Verify before committing
+
+```
+python -m unittest discover -s tests -t .
+python -m gtm lint-copy
+python -m gtm run
+```

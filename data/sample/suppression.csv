@@ -1,0 +1,4 @@
+type,value,reason,added
+email,books@pierbooks.example,unsubscribed,2026-08-11
+domain,firstcoastal.example,existing customer,2026-05-02
+phone,(805) 555-0172,asked not to be contacted,2026-09-01

@@ -1,0 +1,112 @@
+{
+  "description": "Maps (lane, tier, reachability) to a next action. First matching rule wins. Edit this file, not the code.",
+  "rules": [
+    {
+      "name": "suppressed",
+      "when": {
+        "suppressed": true
+      },
+      "action": "suppress",
+      "sequence": null,
+      "task": null
+    },
+    {
+      "name": "partner-A",
+      "when": {
+        "lane": "partner",
+        "tier": [
+          "A"
+        ],
+        "has_email": true
+      },
+      "action": "sequence_and_call",
+      "sequence": "referral-partner-v1",
+      "task": {
+        "type": "call",
+        "due_hours": 24,
+        "note": "Partner intro call. Ask how many merchants they touch per month."
+      }
+    },
+    {
+      "name": "partner-B",
+      "when": {
+        "lane": "partner",
+        "tier": [
+          "B"
+        ],
+        "has_email": true
+      },
+      "action": "sequence",
+      "sequence": "referral-partner-v1",
+      "task": null
+    },
+    {
+      "name": "direct-A-walkin",
+      "when": {
+        "lane": "direct",
+        "tier": [
+          "A"
+        ],
+        "has_address": true,
+        "has_email": true
+      },
+      "action": "visit_and_sequence",
+      "sequence": "local-merchant-v2",
+      "task": {
+        "type": "visit",
+        "due_hours": 48,
+        "note": "Walk in with a printed savings estimate. Ask for the last statement."
+      }
+    },
+    {
+      "name": "direct-A-or-B-email",
+      "when": {
+        "lane": "direct",
+        "tier": [
+          "A",
+          "B"
+        ],
+        "has_email": true
+      },
+      "action": "sequence",
+      "sequence": "local-merchant-v2",
+      "task": null
+    },
+    {
+      "name": "A-or-B-phone-only",
+      "when": {
+        "tier": [
+          "A",
+          "B"
+        ],
+        "has_email": false,
+        "has_phone": true
+      },
+      "action": "call_first",
+      "sequence": null,
+      "task": {
+        "type": "call",
+        "due_hours": 24,
+        "note": "No email found. Call, get the owner's email, then enroll."
+      }
+    },
+    {
+      "name": "tier-C",
+      "when": {
+        "tier": [
+          "C"
+        ]
+      },
+      "action": "nurture",
+      "sequence": null,
+      "task": null
+    },
+    {
+      "name": "fallback",
+      "when": {},
+      "action": "disqualify",
+      "sequence": null,
+      "task": null
+    }
+  ]
+}
