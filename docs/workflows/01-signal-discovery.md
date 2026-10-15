@@ -38,6 +38,10 @@ existing is not an event.
 - Owner posts are used to pick the opener topic. They are never quoted
   and the platform is never named in outreach (see `prompts/opener-qa.md`).
 - Discovery agents only write rows. They never contact anyone.
+- Owner posts on public forums are read for signal only: the post is
+  never quoted, the platform is never named, and no account is ever
+  created on those sites to pull data. If a source's terms prohibit
+  automated reads, that source is dropped, not worked around.
 
 ## Failure modes
 

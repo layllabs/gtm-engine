@@ -8,8 +8,8 @@
 |---|---|
 | Raw signals ingested | 28 |
 | Accounts after dedupe | 23 |
-| Tier A | 8 |
-| Tier B | 8 |
+| Tier A | 7 |
+| Tier B | 9 |
 | Tier C | 3 |
 | Tier DQ | 4 |
 | Drafts rendered | 40 |
@@ -22,40 +22,39 @@
 | 2026-10-02 08:00 | call | Coastline Restaurant Supply (Los Angeles) | partner_program_page 16d ago (partner_scan); direct email found |
 | 2026-10-02 08:00 | call | Valley POS Systems (Panorama City) | hiring_post 11d ago (partner_scan); direct email found |
 | 2026-10-02 08:00 | call | Tacos El Guero Truck (Oxnard) | new_health_permit 5d ago (county_permits); phone only, no email |
-| 2026-10-02 08:00 | call | Inland Kitchen Repair (Rancho Cucamonga) | review_spike 10d ago (partner_scan); phone only, no email |
 | 2026-10-02 08:00 | call | Desert Sun Auto Care (Twentynine Palms) | ownership_change 23d ago (maps); phone only, no email |
+| 2026-10-02 08:00 | call | Inland Kitchen Repair (Rancho Cucamonga) | review_spike 10d ago (partner_scan); phone only, no email |
 | 2026-10-02 08:00 | call | Sunset Nail Studio (Torrance) | processor_complaint 91d ago (reddit); phone only, no email |
-| 2026-10-02 08:00 | call | Fade Factory Barbers (Santa Maria) | hiring_post 19d ago (maps); phone only, no email |
+| 2026-10-02 08:00 | call | Fade Factory Barbers (Santa Maria) | hiring_post 19d ago (maps); secondary category (barbershop) |
 | 2026-10-03 08:00 | visit | Harbor Brake and Tire (San Pedro) | processor_complaint 4d ago (reddit); direct email found |
-| 2026-10-03 08:00 | visit | Golden Hour Bakery (Ventura) | new_business_filing 13d ago (sos_filings); stacked signals: new_business_filing, review_spike |
 | 2026-10-03 08:00 | visit | Rosa's Taqueria (Long Beach) | new_health_permit 9d ago (county_permits); direct email found |
+| 2026-10-03 08:00 | visit | Golden Hour Bakery (Ventura) | new_business_filing 13d ago (sos_filings); stacked signals: new_business_filing, review_spike |
 | 2026-10-03 08:00 | visit | Corner Bean Coffee (Pasadena) | review_spike 2d ago (maps); direct email found |
 | 2026-10-03 08:00 | visit | Lucky Wok Express (Morro Bay) | review_spike 7d ago (maps); direct email found |
-| 2026-10-03 08:00 | visit | Bright Spin Dry Cleaners (San Luis Obispo) | ownership_change 34d ago (maps); direct email found |
 
 ## Ranked accounts
 
 | # | Account | Lane | Score | Tier | Action | Top reasons |
 |---|---|---|---|---|---|---|
 | 1 | Coastline Restaurant Supply | partner | 97.3 | A | sequence_and_call | partner_program_page 16d ago (partner_scan); direct email found |
-| 2 | Harbor Brake and Tire | direct | 96.5 | A | visit_and_sequence | processor_complaint 4d ago (reddit); direct email found |
-| 3 | Golden Hour Bakery | direct | 88.2 | A | visit_and_sequence | new_business_filing 13d ago (sos_filings); stacked signals: new_business_filing, review_spike; direct email found |
-| 4 | Rosa's Taqueria | direct | 86.9 | A | visit_and_sequence | new_health_permit 9d ago (county_permits); direct email found |
-| 5 | Corner Bean Coffee | direct | 86.2 | A | visit_and_sequence | review_spike 2d ago (maps); direct email found |
-| 6 | Valley POS Systems | partner | 86.2 | A | sequence_and_call | hiring_post 11d ago (partner_scan); direct email found |
+| 2 | Harbor Brake and Tire | direct | 94.0 | A | visit_and_sequence | processor_complaint 4d ago (reddit); direct email found |
+| 3 | Rosa's Taqueria | direct | 86.9 | A | visit_and_sequence | new_health_permit 9d ago (county_permits); direct email found |
+| 4 | Valley POS Systems | partner | 86.2 | A | sequence_and_call | hiring_post 11d ago (partner_scan); direct email found |
+| 5 | Golden Hour Bakery | direct | 85.7 | A | visit_and_sequence | new_business_filing 13d ago (sos_filings); stacked signals: new_business_filing, review_spike; direct email found |
+| 6 | Corner Bean Coffee | direct | 83.7 | A | visit_and_sequence | review_spike 2d ago (maps); direct email found |
 | 7 | Lucky Wok Express | direct | 82.0 | A | visit_and_sequence | review_spike 7d ago (maps); direct email found |
-| 8 | Bright Spin Dry Cleaners | direct | 80.8 | A | visit_and_sequence | ownership_change 34d ago (maps); direct email found |
-| 9 | Tacos El Guero Truck | direct | 78.8 | B | call_first | new_health_permit 5d ago (county_permits); phone only, no email |
-| 10 | Inland Kitchen Repair | partner | 76.9 | B | call_first | review_spike 10d ago (partner_scan); phone only, no email |
-| 11 | Desert Sun Auto Care | direct | 74.2 | B | call_first | ownership_change 23d ago (maps); phone only, no email |
-| 12 | Downtown Business Alliance | partner | 71.7 | B | sequence | new_business_filing 61d ago (partner_scan); direct email found |
-| 13 | Ledger & Co Bookkeeping | partner | 71.0 | B | sequence | direct email found |
-| 14 | Sunset Nail Studio | direct | 70.3 | B | call_first | processor_complaint 91d ago (reddit); phone only, no email |
-| 15 | Fade Factory Barbers | direct | 67.6 | B | call_first | hiring_post 19d ago (maps); phone only, no email |
-| 16 | Glow Up Salon | direct | 64.9 | B | sequence | hiring_post 108d ago (maps); direct email found |
-| 17 | Paws & Claws Vet Clinic | direct | 55.5 | C | suppress | direct email found |
-| 18 | Pier Avenue Books | direct | 51.8 | C | suppress | direct email found |
-| 19 | Mesa Verde Market | direct | 49.0 | C | nurture | direct email found; small footprint (8 reviews) |
+| 8 | Bright Spin Dry Cleaners | direct | 75.8 | B | sequence | ownership_change 34d ago (maps); direct email found |
+| 9 | Tacos El Guero Truck | direct | 73.8 | B | call_first | new_health_permit 5d ago (county_permits); phone only, no email |
+| 10 | Desert Sun Auto Care | direct | 71.7 | B | call_first | ownership_change 23d ago (maps); phone only, no email |
+| 11 | Inland Kitchen Repair | partner | 69.9 | B | call_first | review_spike 10d ago (partner_scan); phone only, no email |
+| 12 | Ledger & Co Bookkeeping | partner | 67.5 | B | sequence | direct email found |
+| 13 | Sunset Nail Studio | direct | 65.3 | B | call_first | processor_complaint 91d ago (reddit); phone only, no email |
+| 14 | Fade Factory Barbers | direct | 60.1 | B | call_first | hiring_post 19d ago (maps); secondary category (barbershop); phone only, no email |
+| 15 | Glow Up Salon | direct | 59.9 | B | sequence | hiring_post 108d ago (maps); direct email found |
+| 16 | Downtown Business Alliance | partner | 57.7 | B | sequence | new_business_filing 61d ago (partner_scan); secondary category (business_association); direct email found |
+| 17 | Paws & Claws Vet Clinic | direct | 50.5 | C | suppress | direct email found |
+| 18 | Pier Avenue Books | direct | 44.3 | C | suppress | secondary category (retail); direct email found |
+| 19 | Mesa Verde Market | direct | 41.5 | C | nurture | secondary category (retail); direct email found; small footprint (8 reviews) |
 | 20 | Burger Kingdom #4412 | direct | 0 | DQ | disqualify | excluded category: franchise_corporate |
 | 21 | First Coastal Bank | direct | 0 | DQ | disqualify | excluded category: bank |
 | 22 | SwiftPay Merchant Services | partner | 0 | DQ | disqualify | excluded category: payments_competitor |
@@ -110,6 +109,6 @@
 - engaged: 2
 - sequenced: 2
 - meeting: 1
-- rerouted: 1
 - paused: 1
+- rerouted: 1
 - closed_no: 1

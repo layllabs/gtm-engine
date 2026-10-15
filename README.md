@@ -17,8 +17,8 @@ python -m gtm run
 
 ```
 engine run 2026-10-01: 28 signals -> 23 accounts
-  tiers    {'A': 8, 'B': 8, 'C': 3, 'DQ': 4}
-  actions  {'sequence_and_call': 2, 'visit_and_sequence': 6, 'call_first': 5, 'sequence': 3, 'suppress': 2, 'nurture': 1, 'disqualify': 4}
+  tiers    {'A': 7, 'B': 9, 'C': 3, 'DQ': 4}
+  actions  {'sequence_and_call': 2, 'visit_and_sequence': 5, 'sequence': 4, 'call_first': 5, 'suppress': 2, 'nurture': 1, 'disqualify': 4}
   drafts   40 (0 failing lint)
   replies  {'interested': 1, 'not_now': 2, 'question': 1, 'wrong_person': 1, 'unsubscribe': 1, 'meeting_request': 1, 'out_of_office': 1, 'not_interested': 1, 'bounce': 1}
   inboxes  {'ok': 2, 'watch': 1, 'pause': 2, 'warming': 1}  retire: ['sender-two.example']
@@ -86,7 +86,7 @@ prompts/        every prompt, versioned with the code
 data/sample/    synthetic signals, replies, mailbox stats
 docs/           architecture, workflows (Mermaid), CRM model, copy, decisions
 examples/       output of the last run, committed so you can read it without running
-tests/          18 tests, including one that keeps the diagram and code in sync
+tests/          26 tests, including one that keeps the diagram and code in sync
 ```
 
 ## Commands
@@ -95,6 +95,7 @@ tests/          18 tests, including one that keeps the diagram and code in sync
 python -m gtm run                 full run on sample data, writes examples/output/
 python -m gtm run --as-of today   use today's date for recency scoring
 python -m gtm lint-copy           lint every sequence template (CI runs this)
+python -m gtm eval-replies        rules classifier vs 28 labeled replies (CI runs this)
 python -m gtm health              deliverability check only
 python -m unittest discover -s tests -t .
 ```
@@ -107,8 +108,13 @@ python -m unittest discover -s tests -t .
 - The code is AI-assisted. The design, the scoring model, the routing
   rules, the copy and the decisions are mine. I treat the model as a fast
   pair of hands and review everything that touches a prospect.
-- The production version has API calls where this one reads CSV and JSON.
-  The shapes are the same, which is the point of the schemas.
+- This repo is the decision layer. Discovery scrapers, the email
+  verifier, the sequencer and CRM sync are API calls in the production
+  version and are not published here; this version reads CSV and JSON in
+  the same shapes, which is the point of the schemas. If you want to see
+  how a specific integration is wired, ask.
+- The whole repo landed in one commit because it was extracted from a
+  private working repo. History before that is not public.
 - Numbers in the sample run are synthetic. Real results are discussed in
   conversation, not published.
 

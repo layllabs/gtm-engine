@@ -17,6 +17,17 @@ class TestDedupe(unittest.TestCase):
         self.assertEqual(norm_name("Rosa's Taqueria LLC"), norm_name("Rosas Taqueria"))
         self.assertEqual(norm_name("Harbor Brake & Tire"), norm_name("Harbor Brake and Tire"))
 
+    def test_same_name_different_city_does_not_merge(self):
+        rows = [
+            {"source": "maps", "source_id": "1", "business_name": "Main Street Cafe", "category": "cafe", "address": "",
+             "city": "Ventura", "state": "CA", "zip": "", "phone": "", "website": "", "email": "", "contact_name": "",
+             "signal_type": "listing_only", "signal_date": None, "signal_text": "", "review_count": None, "rating": ""},
+            {"source": "maps", "source_id": "2", "business_name": "Main Street Cafe", "category": "cafe", "address": "",
+             "city": "Oxnard", "state": "CA", "zip": "", "phone": "", "website": "", "email": "", "contact_name": "",
+             "signal_type": "listing_only", "signal_date": None, "signal_text": "", "review_count": None, "rating": ""},
+        ]
+        self.assertEqual(len(dedupe.merge(rows)), 2)
+
     def test_merges_across_sources(self):
         accts = dedupe.merge(discover.load_signals(DATA / "raw_signals.csv"))
         rosa = next(a for a in accts if "Rosa" in a["business_name"])
@@ -52,6 +63,14 @@ class TestRouting(unittest.TestCase):
         self.assertEqual(by["Pier Avenue Books"]["action"], "suppress")
         self.assertEqual(by["Paws & Claws Vet Clinic"]["action"], "suppress")
 
+    def test_partner_without_email_goes_to_call_first(self):
+        accts = dedupe.merge(discover.load_signals(DATA / "raw_signals.csv"))
+        routed = route.route_all(score.score_all(accts, score.load_icps(), AS_OF),
+                                 route.load_suppression(DATA / "suppression.csv"), AS_OF)
+        inland = next(a for a in routed if a["business_name"] == "Inland Kitchen Repair")
+        self.assertEqual(inland["lane"], "partner")
+        self.assertEqual(inland["action"], "call_first")
+
     def test_no_email_never_enrolls(self):
         accts = dedupe.merge(discover.load_signals(DATA / "raw_signals.csv"))
         routed = route.route_all(score.score_all(accts, score.load_icps(), AS_OF),
@@ -74,6 +93,10 @@ class TestCopy(unittest.TestCase):
         issues = copywriting.lint("hi", "Hi {{first_name}}", {"max_words": 90, "max_links": 0, "max_questions": 1})
         self.assertTrue(any("unfilled" in i for i in issues))
 
+    def test_lint_catches_spam_phrase(self):
+        issues = copywriting.lint("hi", "Act now for a risk-free review", {"max_words": 90, "max_links": 0, "max_questions": 1})
+        self.assertTrue(any("spam" in i for i in issues))
+
     def test_variant_is_stable(self):
         seq = copywriting.load_sequences()["local-merchant-v2"]
         self.assertEqual(copywriting.assign_variant("acc_x", seq), copywriting.assign_variant("acc_x", seq))
@@ -91,6 +114,20 @@ class TestReplies(unittest.TestCase):
         for body, label in cases.items():
             self.assertEqual(replies.classify(body)[0], label, body)
 
+    def test_negatives_beat_positive_keywords(self):
+        self.assertEqual(replies.classify("Please do not send me your statement review again")[0], "not_interested")
+        self.assertEqual(replies.classify("Reach out to me in March")[0], "not_now")
+
+    def test_labeled_eval_set(self):
+        from gtm.util import read_jsonl
+        rows = read_jsonl(DATA / "reply_eval.jsonl")
+        correct = sum(1 for r in rows if replies.classify(r["body"])[0] == r["label"])
+        self.assertGreaterEqual(correct / len(rows), 0.9)
+
+    def test_ooo_resume_date(self):
+        info = replies.extract("out_of_office", "out of the office until October 8", AS_OF)
+        self.assertEqual(info["resume_on"], "2026-10-09")
+
     def test_follow_up_date(self):
         info = replies.extract("not_now", "contract until March", AS_OF)
         self.assertEqual(info["follow_up_on"], "2027-03-01")
@@ -103,6 +140,21 @@ class TestHealth(unittest.TestCase):
         _, domains = health.check_mailboxes(stats)
         verdicts = {d["domain"]: d["verdict"] for d in domains}
         self.assertEqual(verdicts["sender-two.example"], "retire and replace")
+
+
+    def test_variant_verdict_not_significant_on_small_sample(self):
+        stats = {"mailboxes": [], "variants": [
+            {"sequence": "s", "variant": "A", "sent": 420, "replies": 9, "positive": 4},
+            {"sequence": "s", "variant": "B", "sent": 405, "replies": 5, "positive": 1}]}
+        rows = health.check_variants(stats)
+        self.assertIn("not significant", rows[0]["verdict"])
+
+    def test_variant_verdict_significant_on_large_sample(self):
+        stats = {"mailboxes": [], "variants": [
+            {"sequence": "s", "variant": "A", "sent": 4000, "replies": 90, "positive": 60},
+            {"sequence": "s", "variant": "B", "sent": 4000, "replies": 50, "positive": 20}]}
+        rows = health.check_variants(stats)
+        self.assertIn("promote", rows[0]["verdict"])
 
 
 class TestLifecycle(unittest.TestCase):

@@ -2,8 +2,10 @@
 
 **Used in:** workflow 04 (daily reply handling), only for replies the rules in
 `gtm/replies.py` label `unknown` or score below 0.7 confidence.
-**Model:** Sonnet. Cheaper models were tested and missed sarcasm and
-"not me, try X" referrals buried mid-paragraph.
+**Model:** Sonnet. Starting choice, not a benchmarked one: the rules
+already carry the obvious cases, so the model only sees the ambiguous
+tail, and that is where the cheapest model tends to be wrong in ways
+that cost a meeting. Worth re-testing once the labeled set is bigger.
 **Output contract:** `schemas/reply.schema.json`. Output that fails
 validation is discarded and the reply goes to human review.
 

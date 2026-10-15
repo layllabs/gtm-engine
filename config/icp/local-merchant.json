@@ -15,6 +15,18 @@
     "food_truck",
     "veterinary"
   ],
+  "category_fit": {
+    "restaurant": 1.0,
+    "cafe": 0.9,
+    "bakery": 0.9,
+    "food_truck": 0.8,
+    "auto_repair": 0.9,
+    "salon": 0.8,
+    "barbershop": 0.7,
+    "dry_cleaner": 0.8,
+    "retail": 0.7,
+    "veterinary": 0.8
+  },
   "exclude_categories": [
     "franchise_corporate",
     "bank",
@@ -48,8 +60,8 @@
     "review_count_ceiling": 400
   },
   "tiers": {
-    "A": 80,
-    "B": 62,
+    "A": 76,
+    "B": 58,
     "C": 40
   }
 }

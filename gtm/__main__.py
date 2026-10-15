@@ -3,6 +3,7 @@
   python -m gtm run                 full engine run on sample data
   python -m gtm run --as-of today   use today's date for recency
   python -m gtm lint-copy           lint every sequence template, exit 1 on issues
+  python -m gtm eval-replies        rules classifier vs labeled replies
   python -m gtm health              deliverability check only
 """
 from __future__ import annotations
@@ -27,6 +28,9 @@ def main(argv=None) -> int:
                    help="YYYY-MM-DD or 'today'. Pinned by default so the demo output is reproducible.")
 
     sub.add_parser("lint-copy", help="lint all sequence templates")
+
+    e = sub.add_parser("eval-replies", help="score the rules classifier against the labeled reply set")
+    e.add_argument("--set", default=str(ROOT / "data" / "sample" / "reply_eval.jsonl"))
 
     h = sub.add_parser("health", help="deliverability check")
     h.add_argument("--stats", default=str(ROOT / "data" / "sample" / "mailbox_stats.json"))
@@ -54,6 +58,19 @@ def main(argv=None) -> int:
             print(f"FAIL {x['sequence']} day {x['day']} {x['variant']} opener={x['opener']}: {'; '.join(x['issues'])}")
         print(f"{len(results)} combinations checked, {len(bad)} failing")
         return 1 if bad else 0
+
+    if args.cmd == "eval-replies":
+        from .replies import classify
+        from .util import read_jsonl
+        rows = read_jsonl(args.set)
+        misses = [(r["label"], classify(r["body"])[0], r["body"]) for r in rows
+                  if classify(r["body"])[0] != r["label"]]
+        for want, got, body in misses:
+            print(f"MISS want={want} got={got} | {body[:80]}")
+        acc = (len(rows) - len(misses)) / len(rows)
+        print(f"{len(rows) - len(misses)}/{len(rows)} correct ({acc:.0%}). "
+              "Every miss here is a case the LLM classifier has to carry.")
+        return 1 if acc < 0.9 else 0
 
     if args.cmd == "health":
         stats = load_json(args.stats)

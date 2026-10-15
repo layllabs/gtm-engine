@@ -19,6 +19,8 @@ jobs:
         run: python -m unittest discover -s tests -t . -v
       - name: Lint every sequence template
         run: python -m gtm lint-copy
+      - name: Rules classifier vs labeled replies
+        run: python -m gtm eval-replies
       - name: Full engine run
         run: python -m gtm run --out /tmp/engine-out
       - name: No em dashes in copy, prompts or docs

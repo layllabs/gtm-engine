@@ -2,7 +2,7 @@
 
 score = sum(weight[c] * component[c]) for five components, each 0..1:
 
-  category_fit     1.0 if the category is in the ICP, otherwise disqualified
+  category_fit     per-category fit from the ICP (restaurant 1.0, retail 0.7...)
   signal_strength  strongest signal, +0.1 per extra distinct signal type (cap 1.0)
   recency          0.5 ** (age_days / half_life) of the strongest signal
   reachability     email .5 + phone .3 + address .1 + named contact .1
@@ -62,6 +62,9 @@ def _components(acct: dict, icp: dict, as_of: date) -> tuple[dict, list[str]]:
         if acct[field]:
             reach += pts
             found.append(field)
+    fit = icp["category_fit"].get(acct["category"], 0.7)
+    if fit < 0.8:
+        reasons.append(f"secondary category ({acct['category']})")
     if acct["email"]:
         reasons.append("direct email found")
     elif acct["phone"]:
@@ -79,7 +82,7 @@ def _components(acct: dict, icp: dict, as_of: date) -> tuple[dict, list[str]]:
         size = min(1.0, (math.log(rc) - lo) / (hi - lo))
 
     comps = {
-        "category_fit": 1.0,
+        "category_fit": icp["category_fit"].get(acct["category"], 0.7),
         "signal_strength": round(signal_strength, 3),
         "recency": round(recency, 3),
         "reachability": round(reach, 3),

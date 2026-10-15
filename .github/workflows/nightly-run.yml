@@ -1,8 +1,10 @@
 name: nightly engine run
 
-# Reruns the engine on the sample data every night and commits the
-# scoreboard if anything changed. In production the same job points at
-# live exports instead of data/sample.
+# Reruns the engine with --as-of today so recency scores decay as the
+# sample signals age, and commits the scoreboard when the ranking moves.
+# In production the same job points at live exports instead of
+# data/sample. On sample data this is a smoke test that the pipeline
+# still runs end to end on a fresh checkout, nothing more.
 
 on:
   schedule:
@@ -20,9 +22,9 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: Run engine
-        run: python -m gtm run
-      - name: Commit scoreboard if changed
+      - name: Run engine as of today
+        run: python -m gtm run --as-of today --out examples/output
+      - name: Commit scoreboard if the ranking changed
         run: |
           git config user.name "engine-bot"
           git config user.email "engine-bot@users.noreply.github.com"

@@ -43,7 +43,7 @@ flowchart TD
 
 | Component | How it's computed | Direct weight | Partner weight |
 |---|---|---|---|
-| category_fit | 1 if included (else DQ) | 25 | 35 |
+| category_fit | per-category weight from the ICP file (restaurant 1.0, retail 0.7); excluded categories DQ before scoring | 25 | 35 |
 | signal_strength | strongest signal, +0.1 per extra distinct type | 30 | 15 |
 | recency | `0.5 ^ (age / half_life)`; 30 day half life direct, 90 partner; listings get 0.1 | 20 | 10 |
 | reachability | email .5, phone .3, address .1, named contact .1 | 15 | 20 |

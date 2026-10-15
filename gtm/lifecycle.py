@@ -3,7 +3,7 @@
 Every state change is validated against TRANSITIONS and written to an
 append-only event log, so the CRM can always answer 'how did this
 account get here?'. docs/crm/lifecycle.md has the same machine as a
-Mermaid diagram; tests/test_lifecycle.py keeps the two in sync.
+Mermaid diagram; tests/test_engine.py keeps the two in sync.
 """
 from __future__ import annotations
 

@@ -52,33 +52,6 @@ Every email below passed the lint gate. Call steps are scripts for the rep.
 >
 > Joaquin
 
-## Golden Hour Bakery (Ventura)
-`local-merchant-v2` variant B, opener from signal `new_business_filing`
-
-**Day 0 email.** Subject: `quick question, Lena`
-
-> Hi Lena,
->
-> Saw Golden Hour Bakery just got registered with the state. Congrats on making it official.
->
-> Do you know your effective rate, all fees in, divided by what you processed last month? Most owners guess low by about a point. I can work it out from one statement and send it back the same day.
->
-> Joaquin
-
-**Day 3 email.** Subject: `one photo is enough`
-
-> Lena, the fastest version: snap a photo of page one of your statement and reply here. I'll send back your effective rate and where the extra is coming from.
->
-> Joaquin
-
-**Day 7 call.** Call script: reference the email, ask who handles the processing statement, offer the free statement review. Voicemail: name, one line on the review, callback number.
-
-**Day 12 email.** Subject: `closing the loop`
-
-> Lena, I'll stop here. If fees ever come up, reply with a statement and I'll run the numbers. Good luck with Golden Hour Bakery.
->
-> Joaquin
-
 ## Rosa's Taqueria (Long Beach)
 `local-merchant-v2` variant B, opener from signal `new_health_permit`
 
@@ -106,6 +79,56 @@ Every email below passed the lint gate. Call steps are scripts for the rep.
 >
 > Joaquin
 
+## Valley POS Systems (Panorama City)
+`referral-partner-v1` variant A, opener from signal `hiring_post`
+
+**Day 0 email.** Subject: `your customers' card fees`
+
+> Hi Priya,
+>
+> Saw Valley POS Systems is growing the team in Panorama City.
+>
+> A lot of those owners are overpaying on card processing and don't know it. I do free statement reviews. When one of your customers switches, you get a share of the revenue for as long as they stay. You don't sell anything, you just make the intro.
+>
+> Open to a 15 minute call to see if it fits?
+>
+> Joaquin
+
+**Day 4 call.** Call script: ask how many merchant customers they serve monthly and whether anyone asks them about payments. Offer a one page referral card they can hand out.
+
+**Day 9 email.** Subject: `the one pager`
+
+> Priya, one more thought. Partners usually start by sending me the one customer who complains about fees the most. If the review saves them money, you look good and you get paid. Want me to send over the one pager?
+>
+> Joaquin
+
+## Golden Hour Bakery (Ventura)
+`local-merchant-v2` variant B, opener from signal `new_business_filing`
+
+**Day 0 email.** Subject: `quick question, Lena`
+
+> Hi Lena,
+>
+> Saw Golden Hour Bakery just got registered with the state. Congrats on making it official.
+>
+> Do you know your effective rate, all fees in, divided by what you processed last month? Most owners guess low by about a point. I can work it out from one statement and send it back the same day.
+>
+> Joaquin
+
+**Day 3 email.** Subject: `one photo is enough`
+
+> Lena, the fastest version: snap a photo of page one of your statement and reply here. I'll send back your effective rate and where the extra is coming from.
+>
+> Joaquin
+
+**Day 7 call.** Call script: reference the email, ask who handles the processing statement, offer the free statement review. Voicemail: name, one line on the review, callback number.
+
+**Day 12 email.** Subject: `closing the loop`
+
+> Lena, I'll stop here. If fees ever come up, reply with a statement and I'll run the numbers. Good luck with Golden Hour Bakery.
+>
+> Joaquin
+
 ## Corner Bean Coffee (Pasadena)
 `local-merchant-v2` variant B, opener from signal `review_spike`
 
@@ -130,29 +153,6 @@ Every email below passed the lint gate. Call steps are scripts for the rep.
 **Day 12 email.** Subject: `closing the loop`
 
 > Sam, I'll stop here. If fees ever come up, reply with a statement and I'll run the numbers. Good luck with Corner Bean Coffee.
->
-> Joaquin
-
-## Valley POS Systems (Panorama City)
-`referral-partner-v1` variant A, opener from signal `hiring_post`
-
-**Day 0 email.** Subject: `your customers' card fees`
-
-> Hi Priya,
->
-> Saw Valley POS Systems is growing the team in Panorama City.
->
-> A lot of those owners are overpaying on card processing and don't know it. I do free statement reviews. When one of your customers switches, you get a share of the revenue for as long as they stay. You don't sell anything, you just make the intro.
->
-> Open to a 15 minute call to see if it fits?
->
-> Joaquin
-
-**Day 4 call.** Call script: ask how many merchant customers they serve monthly and whether anyone asks them about payments. Offer a one page referral card they can hand out.
-
-**Day 9 email.** Subject: `the one pager`
-
-> Priya, one more thought. Partners usually start by sending me the one customer who complains about fees the most. If the review saves them money, you look good and you get paid. Want me to send over the one pager?
 >
 > Joaquin
 
@@ -214,29 +214,6 @@ Every email below passed the lint gate. Call steps are scripts for the rep.
 >
 > Joaquin
 
-## Downtown Business Alliance (Riverside)
-`referral-partner-v1` variant A, opener from signal `new_business_filing`
-
-**Day 0 email.** Subject: `your customers' card fees`
-
-> Hi Maria,
->
-> Saw Downtown Business Alliance recently set up shop in Riverside.
->
-> A lot of those owners are overpaying on card processing and don't know it. I do free statement reviews. When one of your customers switches, you get a share of the revenue for as long as they stay. You don't sell anything, you just make the intro.
->
-> Open to a 15 minute call to see if it fits?
->
-> Joaquin
-
-**Day 4 call.** Call script: ask how many merchant customers they serve monthly and whether anyone asks them about payments. Offer a one page referral card they can hand out.
-
-**Day 9 email.** Subject: `the one pager`
-
-> Maria, one more thought. Partners usually start by sending me the one customer who complains about fees the most. If the review saves them money, you look good and you get paid. Want me to send over the one pager?
->
-> Joaquin
-
 ## Ledger & Co Bookkeeping (San Luis Obispo)
 `referral-partner-v1` variant A, opener from signal `listing_only`
 
@@ -284,5 +261,28 @@ Every email below passed the lint gate. Call steps are scripts for the rep.
 **Day 12 email.** Subject: `closing the loop`
 
 > Jasmine, I'll stop here. If fees ever come up, reply with a statement and I'll run the numbers. Good luck with Glow Up Salon.
+>
+> Joaquin
+
+## Downtown Business Alliance (Riverside)
+`referral-partner-v1` variant A, opener from signal `new_business_filing`
+
+**Day 0 email.** Subject: `your customers' card fees`
+
+> Hi Maria,
+>
+> Saw Downtown Business Alliance recently set up shop in Riverside.
+>
+> A lot of those owners are overpaying on card processing and don't know it. I do free statement reviews. When one of your customers switches, you get a share of the revenue for as long as they stay. You don't sell anything, you just make the intro.
+>
+> Open to a 15 minute call to see if it fits?
+>
+> Joaquin
+
+**Day 4 call.** Call script: ask how many merchant customers they serve monthly and whether anyone asks them about payments. Offer a one page referral card they can hand out.
+
+**Day 9 email.** Subject: `the one pager`
+
+> Maria, one more thought. Partners usually start by sending me the one customer who complains about fees the most. If the review saves them money, you look good and you get paid. Want me to send over the one pager?
 >
 > Joaquin

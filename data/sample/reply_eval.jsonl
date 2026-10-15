@@ -1,0 +1,28 @@
+{"body": "Sure, here is last month's statement. Honestly no idea what half these fees are.", "label": "interested"}
+{"body": "yes send it over", "label": "interested"}
+{"body": "I'm interested, what do you need from me?", "label": "interested"}
+{"body": "Attached. Let me know what you find.", "label": "interested"}
+{"body": "How much does it cost to switch? Is there a cancellation fee with my current processor?", "label": "question"}
+{"body": "Do you work with Clover terminals?", "label": "question"}
+{"body": "Interesting. We have about 200 restaurant accounts. Can you do Thursday at 2?", "label": "meeting_request"}
+{"body": "Send me a calendar link and I'll grab a slot.", "label": "meeting_request"}
+{"body": "Call me tomorrow after 3.", "label": "meeting_request"}
+{"body": "I'm not the right person, my husband Tom handles the payments side. tom@goldenhourbakery.example", "label": "wrong_person"}
+{"body": "Wrong person. Talk to Maria instead, she runs the front office.", "label": "wrong_person"}
+{"body": "We're locked in a contract until March. Reach out then.", "label": "not_now"}
+{"body": "Reach out to me in March.", "label": "not_now"}
+{"body": "Not right now, maybe after the holidays. Ping me in January.", "label": "not_now"}
+{"body": "Circle back next quarter, we're mid remodel.", "label": "not_now"}
+{"body": "We already have a guy for this, rates are fine. Not interested.", "label": "not_interested"}
+{"body": "Please do not send me your statement review again.", "label": "not_interested"}
+{"body": "No thanks, we're all set.", "label": "not_interested"}
+{"body": "Please remove me from your list.", "label": "unsubscribe"}
+{"body": "Unsubscribe", "label": "unsubscribe"}
+{"body": "Stop emailing me.", "label": "unsubscribe"}
+{"body": "I'm out of the office until October 8 with limited access to email.", "label": "out_of_office"}
+{"body": "OOO through Friday, back Monday. Not interested in spam filters, before you ask.", "label": "out_of_office"}
+{"body": "Delivery Status Notification (Failure). 550 5.1.1 The email account that you tried to reach does not exist.", "label": "bounce"}
+{"body": "Address not found. Your message wasn't delivered.", "label": "bounce"}
+{"body": "k", "label": "unknown"}
+{"body": "Who gave you this email?", "label": "question"}
+{"body": "Thanks for reaching out. Our owner is traveling, I'll pass it along.", "label": "unknown"}

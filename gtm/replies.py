@@ -23,13 +23,16 @@ RULES: list[tuple[str, str]] = [
     ("bounce", r"mailer-daemon|delivery status notification|550 5\.\d\.\d|address not found|does not exist"),
     ("out_of_office", r"out of (the )?office|\booo\b|on vacation|limited access to email"),
     ("unsubscribe", r"remove me|unsubscribe|stop (emailing|contacting)|take me off"),
-    ("wrong_person", r"not the right person|wrong person|handles (the )?(payments|that|this)|reach out to \w+"),
+    ("not_interested", r"not interested|already have (a|someone)|we're (all )?set|no thanks|do not (send|contact)|don't (send|contact)"),
+    ("not_now", r"contract until|after the holidays|reach out (to me )?(then|in|next|after)|ping me in|not right now|circle back|next (quarter|year)|\bin (january|february|march|april|may|june|july|august|september|october|november|december)\b"),
+    ("wrong_person", r"not the right person|wrong person|handles (the )?(payments|that|this)|reach out to (?!me\b)\w+|talk to \w+ instead"),
     ("meeting_request", r"\b(monday|tuesday|wednesday|thursday|friday)\b.*\?|\bbook a time\b|\bcalendar link\b|\bcall (me|tomorrow)\b"),
-    ("not_now", r"contract until|after the holidays|reach out (then|in|next)|ping me in|not right now|circle back|next (quarter|year)"),
-    ("not_interested", r"not interested|already have (a|someone)|we're (all )?set|no thanks"),
+    ("interested", r"here (is|are)|attached|sounds good|i'?m interested|send it over|let's talk|^(sure|yes|ok|okay)\b"),
     ("question", r"\?"),
-    ("interested", r"here (is|are)|attached|sounds good|interested|statement|let's talk|sure\b"),
 ]
+# Order matters. Negatives sit above positives so "please do not send me your
+# statement review" never matches the positive "statement" pattern, and
+# "reach out to me in March" is not_now rather than wrong_person.
 
 NEXT_ACTION = {
     "bounce": ("suppress", "Mark email invalid, suppress, re-verify the domain list."),

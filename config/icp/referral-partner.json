@@ -11,6 +11,14 @@
     "business_association",
     "equipment_repair"
   ],
+  "category_fit": {
+    "restaurant_supply": 1.0,
+    "pos_reseller": 1.0,
+    "bookkeeper": 0.9,
+    "equipment_repair": 0.8,
+    "commercial_landlord": 0.7,
+    "business_association": 0.6
+  },
   "exclude_categories": [
     "payments_competitor"
   ],
@@ -39,8 +47,8 @@
     "review_count_ceiling": 250
   },
   "tiers": {
-    "A": 78,
-    "B": 58,
+    "A": 74,
+    "B": 55,
     "C": 35
   }
 }

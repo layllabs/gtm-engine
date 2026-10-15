@@ -4,31 +4,123 @@
   "title": "ICP",
   "description": "Ideal customer profile and its scoring model. One file per ICP in config/icp/. Adding a new market means adding a file, not code.",
   "type": "object",
-  "required": ["id", "lane", "include_categories", "exclude_categories", "geo", "weights", "signal_strength", "recency_half_life_days", "size_proxy", "tiers"],
+  "required": [
+    "id",
+    "lane",
+    "include_categories",
+    "exclude_categories",
+    "category_fit",
+    "geo",
+    "weights",
+    "signal_strength",
+    "recency_half_life_days",
+    "size_proxy",
+    "tiers"
+  ],
   "properties": {
-    "id": { "type": "string" },
-    "name": { "type": "string" },
-    "lane": { "enum": ["direct", "partner"] },
-    "include_categories": { "type": "array", "items": { "type": "string" } },
-    "exclude_categories": { "type": "array", "items": { "type": "string" } },
-    "geo": { "type": "object", "properties": { "states": { "type": "array", "items": { "type": "string" } } } },
+    "id": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "lane": {
+      "enum": [
+        "direct",
+        "partner"
+      ]
+    },
+    "include_categories": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "exclude_categories": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "category_fit": {
+      "type": "object",
+      "description": "Fit per included category, 0 to 1. Categories missing here score 0.7.",
+      "additionalProperties": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 1
+      }
+    },
+    "geo": {
+      "type": "object",
+      "properties": {
+        "states": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
     "weights": {
       "type": "object",
       "description": "Points per component. Should sum to 100.",
-      "required": ["category_fit", "signal_strength", "recency", "reachability", "size_proxy"],
-      "additionalProperties": { "type": "number" }
+      "required": [
+        "category_fit",
+        "signal_strength",
+        "recency",
+        "reachability",
+        "size_proxy"
+      ],
+      "additionalProperties": {
+        "type": "number"
+      }
     },
-    "signal_strength": { "type": "object", "additionalProperties": { "type": "number", "minimum": 0, "maximum": 1 } },
-    "recency_half_life_days": { "type": "integer", "minimum": 1 },
+    "signal_strength": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 1
+      }
+    },
+    "recency_half_life_days": {
+      "type": "integer",
+      "minimum": 1
+    },
     "size_proxy": {
       "type": "object",
-      "required": ["review_count_floor", "review_count_ceiling"],
-      "properties": { "review_count_floor": { "type": "integer" }, "review_count_ceiling": { "type": "integer" } }
+      "required": [
+        "review_count_floor",
+        "review_count_ceiling"
+      ],
+      "properties": {
+        "review_count_floor": {
+          "type": "integer"
+        },
+        "review_count_ceiling": {
+          "type": "integer"
+        }
+      }
     },
     "tiers": {
       "type": "object",
-      "required": ["A", "B", "C"],
-      "properties": { "A": { "type": "number" }, "B": { "type": "number" }, "C": { "type": "number" } }
+      "required": [
+        "A",
+        "B",
+        "C"
+      ],
+      "properties": {
+        "A": {
+          "type": "number"
+        },
+        "B": {
+          "type": "number"
+        },
+        "C": {
+          "type": "number"
+        }
+      }
     }
   }
 }

@@ -60,5 +60,12 @@ From `examples/output/scoreboard.md`:
 
 Most replies are boring: bounces, auto-replies, unsubscribes. Rules catch
 those for free and never hallucinate a meeting. The rules are also the
-eval baseline. When the classifier prompt changes, it gets run against the
-same labeled replies and has to beat the rules, not just "look right".
+eval baseline: `data/sample/reply_eval.jsonl` is a labeled set (28 cases
+today, including the traps: "do not send me your statement review",
+"reach out to me in March", an OOO that says "not interested" in passing).
+`python -m gtm eval-replies` scores the rules against it and CI fails
+below 90%. When the classifier prompt changes, it runs against the same
+set and has to beat the rules, not just "look right".
+
+Rules are precedence-ordered: negatives (not_interested, not_now) sit
+above positives so a positive keyword inside a refusal never wins.
