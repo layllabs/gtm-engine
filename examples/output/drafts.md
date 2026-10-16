@@ -52,6 +52,29 @@ Every email below passed the lint gate. Call steps are scripts for the rep.
 >
 > Joaquin
 
+## Valley POS Systems (Panorama City)
+`referral-partner-v1` variant A, opener from signal `hiring_post`
+
+**Day 0 email.** Subject: `your customers' card fees`
+
+> Hi Priya,
+>
+> Saw Valley POS Systems is growing the team in Panorama City.
+>
+> A lot of those owners are overpaying on card processing and don't know it. I do free statement reviews. When one of your customers switches, you get a share of the revenue for as long as they stay. You don't sell anything, you just make the intro.
+>
+> Open to a 15 minute call to see if it fits?
+>
+> Joaquin
+
+**Day 4 call.** Call script: ask how many merchant customers they serve monthly and whether anyone asks them about payments. Offer a one page referral card they can hand out.
+
+**Day 9 email.** Subject: `the one pager`
+
+> Priya, one more thought. Partners usually start by sending me the one customer who complains about fees the most. If the review saves them money, you look good and you get paid. Want me to send over the one pager?
+>
+> Joaquin
+
 ## Rosa's Taqueria (Long Beach)
 `local-merchant-v2` variant B, opener from signal `new_health_permit`
 
@@ -76,29 +99,6 @@ Every email below passed the lint gate. Call steps are scripts for the rep.
 **Day 12 email.** Subject: `closing the loop`
 
 > Rosa, I'll stop here. If fees ever come up, reply with a statement and I'll run the numbers. Good luck with Rosa's Taqueria.
->
-> Joaquin
-
-## Valley POS Systems (Panorama City)
-`referral-partner-v1` variant A, opener from signal `hiring_post`
-
-**Day 0 email.** Subject: `your customers' card fees`
-
-> Hi Priya,
->
-> Saw Valley POS Systems is growing the team in Panorama City.
->
-> A lot of those owners are overpaying on card processing and don't know it. I do free statement reviews. When one of your customers switches, you get a share of the revenue for as long as they stay. You don't sell anything, you just make the intro.
->
-> Open to a 15 minute call to see if it fits?
->
-> Joaquin
-
-**Day 4 call.** Call script: ask how many merchant customers they serve monthly and whether anyone asks them about payments. Offer a one page referral card they can hand out.
-
-**Day 9 email.** Subject: `the one pager`
-
-> Priya, one more thought. Partners usually start by sending me the one customer who complains about fees the most. If the review saves them money, you look good and you get paid. Want me to send over the one pager?
 >
 > Joaquin
 
