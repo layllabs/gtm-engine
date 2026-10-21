@@ -1,17 +1,17 @@
 {
-  "as_of": "2026-10-20",
+  "as_of": "2026-10-21",
   "raw_signals": 28,
   "accounts_after_dedupe": 23,
   "tiers": {
-    "A": 7,
-    "B": 8,
+    "A": 6,
+    "B": 9,
     "C": 4,
     "DQ": 4
   },
   "actions": {
     "sequence_and_call": 2,
-    "visit_and_sequence": 5,
-    "sequence": 4,
+    "visit_and_sequence": 4,
+    "sequence": 5,
     "call_first": 4,
     "nurture": 2,
     "suppress": 2,
