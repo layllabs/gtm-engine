@@ -1,3 +1,4 @@
+import json
 import re
 import unittest
 from datetime import date
@@ -181,6 +182,83 @@ class TestPlaygroundSync(unittest.TestCase):
         from export_rules import build
         on_disk = json.loads((ROOT / "docs" / "rules.json").read_text())
         self.assertEqual(on_disk, build(), "run: python scripts/export_rules.py")
+
+
+class TestEnrichment(unittest.TestCase):
+    def _acct(self, **kw):
+        base = {"account_id": "acc_t1", "business_name": "Test Cafe", "category": "cafe", "contact_name": "Ana Ruiz",
+                "email": "", "phone": "", "website": "", "review_count": None, "sources": ["maps"], "signals": []}
+        base.update(kw); return base
+
+    def test_crm_is_free_and_first(self):
+        from gtm import enrich
+        _, log = enrich.enrich(self._acct(email="", sources=["partner_scan"]))
+        self.assertEqual(log[0]["provider"], "crm"); self.assertEqual(log[0]["cost_cents"], 0)
+
+    def test_pattern_guess_never_enrolls(self):
+        from gtm import enrich
+        cfg = json.loads((ROOT / "config" / "enrichment.json").read_text())
+        cfg["fields"]["email"]["providers"] = ["pattern_guess"]
+        out, _ = enrich.enrich(self._acct(website="testcafe.example"), cfg)
+        self.assertTrue(out["email"].endswith("@testcafe.example"))
+        self.assertTrue(out["needs_verification"])
+        routed = route.route_all([{**out, "icp": "local-merchant", "lane": "direct", "tier": "A", "score": 90,
+                                   "address": "1 Main", "state": "CA", "components": {}, "reasons": ["x"]}],
+                                 {"email": set(), "domain": set(), "phone": set()}, AS_OF)
+        self.assertIsNone(routed[0]["sequence"])
+        self.assertEqual(routed[0]["action"], "call_first")
+
+    def test_budget_skips_expensive_provider(self):
+        from gtm import enrich
+        cfg = json.loads((ROOT / "config" / "enrichment.json").read_text())
+        cfg["fields"]["email"]["max_cost_cents"] = 1
+        _, log = enrich.enrich(self._acct(), cfg)
+        self.assertTrue(any(e["provider"] == "apollo" and e["result"] == "skipped_budget" for e in log))
+
+
+class TestTerritory(unittest.TestCase):
+    def test_zip_beats_state_and_partner_override_wins(self):
+        from gtm import territory
+        self.assertEqual(territory.assign({"account_id": "a", "lane": "direct", "zip": "93401", "state": "CA"})[0], "rep_cc")
+        self.assertEqual(territory.assign({"account_id": "a", "lane": "direct", "zip": "", "state": "CA"})[0], "rep_ca_overflow")
+        self.assertEqual(territory.assign({"account_id": "a", "lane": "partner", "zip": "93401", "state": "CA"})[0], "rep_partners")
+
+    def test_round_robin_is_stable(self):
+        from gtm import territory
+        a = {"account_id": "acc_rr", "lane": "direct", "zip": "90012", "state": "CA"}
+        self.assertEqual(territory.assign(a)[0], territory.assign(a)[0])
+        self.assertIn(territory.assign(a)[0], ("rep_la1", "rep_la2"))
+
+
+class TestInbound(unittest.TestCase):
+    def test_hot_lead_gets_five_minute_sla_and_owner(self):
+        from datetime import datetime
+        from gtm import inbound
+        acct = inbound.intake({"business_name": "Quick Lube", "contact_name": "Sam Lee", "email": "sam@ql.example",
+                               "zip": "93401", "state": "CA", "category": "auto_repair",
+                               "message": "Our contract ends next month, can you send pricing?",
+                               "utm_source": "google", "utm_medium": "cpc", "utm_campaign": "fees"},
+                              datetime(2026, 10, 1, 9, 0))
+        self.assertEqual(acct["intent"], "hot"); self.assertEqual(acct["sla_minutes"], 5)
+        self.assertEqual(acct["owner"], "rep_cc")
+        self.assertEqual(acct["attribution"]["first_touch_source"], "google")
+        self.assertIn("statement", acct["first_response"])
+        self.assertEqual(inbound.sla_status(acct, datetime(2026, 10, 1, 9, 4)), "on_time")
+        self.assertEqual(inbound.sla_status(acct, datetime(2026, 10, 1, 9, 6)), "breached")
+
+
+class TestSqlQueries(unittest.TestCase):
+    def test_every_named_query_runs(self):
+        import re, sqlite3
+        from gtm.pipeline import run
+        out = ROOT / "examples" / "_test_output"
+        run(DATA, out, AS_OF)
+        text = (ROOT / "docs" / "sql" / "analysis.sql").read_text()
+        blocks = re.findall(r"-- name: (\w+)\n((?:--.*\n)*)([\s\S]*?;)", text)
+        self.assertGreaterEqual(len(blocks), 8)
+        con = sqlite3.connect(out / "engine.db")
+        for name, _, q in blocks:
+            con.execute(q).fetchall()
 
 
 class TestEvalExport(unittest.TestCase):

@@ -25,6 +25,20 @@ then partner scan, then permits, filings, posts).
 
 In the sample run: **28 raw signals become 23 accounts**.
 
+## Enrich (between dedupe and score)
+
+Missing fields go through the waterfall in `config/enrichment.json`: CRM
+first (free), then public sources, then paid providers, each field with a
+cent budget. A pattern-guessed email is flagged `needs_verification` and
+routes to call-first, never to a sequence. The scoreboard shows hit rate
+and cost per hit by provider, which is how a provider gets demoted.
+
+## Assign (after score)
+
+`config/territories.json` maps zip prefix, state or city to an owner, with
+deterministic round-robin for shared territories and a partner-lane
+override. The owner lands on the scoreboard and in the shadow CRM.
+
 ## Score
 
 ```mermaid

@@ -1,0 +1,39 @@
+{
+  "description": "Waterfall enrichment: providers are tried in order per field until one returns a value or the budget is spent. Same shape a Clay table encodes, kept here so the order and cost are reviewable and testable.",
+  "fields": {
+    "email": {
+      "providers": ["crm", "apollo", "hunter", "pattern_guess"],
+      "stop_on_first": true,
+      "max_cost_cents": 12
+    },
+    "phone": {
+      "providers": ["crm", "maps", "apollo"],
+      "stop_on_first": true,
+      "max_cost_cents": 8
+    },
+    "owner_name": {
+      "providers": ["crm", "sos_filings", "maps", "website_scrape"],
+      "stop_on_first": true,
+      "max_cost_cents": 6
+    },
+    "review_count": {
+      "providers": ["maps"],
+      "stop_on_first": true,
+      "max_cost_cents": 2
+    }
+  },
+  "providers": {
+    "crm":            { "cost_cents": 0,  "description": "Existing record in the system of record. Always first, always free." },
+    "sos_filings":    { "cost_cents": 0,  "description": "State business registry: registered agent and officers." },
+    "maps":           { "cost_cents": 1,  "description": "Maps listing: phone, address, review count, sometimes owner responses." },
+    "website_scrape": { "cost_cents": 1,  "description": "About or contact page, LLM-extracted owner name with a QA pass." },
+    "apollo":         { "cost_cents": 5,  "description": "Contact data provider. Paid per match." },
+    "hunter":         { "cost_cents": 4,  "description": "Email finder. Paid per found address." },
+    "pattern_guess":  { "cost_cents": 0,  "description": "first@domain from a known pattern. Must be verified before use; never enrolls unverified." }
+  },
+  "rules": [
+    "crm is always the first provider so paid lookups never run for data we already own.",
+    "A pattern_guess email is tagged source=pattern_guess and routed to verification, never straight to a sequence.",
+    "Per-field budgets cap spend per account; a field that blows its budget is left empty and the account routes by what it has (call_first if no email)."
+  ]
+}

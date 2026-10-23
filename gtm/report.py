@@ -22,6 +22,8 @@ def summary(r: dict) -> dict:
         "mailboxes": dict(Counter(m["status"] for m in r["mailboxes"])),
         "domains_to_retire": [d["domain"] for d in r["domains"] if d["verdict"] != "keep"],
         "final_states": dict(Counter(r["states"].values())),
+        "owners": dict(Counter(a.get("owner") or "unassigned" for a in accts)),
+        "enrichment_spend_cents": sum(e["cost_cents"] for e in r.get("enrichment", [])),
     }
 
 
@@ -57,10 +59,10 @@ def scoreboard(r: dict) -> str:
 
     L.append("## Ranked accounts")
     L.append("")
-    L.append("| # | Account | Lane | Score | Tier | Action | Top reasons |")
-    L.append("|---|---|---|---|---|---|---|")
+    L.append("| # | Account | Lane | Owner | Score | Tier | Action | Top reasons |")
+    L.append("|---|---|---|---|---|---|---|---|")
     for i, a in enumerate(accts, 1):
-        L.append(f"| {i} | {a['business_name']} | {a['lane'] or '-'} | {a['score']} | {a['tier']} | {a['action']} | {'; '.join(a['reasons'][:3])} |")
+        L.append(f"| {i} | {a['business_name']} | {a['lane'] or '-'} | {a.get('owner') or '-'} | {a['score']} | {a['tier']} | {a['action']} | {'; '.join(a['reasons'][:3])} |")
     L.append("")
 
     L.append("## Replies")
@@ -93,6 +95,13 @@ def scoreboard(r: dict) -> str:
         L.append(f"| {v['sequence']} | {v['variant']} | {v['sent']} | {_pct(v['reply_rate'])} | {_pct(v['positive_rate'])} | {v['verdict'] or v['flag']} |")
     L.append("")
 
+    L.append("## Enrichment coverage")
+    L.append("")
+    L.append("| Provider | Lookups | Hits | Hit rate | Spend (cents) | Cost per hit |")
+    L.append("|---|---|---|---|---|---|")
+    for e in r.get("enrichment", []):
+        L.append(f"| {e['provider']} | {e['lookups']} | {e['hits']} | {e['hit_rate']:.0%} | {e['cost_cents']} | {e['cost_per_hit_cents'] if e['cost_per_hit_cents'] is not None else '-'} |")
+    L.append("")
     bad = [t for t in r["template_lint"] if t["issues"]]
     L.append("## Template lint")
     L.append("")

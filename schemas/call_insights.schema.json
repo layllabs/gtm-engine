@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "call_insights.schema.json",
+  "title": "CallInsights",
+  "description": "Output contract for prompts/call-insights.md. Written to Opportunity and Event fields per docs/crm/salesforce-field-map.md.",
+  "type": "object",
+  "required": ["next_step", "decision_maker_on_call", "statement_status", "objections", "rubric", "coach_flag"],
+  "additionalProperties": false,
+  "properties": {
+    "next_step": { "type": ["string", "null"], "maxLength": 200 },
+    "next_step_date": { "type": ["string", "null"], "format": "date" },
+    "decision_maker_on_call": { "type": "boolean" },
+    "statement_status": { "enum": ["received", "promised", "declined", "not_discussed"] },
+    "objections": { "type": "array", "items": { "enum": ["price", "contract_lock", "happy_with_current", "no_time", "trust", "hardware", "other"] }, "uniqueItems": true },
+    "competitor_mentioned": { "type": ["string", "null"] },
+    "rubric": {
+      "type": "object",
+      "required": ["opener", "discovery", "value", "objection_handling", "close"],
+      "additionalProperties": false,
+      "properties": {
+        "opener": { "type": ["integer", "null"], "minimum": 1, "maximum": 5 },
+        "discovery": { "type": ["integer", "null"], "minimum": 1, "maximum": 5 },
+        "value": { "type": ["integer", "null"], "minimum": 1, "maximum": 5 },
+        "objection_handling": { "type": ["integer", "null"], "minimum": 1, "maximum": 5 },
+        "close": { "type": ["integer", "null"], "minimum": 1, "maximum": 5 }
+      }
+    },
+    "rubric_notes": { "type": "object", "additionalProperties": { "type": "string", "maxLength": 300 } },
+    "coach_flag": { "type": "boolean" }
+  }
+}

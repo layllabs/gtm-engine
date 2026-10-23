@@ -21,9 +21,9 @@ python -m gtm run
 
 ```
 engine run 2026-10-01: 28 signals -> 23 accounts
-  tiers    {'A': 7, 'B': 9, 'C': 3, 'DQ': 4}
-  actions  {'sequence_and_call': 2, 'visit_and_sequence': 5, 'sequence': 4, 'call_first': 5, 'suppress': 2, 'nurture': 1, 'disqualify': 4}
-  drafts   40 (0 failing lint)
+  tiers    {'A': 8, 'B': 8, 'C': 3, 'DQ': 4}
+  actions  {'sequence_and_call': 2, 'visit_and_sequence': 5, 'sequence': 7, 'call_first': 2, 'suppress': 2, 'nurture': 1, 'disqualify': 4}
+  drafts   52 (0 failing lint)
   replies  {'interested': 1, 'not_now': 2, 'question': 1, 'wrong_person': 1, 'unsubscribe': 1, 'meeting_request': 1, 'out_of_office': 1, 'not_interested': 1, 'bounce': 1}
   inboxes  {'ok': 2, 'watch': 1, 'pause': 2, 'warming': 1}  retire: ['sender-two.example']
   wrote    examples/output/scoreboard.md
@@ -50,7 +50,7 @@ flowchart LR
 | Step | Code | Doc | Config |
 |---|---|---|---|
 | 1. Discover | [`gtm/discover.py`](gtm/discover.py) | [workflow](docs/workflows/01-signal-discovery.md) | [`schemas/signal.schema.json`](schemas/signal.schema.json) |
-| 2. Dedupe and score | [`gtm/dedupe.py`](gtm/dedupe.py), [`gtm/score.py`](gtm/score.py) | [workflow](docs/workflows/02-dedupe-and-score.md) | [`config/icp/`](config/icp) |
+| 2. Dedupe, enrich, score, assign | [`gtm/dedupe.py`](gtm/dedupe.py), [`gtm/enrich.py`](gtm/enrich.py), [`gtm/score.py`](gtm/score.py), [`gtm/territory.py`](gtm/territory.py) | [workflow](docs/workflows/02-dedupe-and-score.md) | [`config/icp/`](config/icp), [`config/enrichment.json`](config/enrichment.json), [`config/territories.json`](config/territories.json) |
 | 3. Route, write, gate | [`gtm/route.py`](gtm/route.py), [`gtm/copywriting.py`](gtm/copywriting.py) | [workflow](docs/workflows/03-route-and-sequence.md) | [`config/routing.json`](config/routing.json), [`config/sequences/`](config/sequences) |
 | 4. Replies | [`gtm/replies.py`](gtm/replies.py), [`gtm/lifecycle.py`](gtm/lifecycle.py) | [workflow](docs/workflows/04-reply-handling.md) | [`prompts/reply-classifier.md`](prompts/reply-classifier.md) |
 | 5. Health | [`gtm/health.py`](gtm/health.py) | [workflow](docs/workflows/05-deliverability-health.md) | [`config/deliverability.json`](config/deliverability.json) |
@@ -78,6 +78,18 @@ Rules handle the easy 80% of replies; Claude only sees what's left.
 **Reviewed.** An AI screener with no context read this repo cold and scored
 it 6/10 with nine red flags. [The report and the fixes](docs/reviews/2026-10-15-cold-ai-screen.md)
 are published. Changes since: [CHANGELOG.md](CHANGELOG.md).
+
+**Built to the job description.** [docs/fit/requirements-matrix.md](docs/fit/requirements-matrix.md)
+maps three real GTM Engineer postings to this repo line by line. What was
+missing got built: waterfall enrichment ([`gtm/enrich.py`](gtm/enrich.py)),
+territory assignment ([`gtm/territory.py`](gtm/territory.py)), inbound
+speed-to-lead with attribution ([`gtm/inbound.py`](gtm/inbound.py)), SQL
+([`docs/sql/analysis.sql`](docs/sql/analysis.sql)), an importable
+[n8n workflow](integrations/n8n/run-the-engine.json), a
+[Salesforce field map](docs/crm/salesforce-field-map.md), a
+[Gong call-insights spec](docs/integrations/gong-call-insights.md), a
+[monitoring runbook](docs/runbooks/monitoring-and-alerting.md) and
+[AI guardrails](docs/ai-guardrails.md) on one page. Gaps are listed as gaps.
 
 **Connecting tools.** One registry (`gtm/integrations/registry.py`) knows how
 each tool authenticates and how to prove a credential works with one
@@ -123,6 +135,7 @@ python -m gtm lint-copy           lint every sequence template (CI runs this)
 python -m gtm eval-replies        rules classifier vs 28 labeled replies (CI runs this)
 python -m gtm health              deliverability check only
 python -m gtm connect             which tools are configured; read-only probe of each
+python -m gtm sql                 nine analysis queries against the last run's shadow CRM
 python scripts/aeo_audit.py       SEO/AEO checklist against the portfolio pages
 python -m unittest discover -s tests -t .
 ```

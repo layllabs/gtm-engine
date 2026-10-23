@@ -16,7 +16,7 @@ CREATE TABLE accounts (
   account_id TEXT PRIMARY KEY, business_name TEXT, category TEXT, city TEXT, state TEXT,
   phone TEXT, website TEXT, email TEXT, contact_name TEXT, review_count INTEGER,
   icp TEXT, lane TEXT, score REAL, tier TEXT, components TEXT, reasons TEXT,
-  state_current TEXT, sources TEXT
+  state_current TEXT, sources TEXT, owner TEXT, territory_rule TEXT
 );
 CREATE TABLE signals (
   id INTEGER PRIMARY KEY AUTOINCREMENT, account_id TEXT REFERENCES accounts(account_id),
@@ -49,11 +49,11 @@ def write(db_path: Path, routed: list[dict], drafts: list[dict], replies: list[d
     con.executescript(SCHEMA)
     for a in routed:
         con.execute(
-            "INSERT INTO accounts VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+            "INSERT INTO accounts VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
             (a["account_id"], a["business_name"], a["category"], a["city"], a["state"], a["phone"],
              a["website"], a["email"], a["contact_name"], a["review_count"], a["icp"], a["lane"],
              a["score"], a["tier"], json.dumps(a["components"]), json.dumps(a["reasons"]),
-             ledger_state.get(a["account_id"]), json.dumps(a["sources"])),
+             ledger_state.get(a["account_id"]), json.dumps(a["sources"]), a.get("owner"), a.get("territory_rule")),
         )
         for s in a["signals"]:
             con.execute(

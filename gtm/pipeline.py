@@ -7,7 +7,7 @@ import json
 from datetime import date
 from pathlib import Path
 
-from . import copywriting, dedupe, discover, health, replies, report, route, score, store
+from . import copywriting, dedupe, discover, enrich, health, replies, report, route, score, store, territory
 from .lifecycle import ACTION_TO_STATE, REPLY_TO_STATE, InvalidTransition, Ledger
 from .util import CONFIG, load_json, read_jsonl, write_csv, write_jsonl
 
@@ -24,8 +24,19 @@ def run(data_dir: Path, out_dir: Path, as_of: date) -> dict:
     # 2. dedupe
     accounts = dedupe.merge(signals)
 
+    # 2b. enrich: waterfall per missing field, logged for the coverage report
+    enrich_log: list[dict] = []
+    enriched = []
+    for a in accounts:
+        e, log = enrich.enrich(a)
+        enriched.append(e)
+        enrich_log.extend(log)
+    accounts = enriched
+
     # 3. score
     scored = score.score_all(accounts, score.load_icps(), as_of)
+    for a in scored:
+        a["owner"], a["territory_rule"] = territory.assign(a)
     for a in scored:
         if a["tier"] == "DQ":
             ledger.move(a["account_id"], "disqualified", a["reasons"][0], stamp)
@@ -87,8 +98,9 @@ def run(data_dir: Path, out_dir: Path, as_of: date) -> dict:
          "state_now": ledger.state[a["account_id"]],
          "task": f"{a['task']['type']} by {a['task']['due']}" if a["task"] else ""}
         for a in routed
-    ], ["account_id", "business_name", "category", "city", "state", "icp", "lane", "score", "tier",
+    ], ["account_id", "business_name", "category", "city", "state", "owner", "territory_rule", "icp", "lane", "score", "tier",
         "action", "sequence", "task", "state_now", "reasons", "sources", "merged_rows", "suppression_reason"])
+    write_jsonl(out_dir / "enrichment_log.jsonl", enrich_log)
     write_jsonl(out_dir / "drafts.jsonl", drafts)
     write_csv(out_dir / "replies_classified.csv", classified,
               ["id", "business_name", "label", "confidence", "next_action", "applied",
@@ -107,6 +119,7 @@ def run(data_dir: Path, out_dir: Path, as_of: date) -> dict:
         "domains": domains,
         "variants": variants,
         "template_lint": template_lint,
+        "enrichment": enrich.coverage_report(enrich_log),
         "states": ledger.state,
         "events": ledger.events,
     }

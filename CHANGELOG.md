@@ -2,6 +2,27 @@
 
 Dated record of what changed and why. Newest first.
 
+## 2026-10-22 (fourth batch: built to the postings)
+
+- Mapped three public GTM Engineer postings to the repo
+  (`docs/fit/requirements-matrix.md`) and built the gaps:
+- Waterfall enrichment with per-field provider order and budget, CRM-first,
+  pattern-guess never enrolls unverified; coverage and cost-per-hit on the
+  scoreboard (`config/enrichment.json`, `gtm/enrich.py`).
+- Territory assignment by zip, state, city with stable round-robin and a
+  partner-lane override (`config/territories.json`, `gtm/territory.py`);
+  owner column on the scoreboard and in the shadow CRM.
+- Inbound speed-to-lead: intent SLA, owner, first-touch attribution, first
+  response at intake (`gtm/inbound.py`).
+- `python -m gtm sql`: nine named queries (`docs/sql/analysis.sql`).
+- Importable n8n workflow for the daily run (`integrations/n8n/`).
+- Salesforce and HubSpot field map with sync rules and validation rules.
+- Gong call-insights spec, prompt and schema.
+- Monitoring and alerting runbook; AI guardrails on one page.
+- Routing fix: an unverified (pattern-guessed) email no longer counts as
+  `has_email`.
+- Tests 31 to 38.
+
 ## 2026-10-22 (third batch)
 
 - Architecture diagram rendered to `docs/assets/architecture.svg` and shown

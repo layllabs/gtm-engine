@@ -1,23 +1,23 @@
 {
-  "as_of": "2026-10-22",
+  "as_of": "2026-10-01",
   "raw_signals": 28,
   "accounts_after_dedupe": 23,
   "tiers": {
-    "A": 6,
-    "B": 9,
-    "C": 4,
+    "A": 8,
+    "B": 8,
+    "C": 3,
     "DQ": 4
   },
   "actions": {
     "sequence_and_call": 2,
-    "visit_and_sequence": 4,
-    "sequence": 5,
-    "call_first": 4,
-    "nurture": 2,
+    "visit_and_sequence": 5,
+    "sequence": 7,
+    "call_first": 2,
     "suppress": 2,
+    "nurture": 1,
     "disqualify": 4
   },
-  "drafts": 40,
+  "drafts": 52,
   "drafts_failing_lint": 0,
   "replies": {
     "interested": 1,
@@ -41,14 +41,23 @@
   ],
   "final_states": {
     "meeting": 1,
-    "nurture": 4,
-    "paused": 1,
+    "nurture": 3,
     "engaged": 2,
+    "paused": 1,
     "rerouted": 1,
     "closed_no": 1,
+    "sequenced": 5,
     "suppressed": 3,
-    "task_pending": 4,
-    "sequenced": 2,
+    "task_pending": 2,
     "disqualified": 4
-  }
+  },
+  "owners": {
+    "rep_partners": 6,
+    "rep_la2": 4,
+    "rep_cc": 7,
+    "rep_la1": 2,
+    "rep_ie": 3,
+    "unassigned": 1
+  },
+  "enrichment_spend_cents": 58
 }

@@ -19,7 +19,7 @@ data and writes a scoreboard.
 
 ## Invariants (do not break these)
 
-- No account enters a sequence without an email address and a clean lint.
+- No account enters a sequence without a verified email address and a clean lint. A pattern-guessed email does not count.
 - Suppression is checked before routing and is terminal.
 - Every score carries a non-empty `reasons` list.
 - Every LLM call has a JSON schema in `schemas/` and a non-LLM fallback.
@@ -42,6 +42,9 @@ data and writes a scoreboard.
 | Change a prompt | `prompts/*.md` |
 | Connect or add a tool | `gtm/integrations/registry.py`, `.env.example`, `skills/connect-tools/SKILL.md`, then `python -m gtm connect` |
 | Change the portfolio pages | `docs/index.html` (agent-first), `docs/human.html`, then `python scripts/aeo_audit.py` |
+| Change enrichment order or budgets | `config/enrichment.json` |
+| Change territories or reps | `config/territories.json` |
+| Query the last run | `python -m gtm sql`, queries in `docs/sql/analysis.sql` |
 | Log an experiment | `docs/experiments/`, use the template in its README |
 
 ## Verify before committing

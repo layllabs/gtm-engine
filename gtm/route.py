@@ -57,7 +57,8 @@ def route_all(scored: list[dict], sup: dict, as_of: date, rules_path: Path | Non
             "suppressed": bool(hit),
             "lane": acct["lane"],
             "tier": acct["tier"],
-            "has_email": bool(acct["email"]),
+            # a pattern-guessed email counts as no email until verified
+            "has_email": bool(acct["email"]) and not acct.get("needs_verification"),
             "has_phone": bool(acct["phone"]),
             "has_address": bool(acct["address"]),
         }

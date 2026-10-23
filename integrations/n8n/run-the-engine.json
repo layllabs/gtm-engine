@@ -1,0 +1,155 @@
+{
+  "name": "GTM Engine: run the engine (daily)",
+  "meta": {
+    "note": "Importable n8n workflow for the daily run, for the day ADR 001's reversal condition is met. Each HTTP node calls a thin service wrapping the same Python modules; nothing here re-implements the logic. Credentials are n8n credential references, never inline.",
+    "source": "github.com/layllabs/GTM-Engine, docs/workflows/04-reply-handling.md"
+  },
+  "nodes": [
+    {
+      "parameters": { "rule": { "interval": [{ "field": "cronExpression", "expression": "0 7 * * 1-5" }] } },
+      "name": "Weekday 07:00",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [0, 300]
+    },
+    {
+      "parameters": {
+        "method": "GET",
+        "url": "={{ $env.SEQUENCER_BASE_URL }}/replies?since={{ $now.minus({days: 1}).toISO() }}",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "httpHeaderAuth"
+      },
+      "name": "Pull new replies",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [220, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $env.ENGINE_BASE_URL }}/classify",
+        "sendBody": true,
+        "jsonBody": "={{ JSON.stringify({ replies: $json.replies }) }}",
+        "options": {}
+      },
+      "name": "Classify (rules first)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [440, 300]
+    },
+    {
+      "parameters": {
+        "conditions": { "options": { "caseSensitive": true }, "conditions": [
+          { "leftValue": "={{ $json.confidence }}", "rightValue": 0.7, "operator": { "type": "number", "operation": "lt" } }
+        ] }
+      },
+      "name": "Low confidence?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [660, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.anthropic.com/v1/messages",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "anthropicApi",
+        "sendBody": true,
+        "jsonBody": "={{ JSON.stringify({ model: 'claude-sonnet-4-5', max_tokens: 400, messages: [{ role: 'user', content: $('Classify (rules first)').item.json.prompt }] }) }}",
+        "options": {}
+      },
+      "name": "Claude classifier",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [880, 180]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Validate against schemas/reply.schema.json shape; reject to human review on failure.\nconst allowed = ['interested','question','meeting_request','wrong_person','not_now','not_interested','unsubscribe','out_of_office','bounce','unknown'];\nreturn $input.all().map(i => {\n  let out; try { out = JSON.parse(i.json.content?.[0]?.text ?? '{}'); } catch { out = {}; }\n  const valid = allowed.includes(out.label) && typeof out.confidence === 'number';\n  return { json: valid ? out : { label: 'unknown', confidence: 0, next_action: 'review', reason: 'schema_invalid' } };\n});"
+      },
+      "name": "Validate schema",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1100, 180]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $env.ENGINE_BASE_URL }}/apply",
+        "sendBody": true,
+        "jsonBody": "={{ JSON.stringify($json) }}",
+        "options": {}
+      },
+      "name": "Apply state change + CRM sync",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1320, 300]
+    },
+    {
+      "parameters": {
+        "conditions": { "options": { "caseSensitive": true }, "conditions": [
+          { "leftValue": "={{ ['interested','question','meeting_request'].includes($json.label) }}", "rightValue": true, "operator": { "type": "boolean", "operation": "equals" } }
+        ] }
+      },
+      "name": "Positive reply?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [1540, 300]
+    },
+    {
+      "parameters": {
+        "channel": "#outbound-approvals",
+        "text": "=Draft for {{ $json.business_name }} ({{ $json.label }}):\n{{ $json.draft_reply }}\nApprove with a thumbs up. Nothing sends without it."
+      },
+      "name": "Post draft for approval",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.2,
+      "position": [1760, 180]
+    },
+    {
+      "parameters": {
+        "method": "GET",
+        "url": "={{ $env.ENGINE_BASE_URL }}/health",
+        "options": {}
+      },
+      "name": "Deliverability health",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [220, 520]
+    },
+    {
+      "parameters": {
+        "conditions": { "options": { "caseSensitive": true }, "conditions": [
+          { "leftValue": "={{ $json.paused_mailboxes.length }}", "rightValue": 0, "operator": { "type": "number", "operation": "gt" } }
+        ] }
+      },
+      "name": "Any mailbox paused?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [440, 520]
+    },
+    {
+      "parameters": {
+        "channel": "#outbound-alerts",
+        "text": "=Paused: {{ $json.paused_mailboxes.join(', ') }}. Retire: {{ $json.domains_to_retire.join(', ') || 'none' }}."
+      },
+      "name": "Alert",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.2,
+      "position": [660, 520]
+    }
+  ],
+  "connections": {
+    "Weekday 07:00": { "main": [[{ "node": "Pull new replies", "type": "main", "index": 0 }, { "node": "Deliverability health", "type": "main", "index": 0 }]] },
+    "Pull new replies": { "main": [[{ "node": "Classify (rules first)", "type": "main", "index": 0 }]] },
+    "Classify (rules first)": { "main": [[{ "node": "Low confidence?", "type": "main", "index": 0 }]] },
+    "Low confidence?": { "main": [[{ "node": "Claude classifier", "type": "main", "index": 0 }], [{ "node": "Apply state change + CRM sync", "type": "main", "index": 0 }]] },
+    "Claude classifier": { "main": [[{ "node": "Validate schema", "type": "main", "index": 0 }]] },
+    "Validate schema": { "main": [[{ "node": "Apply state change + CRM sync", "type": "main", "index": 0 }]] },
+    "Apply state change + CRM sync": { "main": [[{ "node": "Positive reply?", "type": "main", "index": 0 }]] },
+    "Positive reply?": { "main": [[{ "node": "Post draft for approval", "type": "main", "index": 0 }], []] },
+    "Deliverability health": { "main": [[{ "node": "Any mailbox paused?", "type": "main", "index": 0 }]] },
+    "Any mailbox paused?": { "main": [[{ "node": "Alert", "type": "main", "index": 0 }], []] }
+  },
+  "settings": { "executionOrder": "v1", "errorWorkflow": "gtm-engine-error-handler" }
+}

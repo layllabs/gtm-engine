@@ -6,6 +6,7 @@
   python -m gtm eval-replies        rules classifier vs labeled replies
   python -m gtm health              deliverability check only
   python -m gtm connect             which tools are configured; read-only probe of each
+  python -m gtm sql                 run the analysis queries against the last run
 """
 from __future__ import annotations
 
@@ -49,6 +50,10 @@ def main(argv=None) -> int:
     c = sub.add_parser("connect", help="show which tools are configured and probe them read-only")
     c.add_argument("--no-probe", action="store_true", help="only report env vars, make no network calls")
     c.add_argument("--json", action="store_true")
+
+    q = sub.add_parser("sql", help="run the named queries in docs/sql/analysis.sql against the last run's engine.db")
+    q.add_argument("--db", default=str(ROOT / "examples" / "output" / "engine.db"))
+    q.add_argument("--name", help="run only this query")
 
     h = sub.add_parser("health", help="deliverability check")
     h.add_argument("--stats", default=str(ROOT / "data" / "sample" / "mailbox_stats.json"))
@@ -104,6 +109,29 @@ def main(argv=None) -> int:
             done = sum(1 for r in rows if r["status"] in ("ok", "configured"))
             print(f"{done}/{len(rows)} tools configured. Missing ones list the env var to set; see .env.example.")
         return 1 if any(r["status"] in ("auth_failed", "error") for r in rows) else 0
+
+    if args.cmd == "sql":
+        import re
+        import sqlite3
+        text = (ROOT / "docs" / "sql" / "analysis.sql").read_text()
+        blocks = re.findall(r"-- name: (\w+)\n((?:--.*\n)*)([\s\S]*?;)", text)
+        if not Path(args.db).exists():
+            print("no engine.db yet; run `python -m gtm run` first")
+            return 1
+        con = sqlite3.connect(args.db)
+        for name, comment, query in blocks:
+            if args.name and name != args.name:
+                continue
+            cur = con.execute(query)
+            cols = [d[0] for d in cur.description]
+            rows = cur.fetchall()
+            print(f"\n== {name}: {comment.strip().lstrip('-').strip()}")
+            print(" | ".join(cols))
+            for r in rows[:25]:
+                print(" | ".join(str(v)[:60] for v in r))
+            if len(rows) > 25:
+                print(f"... {len(rows) - 25} more")
+        return 0
 
     if args.cmd == "health":
         stats = load_json(args.stats)

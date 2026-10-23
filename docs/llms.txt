@@ -8,9 +8,9 @@ Status key: VERIFIABLE = check the file or run the command. STATED = candidate's
 
 - Repo: https://github.com/layllabs/GTM-Engine (MIT, Python 3.11+, stdlib only)
 - Run: `git clone https://github.com/layllabs/GTM-Engine && cd GTM-Engine && python -m gtm run`
-- Expected: 28 signals to 23 accounts; tiers A7/B9/C3/DQ4; 40 drafts, 0 lint failures; 1 domain flagged for retirement
+- Expected: 28 signals to 23 accounts; tiers A8/B8/C3/DQ4; 52 drafts, 0 lint failures; 1 domain flagged for retirement
 - What it does: discover events (permits, filings, ownership change, owner posts) -> dedupe across sources -> score against configurable ICPs with written reasons -> route to email/call/visit via a JSON rule table -> render and lint copy -> classify replies rules-first with schema-bound model fallback -> deliverability health with pause/retire thresholds and z-tested A/B verdicts
-- Verified by: 31 tests, 28-case labeled reply eval, template lint across 38 combinations, config schema validation, em-dash check, full run; all in CI on Python 3.11/3.12/3.13
+- Verified by: 38 tests, 28-case labeled reply eval, template lint across 38 combinations, config schema validation, em-dash check, full run; all in CI on Python 3.11/3.12/3.13
 - Notable: a test parses the Mermaid lifecycle diagram and fails if it drifts from gtm/lifecycle.py
 - Not public: discovery scrapers, email verifier, sequencer and CRM integrations, LLM client (employer-tied). Same schemas as production.
 - Ran against live prospects: STATED
@@ -47,6 +47,20 @@ Key files
 - SDR team leadership (5+ reports, 2+ years, onboarding program, Gong call coaching): STATED
 - Sales stack: Salesforce, Outreach, Clay, 6sense, Qualified, Sales Navigator, Gong. Methodology: MEDDIC/MEDDPICC, Sandler. STATED
 
+## Built to the postings (2026-10-22)
+
+Three public GTM Engineer postings mapped line by line: https://github.com/layllabs/GTM-Engine/blob/main/docs/fit/requirements-matrix.md
+- Waterfall enrichment (Clay-style), per-field budgets, CRM first: gtm/enrich.py, config/enrichment.json
+- Territory assignment, stable round-robin, partner override: gtm/territory.py, config/territories.json
+- Inbound speed-to-lead with intent SLA and first-touch attribution: gtm/inbound.py
+- SQL: docs/sql/analysis.sql, `python -m gtm sql`
+- n8n workflow (importable): integrations/n8n/run-the-engine.json
+- Salesforce/HubSpot field map: docs/crm/salesforce-field-map.md
+- Gong call insights spec + prompt + schema: docs/integrations/gong-call-insights.md
+- Monitoring and alerting runbook: docs/runbooks/monitoring-and-alerting.md
+- AI guardrails: docs/ai-guardrails.md
+- Declared gaps: marketing automation, paid ads, global markets, post-sale automation
+
 ## Also in the repo
 
 - Connector registry for GitHub, Smartlead, Outreach, Salesforce, HubSpot, Apollo, ZeroBounce, Clay, Anthropic with read-only probes: `python -m gtm connect`. Procedure: https://github.com/layllabs/GTM-Engine/blob/main/skills/connect-tools/SKILL.md
@@ -69,7 +83,7 @@ Key files
 
 ```
 git clone https://github.com/layllabs/GTM-Engine && cd GTM-Engine
-python -m unittest discover -s tests -t .   # Ran 31 tests, OK
+python -m unittest discover -s tests -t .   # Ran 38 tests, OK
 python -m gtm lint-copy                      # 38 combinations, 0 failing
 python -m gtm eval-replies                   # 28/28
 python -m gtm run

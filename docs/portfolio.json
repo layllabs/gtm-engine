@@ -53,7 +53,7 @@
       "run": "python -m gtm run",
       "summary": "Signal-based outbound pipeline: discover events (permits, filings, ownership changes, owner posts), dedupe across sources, score against configurable ICPs with written reasons, route to email/call/visit, render and lint copy, classify replies, check deliverability.",
       "evidence": {
-        "tests": 31,
+        "tests": 38,
         "labeled_reply_eval_cases": 28,
         "ci": "unit tests, template lint, reply eval, config schema validation, em-dash check, full run, on every push",
         "diagram_code_sync_test": "docs/crm/lifecycle.md is parsed and diffed against gtm/lifecycle.py"
@@ -74,12 +74,12 @@
         "signals": 28,
         "accounts": 23,
         "tiers": {
-          "A": 7,
-          "B": 9,
+          "A": 8,
+          "B": 8,
           "C": 3,
           "DQ": 4
         },
-        "drafts": 40,
+        "drafts": 52,
         "drafts_failing_lint": 0,
         "domains_to_retire": [
           "sender-two.example"
@@ -197,6 +197,57 @@
             "https://github.com/layllabs/GTM-Engine/blob/main/scripts/aeo_audit.py"
           ],
           "verify": "python scripts/aeo_audit.py"
+        },
+        {
+          "claim": "Waterfall enrichment with per-field budgets; pattern-guessed emails never enroll unverified",
+          "status": "verifiable",
+          "evidence": [
+            "https://github.com/layllabs/GTM-Engine/blob/main/config/enrichment.json",
+            "https://github.com/layllabs/GTM-Engine/blob/main/gtm/enrich.py"
+          ],
+          "verify": "test_pattern_guess_never_enrolls"
+        },
+        {
+          "claim": "Territory assignment by zip/state/city with stable round-robin",
+          "status": "verifiable",
+          "evidence": [
+            "https://github.com/layllabs/GTM-Engine/blob/main/config/territories.json",
+            "https://github.com/layllabs/GTM-Engine/blob/main/gtm/territory.py"
+          ],
+          "verify": "test_zip_beats_state_and_partner_override_wins"
+        },
+        {
+          "claim": "Inbound speed-to-lead with intent SLA, owner and first-touch attribution",
+          "status": "verifiable",
+          "evidence": [
+            "https://github.com/layllabs/GTM-Engine/blob/main/gtm/inbound.py"
+          ],
+          "verify": "test_hot_lead_gets_five_minute_sla_and_owner"
+        },
+        {
+          "claim": "Nine SQL analysis queries run against the shadow CRM",
+          "status": "verifiable",
+          "evidence": [
+            "https://github.com/layllabs/GTM-Engine/blob/main/docs/sql/analysis.sql"
+          ],
+          "verify": "python -m gtm sql"
+        },
+        {
+          "claim": "Importable n8n workflow for the daily run",
+          "status": "verifiable",
+          "evidence": [
+            "https://github.com/layllabs/GTM-Engine/blob/main/integrations/n8n/run-the-engine.json"
+          ],
+          "verify": "import into n8n"
+        },
+        {
+          "claim": "Salesforce/HubSpot field map and Gong call-insights spec",
+          "status": "design, not wired publicly",
+          "evidence": [
+            "https://github.com/layllabs/GTM-Engine/blob/main/docs/crm/salesforce-field-map.md",
+            "https://github.com/layllabs/GTM-Engine/blob/main/docs/integrations/gong-call-insights.md"
+          ],
+          "verify": "read"
         }
       ]
     },
@@ -290,13 +341,21 @@
       "llms.txt",
       "sitemap and robots",
       "claim/evidence structure for answer engines"
+    ],
+    "revops": [
+      "waterfall enrichment design",
+      "territory and round-robin routing",
+      "inbound SLA and attribution",
+      "Salesforce object and field design",
+      "Gong insight extraction (spec)",
+      "SQL"
     ]
   },
   "claims_policy": "Numbers in the public repo are synthetic. Real campaign results are discussed in conversation. Past employers are named; the current employer and its systems are not described.",
   "schema_note": "Each claim has status 'verifiable' (check the evidence path or run the command) or 'stated' (candidate's word; probe in interview).",
   "verification_procedure": [
     "git clone https://github.com/layllabs/GTM-Engine && cd GTM-Engine",
-    "python -m unittest discover -s tests -t .  # Ran 31 tests, OK",
+    "python -m unittest discover -s tests -t .  # Ran 38 tests, OK",
     "python -m gtm lint-copy  # 38 combinations, 0 failing",
     "python -m gtm eval-replies  # 28/28",
     "python -m gtm run",
@@ -344,6 +403,19 @@
     "sending_domain_runbook": "https://github.com/layllabs/GTM-Engine/blob/main/docs/runbooks/sending-domain-setup.md",
     "sdr_onboarding_30_60_90": "https://github.com/layllabs/GTM-Engine/blob/main/docs/leadership/sdr-onboarding-30-60-90.md",
     "eval_results": "https://github.com/layllabs/GTM-Engine/blob/main/docs/eval_results.md",
-    "architecture_svg": "https://layllabs.github.io/GTM-Engine/assets/architecture.svg"
-  }
+    "architecture_svg": "https://layllabs.github.io/GTM-Engine/assets/architecture.svg",
+    "ai_guardrails": "https://github.com/layllabs/GTM-Engine/blob/main/docs/ai-guardrails.md",
+    "monitoring_runbook": "https://github.com/layllabs/GTM-Engine/blob/main/docs/runbooks/monitoring-and-alerting.md",
+    "salesforce_field_map": "https://github.com/layllabs/GTM-Engine/blob/main/docs/crm/salesforce-field-map.md",
+    "gong_call_insights": "https://github.com/layllabs/GTM-Engine/blob/main/docs/integrations/gong-call-insights.md",
+    "n8n_workflow": "https://github.com/layllabs/GTM-Engine/blob/main/integrations/n8n/run-the-engine.json",
+    "sql": "https://github.com/layllabs/GTM-Engine/blob/main/docs/sql/analysis.sql"
+  },
+  "requirements_matrix": "https://github.com/layllabs/GTM-Engine/blob/main/docs/fit/requirements-matrix.md",
+  "gaps_declared": [
+    "marketing automation (Marketo etc.)",
+    "paid ads / ABM ad platforms",
+    "global markets",
+    "post-sale automation and account health scoring"
+  ]
 }
