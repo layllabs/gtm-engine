@@ -1,56 +1,56 @@
-{"at": "2026-10-01T08:00", "account_id": "acc_313a188bdd", "from": "new", "to": "scored", "reason": "referral-partner score 97.3 tier A"}
-{"at": "2026-10-01T08:00", "account_id": "acc_3c3ca476d8", "from": "new", "to": "scored", "reason": "local-merchant score 94.0 tier A"}
-{"at": "2026-10-01T08:00", "account_id": "acc_ce79b5933a", "from": "new", "to": "scored", "reason": "local-merchant score 86.9 tier A"}
-{"at": "2026-10-01T08:00", "account_id": "acc_cd47f3f6fb", "from": "new", "to": "scored", "reason": "referral-partner score 86.2 tier A"}
-{"at": "2026-10-01T08:00", "account_id": "acc_c947be56be", "from": "new", "to": "scored", "reason": "local-merchant score 85.7 tier A"}
-{"at": "2026-10-01T08:00", "account_id": "acc_09a4f9f15d", "from": "new", "to": "scored", "reason": "local-merchant score 83.7 tier A"}
-{"at": "2026-10-01T08:00", "account_id": "acc_c377721121", "from": "new", "to": "scored", "reason": "local-merchant score 82.0 tier A"}
-{"at": "2026-10-01T08:00", "account_id": "acc_441a6474a1", "from": "new", "to": "scored", "reason": "local-merchant score 75.8 tier B"}
-{"at": "2026-10-01T08:00", "account_id": "acc_41cdcac567", "from": "new", "to": "scored", "reason": "local-merchant score 73.8 tier B"}
-{"at": "2026-10-01T08:00", "account_id": "acc_91366f73e7", "from": "new", "to": "scored", "reason": "local-merchant score 71.7 tier B"}
-{"at": "2026-10-01T08:00", "account_id": "acc_3b44f1642e", "from": "new", "to": "scored", "reason": "referral-partner score 69.9 tier B"}
-{"at": "2026-10-01T08:00", "account_id": "acc_5eab7d8f66", "from": "new", "to": "scored", "reason": "referral-partner score 67.5 tier B"}
-{"at": "2026-10-01T08:00", "account_id": "acc_fe9751bb9a", "from": "new", "to": "scored", "reason": "local-merchant score 65.3 tier B"}
-{"at": "2026-10-01T08:00", "account_id": "acc_a77ac197d1", "from": "new", "to": "scored", "reason": "local-merchant score 60.1 tier B"}
-{"at": "2026-10-01T08:00", "account_id": "acc_9edb1fdf19", "from": "new", "to": "scored", "reason": "local-merchant score 59.9 tier B"}
-{"at": "2026-10-01T08:00", "account_id": "acc_ccdb573139", "from": "new", "to": "scored", "reason": "referral-partner score 57.7 tier B"}
-{"at": "2026-10-01T08:00", "account_id": "acc_efdaa83f22", "from": "new", "to": "scored", "reason": "local-merchant score 50.5 tier C"}
-{"at": "2026-10-01T08:00", "account_id": "acc_ae5b148c2f", "from": "new", "to": "scored", "reason": "local-merchant score 44.3 tier C"}
-{"at": "2026-10-01T08:00", "account_id": "acc_5e4e777dd0", "from": "new", "to": "scored", "reason": "local-merchant score 41.5 tier C"}
-{"at": "2026-10-01T08:00", "account_id": "acc_9e5abe86ac", "from": "new", "to": "disqualified", "reason": "excluded category: franchise_corporate"}
-{"at": "2026-10-01T08:00", "account_id": "acc_ffa0ecf436", "from": "new", "to": "disqualified", "reason": "excluded category: bank"}
-{"at": "2026-10-01T08:00", "account_id": "acc_8af6b5f656", "from": "new", "to": "disqualified", "reason": "excluded category: payments_competitor"}
-{"at": "2026-10-01T08:00", "account_id": "acc_2fcce5b26a", "from": "new", "to": "disqualified", "reason": "out of territory: NV"}
-{"at": "2026-10-01T08:00", "account_id": "acc_313a188bdd", "from": "scored", "to": "queued", "reason": "rule partner-A"}
-{"at": "2026-10-01T08:00", "account_id": "acc_3c3ca476d8", "from": "scored", "to": "queued", "reason": "rule direct-A-walkin"}
-{"at": "2026-10-01T08:00", "account_id": "acc_ce79b5933a", "from": "scored", "to": "queued", "reason": "rule direct-A-walkin"}
-{"at": "2026-10-01T08:00", "account_id": "acc_cd47f3f6fb", "from": "scored", "to": "queued", "reason": "rule partner-A"}
-{"at": "2026-10-01T08:00", "account_id": "acc_c947be56be", "from": "scored", "to": "queued", "reason": "rule direct-A-walkin"}
-{"at": "2026-10-01T08:00", "account_id": "acc_09a4f9f15d", "from": "scored", "to": "queued", "reason": "rule direct-A-walkin"}
-{"at": "2026-10-01T08:00", "account_id": "acc_c377721121", "from": "scored", "to": "queued", "reason": "rule direct-A-walkin"}
-{"at": "2026-10-01T08:00", "account_id": "acc_441a6474a1", "from": "scored", "to": "queued", "reason": "rule direct-A-or-B-email"}
-{"at": "2026-10-01T08:00", "account_id": "acc_41cdcac567", "from": "scored", "to": "task_pending", "reason": "rule A-or-B-phone-only"}
-{"at": "2026-10-01T08:00", "account_id": "acc_91366f73e7", "from": "scored", "to": "task_pending", "reason": "rule A-or-B-phone-only"}
-{"at": "2026-10-01T08:00", "account_id": "acc_3b44f1642e", "from": "scored", "to": "task_pending", "reason": "rule A-or-B-phone-only"}
-{"at": "2026-10-01T08:00", "account_id": "acc_5eab7d8f66", "from": "scored", "to": "queued", "reason": "rule partner-B"}
-{"at": "2026-10-01T08:00", "account_id": "acc_fe9751bb9a", "from": "scored", "to": "task_pending", "reason": "rule A-or-B-phone-only"}
-{"at": "2026-10-01T08:00", "account_id": "acc_a77ac197d1", "from": "scored", "to": "task_pending", "reason": "rule A-or-B-phone-only"}
-{"at": "2026-10-01T08:00", "account_id": "acc_9edb1fdf19", "from": "scored", "to": "queued", "reason": "rule direct-A-or-B-email"}
-{"at": "2026-10-01T08:00", "account_id": "acc_ccdb573139", "from": "scored", "to": "queued", "reason": "rule partner-B"}
-{"at": "2026-10-01T08:00", "account_id": "acc_efdaa83f22", "from": "scored", "to": "suppressed", "reason": "rule suppressed"}
-{"at": "2026-10-01T08:00", "account_id": "acc_ae5b148c2f", "from": "scored", "to": "suppressed", "reason": "rule suppressed"}
-{"at": "2026-10-01T08:00", "account_id": "acc_5e4e777dd0", "from": "scored", "to": "nurture", "reason": "rule tier-C"}
-{"at": "2026-10-01T08:00", "account_id": "acc_313a188bdd", "from": "queued", "to": "sequenced", "reason": "referral-partner-v1 enrolled, lint clean"}
-{"at": "2026-10-01T08:00", "account_id": "acc_3c3ca476d8", "from": "queued", "to": "sequenced", "reason": "local-merchant-v2 enrolled, lint clean"}
-{"at": "2026-10-01T08:00", "account_id": "acc_ce79b5933a", "from": "queued", "to": "sequenced", "reason": "local-merchant-v2 enrolled, lint clean"}
-{"at": "2026-10-01T08:00", "account_id": "acc_cd47f3f6fb", "from": "queued", "to": "sequenced", "reason": "referral-partner-v1 enrolled, lint clean"}
-{"at": "2026-10-01T08:00", "account_id": "acc_c947be56be", "from": "queued", "to": "sequenced", "reason": "local-merchant-v2 enrolled, lint clean"}
-{"at": "2026-10-01T08:00", "account_id": "acc_09a4f9f15d", "from": "queued", "to": "sequenced", "reason": "local-merchant-v2 enrolled, lint clean"}
-{"at": "2026-10-01T08:00", "account_id": "acc_c377721121", "from": "queued", "to": "sequenced", "reason": "local-merchant-v2 enrolled, lint clean"}
-{"at": "2026-10-01T08:00", "account_id": "acc_441a6474a1", "from": "queued", "to": "sequenced", "reason": "local-merchant-v2 enrolled, lint clean"}
-{"at": "2026-10-01T08:00", "account_id": "acc_5eab7d8f66", "from": "queued", "to": "sequenced", "reason": "referral-partner-v1 enrolled, lint clean"}
-{"at": "2026-10-01T08:00", "account_id": "acc_9edb1fdf19", "from": "queued", "to": "sequenced", "reason": "local-merchant-v2 enrolled, lint clean"}
-{"at": "2026-10-01T08:00", "account_id": "acc_ccdb573139", "from": "queued", "to": "sequenced", "reason": "referral-partner-v1 enrolled, lint clean"}
+{"at": "2026-10-22T08:00", "account_id": "acc_313a188bdd", "from": "new", "to": "scored", "reason": "referral-partner score 96.0 tier A"}
+{"at": "2026-10-22T08:00", "account_id": "acc_3c3ca476d8", "from": "new", "to": "scored", "reason": "local-merchant score 87.0 tier A"}
+{"at": "2026-10-22T08:00", "account_id": "acc_cd47f3f6fb", "from": "new", "to": "scored", "reason": "referral-partner score 84.9 tier A"}
+{"at": "2026-10-22T08:00", "account_id": "acc_ce79b5933a", "from": "new", "to": "scored", "reason": "local-merchant score 80.6 tier A"}
+{"at": "2026-10-22T08:00", "account_id": "acc_c947be56be", "from": "new", "to": "scored", "reason": "local-merchant score 80.0 tier A"}
+{"at": "2026-10-22T08:00", "account_id": "acc_09a4f9f15d", "from": "new", "to": "scored", "reason": "local-merchant score 76.4 tier A"}
+{"at": "2026-10-22T08:00", "account_id": "acc_c377721121", "from": "new", "to": "scored", "reason": "local-merchant score 75.5 tier B"}
+{"at": "2026-10-22T08:00", "account_id": "acc_441a6474a1", "from": "new", "to": "scored", "reason": "local-merchant score 72.3 tier B"}
+{"at": "2026-10-22T08:00", "account_id": "acc_3b44f1642e", "from": "new", "to": "scored", "reason": "referral-partner score 68.5 tier B"}
+{"at": "2026-10-22T08:00", "account_id": "acc_5eab7d8f66", "from": "new", "to": "scored", "reason": "referral-partner score 67.5 tier B"}
+{"at": "2026-10-22T08:00", "account_id": "acc_91366f73e7", "from": "new", "to": "scored", "reason": "local-merchant score 67.2 tier B"}
+{"at": "2026-10-22T08:00", "account_id": "acc_41cdcac567", "from": "new", "to": "scored", "reason": "local-merchant score 67.0 tier B"}
+{"at": "2026-10-22T08:00", "account_id": "acc_fe9751bb9a", "from": "new", "to": "scored", "reason": "local-merchant score 64.4 tier B"}
+{"at": "2026-10-22T08:00", "account_id": "acc_9edb1fdf19", "from": "new", "to": "scored", "reason": "local-merchant score 59.3 tier B"}
+{"at": "2026-10-22T08:00", "account_id": "acc_ccdb573139", "from": "new", "to": "scored", "reason": "referral-partner score 56.8 tier B"}
+{"at": "2026-10-22T08:00", "account_id": "acc_a77ac197d1", "from": "new", "to": "scored", "reason": "local-merchant score 55.2 tier C"}
+{"at": "2026-10-22T08:00", "account_id": "acc_efdaa83f22", "from": "new", "to": "scored", "reason": "local-merchant score 50.5 tier C"}
+{"at": "2026-10-22T08:00", "account_id": "acc_ae5b148c2f", "from": "new", "to": "scored", "reason": "local-merchant score 44.3 tier C"}
+{"at": "2026-10-22T08:00", "account_id": "acc_5e4e777dd0", "from": "new", "to": "scored", "reason": "local-merchant score 41.5 tier C"}
+{"at": "2026-10-22T08:00", "account_id": "acc_9e5abe86ac", "from": "new", "to": "disqualified", "reason": "excluded category: franchise_corporate"}
+{"at": "2026-10-22T08:00", "account_id": "acc_ffa0ecf436", "from": "new", "to": "disqualified", "reason": "excluded category: bank"}
+{"at": "2026-10-22T08:00", "account_id": "acc_8af6b5f656", "from": "new", "to": "disqualified", "reason": "excluded category: payments_competitor"}
+{"at": "2026-10-22T08:00", "account_id": "acc_2fcce5b26a", "from": "new", "to": "disqualified", "reason": "out of territory: NV"}
+{"at": "2026-10-22T08:00", "account_id": "acc_313a188bdd", "from": "scored", "to": "queued", "reason": "rule partner-A"}
+{"at": "2026-10-22T08:00", "account_id": "acc_3c3ca476d8", "from": "scored", "to": "queued", "reason": "rule direct-A-walkin"}
+{"at": "2026-10-22T08:00", "account_id": "acc_cd47f3f6fb", "from": "scored", "to": "queued", "reason": "rule partner-A"}
+{"at": "2026-10-22T08:00", "account_id": "acc_ce79b5933a", "from": "scored", "to": "queued", "reason": "rule direct-A-walkin"}
+{"at": "2026-10-22T08:00", "account_id": "acc_c947be56be", "from": "scored", "to": "queued", "reason": "rule direct-A-walkin"}
+{"at": "2026-10-22T08:00", "account_id": "acc_09a4f9f15d", "from": "scored", "to": "queued", "reason": "rule direct-A-walkin"}
+{"at": "2026-10-22T08:00", "account_id": "acc_c377721121", "from": "scored", "to": "queued", "reason": "rule direct-A-or-B-email"}
+{"at": "2026-10-22T08:00", "account_id": "acc_441a6474a1", "from": "scored", "to": "queued", "reason": "rule direct-A-or-B-email"}
+{"at": "2026-10-22T08:00", "account_id": "acc_3b44f1642e", "from": "scored", "to": "task_pending", "reason": "rule A-or-B-phone-only"}
+{"at": "2026-10-22T08:00", "account_id": "acc_5eab7d8f66", "from": "scored", "to": "queued", "reason": "rule partner-B"}
+{"at": "2026-10-22T08:00", "account_id": "acc_91366f73e7", "from": "scored", "to": "task_pending", "reason": "rule A-or-B-phone-only"}
+{"at": "2026-10-22T08:00", "account_id": "acc_41cdcac567", "from": "scored", "to": "task_pending", "reason": "rule A-or-B-phone-only"}
+{"at": "2026-10-22T08:00", "account_id": "acc_fe9751bb9a", "from": "scored", "to": "task_pending", "reason": "rule A-or-B-phone-only"}
+{"at": "2026-10-22T08:00", "account_id": "acc_9edb1fdf19", "from": "scored", "to": "queued", "reason": "rule direct-A-or-B-email"}
+{"at": "2026-10-22T08:00", "account_id": "acc_ccdb573139", "from": "scored", "to": "queued", "reason": "rule partner-B"}
+{"at": "2026-10-22T08:00", "account_id": "acc_a77ac197d1", "from": "scored", "to": "nurture", "reason": "rule tier-C"}
+{"at": "2026-10-22T08:00", "account_id": "acc_efdaa83f22", "from": "scored", "to": "suppressed", "reason": "rule suppressed"}
+{"at": "2026-10-22T08:00", "account_id": "acc_ae5b148c2f", "from": "scored", "to": "suppressed", "reason": "rule suppressed"}
+{"at": "2026-10-22T08:00", "account_id": "acc_5e4e777dd0", "from": "scored", "to": "nurture", "reason": "rule tier-C"}
+{"at": "2026-10-22T08:00", "account_id": "acc_313a188bdd", "from": "queued", "to": "sequenced", "reason": "referral-partner-v1 enrolled, lint clean"}
+{"at": "2026-10-22T08:00", "account_id": "acc_3c3ca476d8", "from": "queued", "to": "sequenced", "reason": "local-merchant-v2 enrolled, lint clean"}
+{"at": "2026-10-22T08:00", "account_id": "acc_cd47f3f6fb", "from": "queued", "to": "sequenced", "reason": "referral-partner-v1 enrolled, lint clean"}
+{"at": "2026-10-22T08:00", "account_id": "acc_ce79b5933a", "from": "queued", "to": "sequenced", "reason": "local-merchant-v2 enrolled, lint clean"}
+{"at": "2026-10-22T08:00", "account_id": "acc_c947be56be", "from": "queued", "to": "sequenced", "reason": "local-merchant-v2 enrolled, lint clean"}
+{"at": "2026-10-22T08:00", "account_id": "acc_09a4f9f15d", "from": "queued", "to": "sequenced", "reason": "local-merchant-v2 enrolled, lint clean"}
+{"at": "2026-10-22T08:00", "account_id": "acc_c377721121", "from": "queued", "to": "sequenced", "reason": "local-merchant-v2 enrolled, lint clean"}
+{"at": "2026-10-22T08:00", "account_id": "acc_441a6474a1", "from": "queued", "to": "sequenced", "reason": "local-merchant-v2 enrolled, lint clean"}
+{"at": "2026-10-22T08:00", "account_id": "acc_5eab7d8f66", "from": "queued", "to": "sequenced", "reason": "referral-partner-v1 enrolled, lint clean"}
+{"at": "2026-10-22T08:00", "account_id": "acc_9edb1fdf19", "from": "queued", "to": "sequenced", "reason": "local-merchant-v2 enrolled, lint clean"}
+{"at": "2026-10-22T08:00", "account_id": "acc_ccdb573139", "from": "queued", "to": "sequenced", "reason": "referral-partner-v1 enrolled, lint clean"}
 {"at": "2026-10-01T09:14", "account_id": "acc_ce79b5933a", "from": "sequenced", "to": "engaged", "reason": "reply r-001: interested"}
 {"at": "2026-10-01T10:02", "account_id": "acc_3c3ca476d8", "from": "sequenced", "to": "nurture", "reason": "reply r-002: not_now"}
 {"at": "2026-10-01T11:40", "account_id": "acc_09a4f9f15d", "from": "sequenced", "to": "engaged", "reason": "reply r-003: question"}
