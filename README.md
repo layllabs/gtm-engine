@@ -1,5 +1,9 @@
 # gtm-engine
 
+[![ci](https://github.com/layllabs/GTM-Engine/actions/workflows/ci.yml/badge.svg)](https://github.com/layllabs/GTM-Engine/actions/workflows/ci.yml)
+
+Portfolio: [agent-first page](https://layllabs.github.io/GTM-Engine/) · [human page](https://layllabs.github.io/GTM-Engine/human.html) · [portfolio.json](https://layllabs.github.io/GTM-Engine/portfolio.json) · [llms.txt](https://layllabs.github.io/GTM-Engine/llms.txt)
+
 A signal-based outbound engine I built and run for selling card payment
 processing to local business owners, with a second lane for referral
 partners. Discovery agents find businesses where something just happened
@@ -71,6 +75,25 @@ the A/B test is meant to settle. The linter that gates all of it is in
 uses, each with a JSON schema for its output and a non-model fallback.
 Rules handle the easy 80% of replies; Claude only sees what's left.
 
+**Reviewed.** An AI screener with no context read this repo cold and scored
+it 6/10 with nine red flags. [The report and the fixes](docs/reviews/2026-10-15-cold-ai-screen.md)
+are published. Changes since: [CHANGELOG.md](CHANGELOG.md).
+
+**Connecting tools.** One registry (`gtm/integrations/registry.py`) knows how
+each tool authenticates and how to prove a credential works with one
+read-only call. `python -m gtm connect` reports status for all nine.
+[`skills/connect-tools/SKILL.md`](skills/connect-tools/SKILL.md) is the
+procedure an agent or a person follows to add one.
+
+**SEO and AEO.** [`docs/aeo/`](docs/aeo) explains what search engines and
+answer engines each need and how the portfolio pages meet it; `scripts/aeo_audit.py`
+checks it in CI. The same checklist applies to any GTM content.
+
+**Runbooks and leadership.** [Sending-domain setup](docs/runbooks/sending-domain-setup.md)
+from registration to first cold send. [SDR onboarding 30/60/90](docs/leadership/sdr-onboarding-30-60-90.md)
+with the coaching rules I hold myself to. [Glossary](docs/glossary.md) and
+[open questions](docs/open-questions.md) for anyone, human or agent, who wants the terms and the gaps.
+
 **Deliverability.** [workflow 05](docs/workflows/05-deliverability-health.md):
 lookalike sending domains, warmup floors, bounce and complaint thresholds
 that pull a mailbox out of rotation, a domain retirement rule, and a
@@ -80,13 +103,15 @@ z-test so a copy variant isn't crowned on noise.
 
 ```
 gtm/            pipeline code, one module per step, stdlib only
+gtm/integrations/  connector registry: GitHub, Smartlead, Outreach, Salesforce, HubSpot, Apollo, ZeroBounce, Clay, Anthropic
+skills/         agent-followable procedures (connect-tools)
 config/         ICPs, routing rules, sequences, deliverability thresholds
 schemas/        JSON schemas for every data shape and LLM output
 prompts/        every prompt, versioned with the code
 data/sample/    synthetic signals, replies, mailbox stats
-docs/           architecture, workflows (Mermaid), CRM model, copy, decisions
+docs/           architecture, workflows (Mermaid), CRM model, copy, decisions, experiments, SEO/AEO, reviews, portfolio site
 examples/       output of the last run, committed so you can read it without running
-tests/          26 tests, including one that keeps the diagram and code in sync
+tests/          27 tests, including one that keeps the diagram and code in sync
 ```
 
 ## Commands
@@ -97,6 +122,8 @@ python -m gtm run --as-of today   use today's date for recency scoring
 python -m gtm lint-copy           lint every sequence template (CI runs this)
 python -m gtm eval-replies        rules classifier vs 28 labeled replies (CI runs this)
 python -m gtm health              deliverability check only
+python -m gtm connect             which tools are configured; read-only probe of each
+python scripts/aeo_audit.py       SEO/AEO checklist against the portfolio pages
 python -m unittest discover -s tests -t .
 ```
 

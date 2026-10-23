@@ -40,6 +40,9 @@ data and writes a scoreboard.
 | Add a signal type | `schemas/signal.schema.json`, each ICP's `signal_strength`, each sequence's `openers` |
 | Add a lifecycle state | `gtm/lifecycle.py` TRANSITIONS and the Mermaid in `docs/crm/lifecycle.md` |
 | Change a prompt | `prompts/*.md` |
+| Connect or add a tool | `gtm/integrations/registry.py`, `.env.example`, `skills/connect-tools/SKILL.md`, then `python -m gtm connect` |
+| Change the portfolio pages | `docs/index.html` (agent-first), `docs/human.html`, then `python scripts/aeo_audit.py` |
+| Log an experiment | `docs/experiments/`, use the template in its README |
 
 ## Verify before committing
 
@@ -47,4 +50,6 @@ data and writes a scoreboard.
 python -m unittest discover -s tests -t .
 python -m gtm lint-copy
 python -m gtm run
+python scripts/aeo_audit.py
+python -m gtm connect --no-probe
 ```

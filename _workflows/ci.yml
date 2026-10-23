@@ -1,0 +1,40 @@
+name: ci
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python: ["3.11", "3.12", "3.13"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Unit tests
+        run: python -m unittest discover -s tests -t . -v
+      - name: Lint every sequence template
+        run: python -m gtm lint-copy
+      - name: Rules classifier vs labeled replies
+        run: python -m gtm eval-replies
+      - name: Full engine run
+        run: python -m gtm run --out /tmp/engine-out
+      - name: No em dashes in copy, prompts or docs
+        run: |
+          if grep -rn $'[\u2014\u2013]' config prompts docs README.md AGENTS.md gtm data; then
+            echo "em/en dash found"; exit 1; fi
+      - name: SEO/AEO audit of portfolio pages
+        run: python scripts/aeo_audit.py docs/index.html docs/human.html
+      - name: Validate JSON config against schemas
+        run: |
+          pip install jsonschema
+          python scripts/validate_config.py
+      - uses: actions/upload-artifact@v4
+        if: matrix.python == '3.12'
+        with:
+          name: engine-output
+          path: /tmp/engine-out

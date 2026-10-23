@@ -1,0 +1,89 @@
+{
+  "source": "gtm/replies.py",
+  "note": "Evaluated top to bottom, first match wins, case-insensitive. 'question' gets 0.6 confidence, everything else 0.9, no match is 'unknown' at 0.0.",
+  "rules": [
+    {
+      "label": "bounce",
+      "pattern": "mailer-daemon|delivery status notification|550 5\\.\\d\\.\\d|address not found|does not exist"
+    },
+    {
+      "label": "out_of_office",
+      "pattern": "out of (the )?office|\\booo\\b|on vacation|limited access to email"
+    },
+    {
+      "label": "unsubscribe",
+      "pattern": "remove me|unsubscribe|stop (emailing|contacting)|take me off"
+    },
+    {
+      "label": "not_interested",
+      "pattern": "not interested|already have (a|someone)|we're (all )?set|no thanks|do not (send|contact)|don't (send|contact)"
+    },
+    {
+      "label": "not_now",
+      "pattern": "contract until|after the holidays|reach out (to me )?(then|in|next|after)|ping me in|not right now|circle back|next (quarter|year)|\\bin (january|february|march|april|may|june|july|august|september|october|november|december)\\b"
+    },
+    {
+      "label": "wrong_person",
+      "pattern": "not the right person|wrong person|handles (the )?(payments|that|this)|reach out to (?!me\\b)\\w+|talk to \\w+ instead"
+    },
+    {
+      "label": "meeting_request",
+      "pattern": "\\b(monday|tuesday|wednesday|thursday|friday)\\b.*\\?|\\bbook a time\\b|\\bcalendar link\\b|\\bcall (me|tomorrow)\\b"
+    },
+    {
+      "label": "interested",
+      "pattern": "here (is|are)|attached|sounds good|i'?m interested|send it over|let's talk|^(sure|yes|ok|okay)\\b"
+    },
+    {
+      "label": "question",
+      "pattern": "\\?"
+    }
+  ],
+  "next_action": {
+    "bounce": {
+      "action": "suppress",
+      "note": "Mark email invalid, suppress, re-verify the domain list."
+    },
+    "out_of_office": {
+      "action": "pause",
+      "note": "Pause sequence, resume the day after they return."
+    },
+    "unsubscribe": {
+      "action": "suppress",
+      "note": "Add to suppression list. Do not contact on any channel."
+    },
+    "wrong_person": {
+      "action": "reroute",
+      "note": "Create contact for the referred person and send step 1 to them."
+    },
+    "meeting_request": {
+      "action": "book",
+      "note": "Confirm the time, send invite, create opportunity."
+    },
+    "not_now": {
+      "action": "nurture",
+      "note": "Stop sequence, set follow-up task on the date they gave."
+    },
+    "not_interested": {
+      "action": "close",
+      "note": "Stop sequence. Recycle in 180 days if a new signal appears."
+    },
+    "question": {
+      "action": "reply",
+      "note": "Draft an answer for approval, keep sequence paused."
+    },
+    "interested": {
+      "action": "reply",
+      "note": "Draft reply for approval today, create opportunity."
+    },
+    "unknown": {
+      "action": "review",
+      "note": "Send to Claude classifier, then human review."
+    }
+  },
+  "positive": [
+    "interested",
+    "meeting_request",
+    "question"
+  ]
+}

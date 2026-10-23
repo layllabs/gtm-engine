@@ -1,0 +1,246 @@
+{
+  "set": "data/sample/reply_eval.jsonl",
+  "n": 28,
+  "correct": 28,
+  "per_label": {
+    "bounce": {
+      "n": 2,
+      "correct": 2
+    },
+    "interested": {
+      "n": 4,
+      "correct": 4
+    },
+    "meeting_request": {
+      "n": 3,
+      "correct": 3
+    },
+    "not_interested": {
+      "n": 3,
+      "correct": 3
+    },
+    "not_now": {
+      "n": 4,
+      "correct": 4
+    },
+    "out_of_office": {
+      "n": 2,
+      "correct": 2
+    },
+    "question": {
+      "n": 3,
+      "correct": 3
+    },
+    "unknown": {
+      "n": 2,
+      "correct": 2
+    },
+    "unsubscribe": {
+      "n": 3,
+      "correct": 3
+    },
+    "wrong_person": {
+      "n": 2,
+      "correct": 2
+    }
+  },
+  "confusions": [],
+  "rows": [
+    {
+      "body": "Sure, here is last month's statement. Honestly no idea what half these fees are.",
+      "expected": "interested",
+      "got": "interested",
+      "confidence": 0.9,
+      "correct": true
+    },
+    {
+      "body": "yes send it over",
+      "expected": "interested",
+      "got": "interested",
+      "confidence": 0.9,
+      "correct": true
+    },
+    {
+      "body": "I'm interested, what do you need from me?",
+      "expected": "interested",
+      "got": "interested",
+      "confidence": 0.9,
+      "correct": true
+    },
+    {
+      "body": "Attached. Let me know what you find.",
+      "expected": "interested",
+      "got": "interested",
+      "confidence": 0.9,
+      "correct": true
+    },
+    {
+      "body": "How much does it cost to switch? Is there a cancellation fee with my current processor?",
+      "expected": "question",
+      "got": "question",
+      "confidence": 0.6,
+      "correct": true
+    },
+    {
+      "body": "Do you work with Clover terminals?",
+      "expected": "question",
+      "got": "question",
+      "confidence": 0.6,
+      "correct": true
+    },
+    {
+      "body": "Interesting. We have about 200 restaurant accounts. Can you do Thursday at 2?",
+      "expected": "meeting_request",
+      "got": "meeting_request",
+      "confidence": 0.9,
+      "correct": true
+    },
+    {
+      "body": "Send me a calendar link and I'll grab a slot.",
+      "expected": "meeting_request",
+      "got": "meeting_request",
+      "confidence": 0.9,
+      "correct": true
+    },
+    {
+      "body": "Call me tomorrow after 3.",
+      "expected": "meeting_request",
+      "got": "meeting_request",
+      "confidence": 0.9,
+      "correct": true
+    },
+    {
+      "body": "I'm not the right person, my husband Tom handles the payments side. tom@goldenhourbakery.example",
+      "expected": "wrong_person",
+      "got": "wrong_person",
+      "confidence": 0.9,
+      "correct": true
+    },
+    {
+      "body": "Wrong person. Talk to Maria instead, she runs the front office.",
+      "expected": "wrong_person",
+      "got": "wrong_person",
+      "confidence": 0.9,
+      "correct": true
+    },
+    {
+      "body": "We're locked in a contract until March. Reach out then.",
+      "expected": "not_now",
+      "got": "not_now",
+      "confidence": 0.9,
+      "correct": true
+    },
+    {
+      "body": "Reach out to me in March.",
+      "expected": "not_now",
+      "got": "not_now",
+      "confidence": 0.9,
+      "correct": true
+    },
+    {
+      "body": "Not right now, maybe after the holidays. Ping me in January.",
+      "expected": "not_now",
+      "got": "not_now",
+      "confidence": 0.9,
+      "correct": true
+    },
+    {
+      "body": "Circle back next quarter, we're mid remodel.",
+      "expected": "not_now",
+      "got": "not_now",
+      "confidence": 0.9,
+      "correct": true
+    },
+    {
+      "body": "We already have a guy for this, rates are fine. Not interested.",
+      "expected": "not_interested",
+      "got": "not_interested",
+      "confidence": 0.9,
+      "correct": true
+    },
+    {
+      "body": "Please do not send me your statement review again.",
+      "expected": "not_interested",
+      "got": "not_interested",
+      "confidence": 0.9,
+      "correct": true
+    },
+    {
+      "body": "No thanks, we're all set.",
+      "expected": "not_interested",
+      "got": "not_interested",
+      "confidence": 0.9,
+      "correct": true
+    },
+    {
+      "body": "Please remove me from your list.",
+      "expected": "unsubscribe",
+      "got": "unsubscribe",
+      "confidence": 0.9,
+      "correct": true
+    },
+    {
+      "body": "Unsubscribe",
+      "expected": "unsubscribe",
+      "got": "unsubscribe",
+      "confidence": 0.9,
+      "correct": true
+    },
+    {
+      "body": "Stop emailing me.",
+      "expected": "unsubscribe",
+      "got": "unsubscribe",
+      "confidence": 0.9,
+      "correct": true
+    },
+    {
+      "body": "I'm out of the office until October 8 with limited access to email.",
+      "expected": "out_of_office",
+      "got": "out_of_office",
+      "confidence": 0.9,
+      "correct": true
+    },
+    {
+      "body": "OOO through Friday, back Monday. Not interested in spam filters, before you ask.",
+      "expected": "out_of_office",
+      "got": "out_of_office",
+      "confidence": 0.9,
+      "correct": true
+    },
+    {
+      "body": "Delivery Status Notification (Failure). 550 5.1.1 The email account that you tried to reach does not exist.",
+      "expected": "bounce",
+      "got": "bounce",
+      "confidence": 0.9,
+      "correct": true
+    },
+    {
+      "body": "Address not found. Your message wasn't delivered.",
+      "expected": "bounce",
+      "got": "bounce",
+      "confidence": 0.9,
+      "correct": true
+    },
+    {
+      "body": "k",
+      "expected": "unknown",
+      "got": "unknown",
+      "confidence": 0.0,
+      "correct": true
+    },
+    {
+      "body": "Who gave you this email?",
+      "expected": "question",
+      "got": "question",
+      "confidence": 0.6,
+      "correct": true
+    },
+    {
+      "body": "Thanks for reaching out. Our owner is traveling, I'll pass it along.",
+      "expected": "unknown",
+      "got": "unknown",
+      "confidence": 0.0,
+      "correct": true
+    }
+  ]
+}

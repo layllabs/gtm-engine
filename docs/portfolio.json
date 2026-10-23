@@ -1,0 +1,349 @@
+{
+  "person": {
+    "name": "Joaquin Garcia",
+    "title": "GTM Engineer / Account Executive",
+    "location": "California",
+    "email": "joaquingarcia7@yahoo.com",
+    "github": "https://github.com/layllabs",
+    "linkedin": "https://www.linkedin.com/in/joaquin-garcia-218578b9",
+    "seeking": [
+      "GTM Engineer",
+      "Outbound / Sales Development leadership"
+    ],
+    "work_preference": "remote or California"
+  },
+  "experience": [
+    {
+      "company": "payments company (current, unnamed)",
+      "role": "Account Executive",
+      "start": "2026-02",
+      "notes": "Sells card processing to local business owners. The GTM Engine's ICP.",
+      "status": "stated"
+    },
+    {
+      "company": "Shopify",
+      "role": "SDR",
+      "start": "2024-10",
+      "end": "2026-02",
+      "attainment": "180%",
+      "status": "stated, matches LinkedIn"
+    },
+    {
+      "company": "LogicMonitor",
+      "role": "Sr. BDR, promoted to Associate AE",
+      "start": "2022-02",
+      "end": "2024-10",
+      "attainment": "130%",
+      "status": "stated, matches LinkedIn"
+    },
+    {
+      "company": "Medallia",
+      "role": "SDR, hospitality vertical",
+      "start": "2021-02",
+      "end": "2022-02",
+      "attainment": "115% avg",
+      "status": "stated, matches LinkedIn"
+    }
+  ],
+  "projects": [
+    {
+      "name": "GTM Engine",
+      "status": "public, runnable",
+      "repo": "https://github.com/layllabs/GTM-Engine",
+      "run": "python -m gtm run",
+      "summary": "Signal-based outbound pipeline: discover events (permits, filings, ownership changes, owner posts), dedupe across sources, score against configurable ICPs with written reasons, route to email/call/visit, render and lint copy, classify replies, check deliverability.",
+      "evidence": {
+        "tests": 31,
+        "labeled_reply_eval_cases": 28,
+        "ci": "unit tests, template lint, reply eval, config schema validation, em-dash check, full run, on every push",
+        "diagram_code_sync_test": "docs/crm/lifecycle.md is parsed and diffed against gtm/lifecycle.py"
+      },
+      "not_included": [
+        "discovery scrapers",
+        "email verifier integration",
+        "sequencer integration",
+        "CRM sync",
+        "LLM client"
+      ],
+      "decisions": [
+        "docs/decisions/001-claude-orchestration-before-n8n.md",
+        "docs/decisions/002-shadow-crm.md",
+        "docs/decisions/003-signals-over-lists.md"
+      ],
+      "expected_output": {
+        "signals": 28,
+        "accounts": 23,
+        "tiers": {
+          "A": 7,
+          "B": 9,
+          "C": 3,
+          "DQ": 4
+        },
+        "drafts": 40,
+        "drafts_failing_lint": 0,
+        "domains_to_retire": [
+          "sender-two.example"
+        ]
+      },
+      "claims": [
+        {
+          "claim": "Scores carry plain-English reasons",
+          "status": "verifiable",
+          "evidence": [
+            "https://github.com/layllabs/GTM-Engine/blob/main/gtm/score.py",
+            "https://github.com/layllabs/GTM-Engine/blob/main/schemas/account.schema.json"
+          ],
+          "verify": "test_every_scored_account_explains_itself"
+        },
+        {
+          "claim": "Routing is config; no account without email is enrolled",
+          "status": "verifiable",
+          "evidence": [
+            "https://github.com/layllabs/GTM-Engine/blob/main/config/routing.json",
+            "https://github.com/layllabs/GTM-Engine/blob/main/gtm/route.py"
+          ],
+          "verify": "test_no_email_never_enrolls"
+        },
+        {
+          "claim": "Lifecycle state machine with event log; diagram synced to code by a test",
+          "status": "verifiable",
+          "evidence": [
+            "https://github.com/layllabs/GTM-Engine/blob/main/gtm/lifecycle.py",
+            "https://github.com/layllabs/GTM-Engine/blob/main/docs/crm/lifecycle.md"
+          ],
+          "verify": "test_mermaid_diagram_matches_code"
+        },
+        {
+          "claim": "Copy lint gate blocks enrollment",
+          "status": "verifiable",
+          "evidence": [
+            "https://github.com/layllabs/GTM-Engine/blob/main/gtm/copywriting.py",
+            "https://github.com/layllabs/GTM-Engine/blob/main/gtm/pipeline.py"
+          ],
+          "verify": "python -m gtm lint-copy"
+        },
+        {
+          "claim": "Deliverability thresholds pause mailboxes and retire domains",
+          "status": "verifiable",
+          "evidence": [
+            "https://github.com/layllabs/GTM-Engine/blob/main/config/deliverability.json",
+            "https://github.com/layllabs/GTM-Engine/blob/main/gtm/health.py"
+          ],
+          "verify": "python -m gtm health"
+        },
+        {
+          "claim": "A/B verdicts use a two-proportion z-test",
+          "status": "verifiable",
+          "evidence": [
+            "https://github.com/layllabs/GTM-Engine/blob/main/gtm/health.py"
+          ],
+          "verify": "test_variant_verdict_not_significant_on_small_sample"
+        },
+        {
+          "claim": "Rules-first reply classification with schema-bound model fallback and a labeled eval",
+          "status": "verifiable",
+          "evidence": [
+            "https://github.com/layllabs/GTM-Engine/blob/main/gtm/replies.py",
+            "https://github.com/layllabs/GTM-Engine/blob/main/prompts/reply-classifier.md",
+            "https://github.com/layllabs/GTM-Engine/blob/main/data/sample/reply_eval.jsonl"
+          ],
+          "verify": "python -m gtm eval-replies"
+        },
+        {
+          "claim": "Transitive dedupe across phone, domain, name+city",
+          "status": "verifiable",
+          "evidence": [
+            "https://github.com/layllabs/GTM-Engine/blob/main/gtm/dedupe.py"
+          ],
+          "verify": "test_same_name_different_city_does_not_merge"
+        },
+        {
+          "claim": "Decision records with reversal conditions",
+          "status": "verifiable",
+          "evidence": [
+            "https://github.com/layllabs/GTM-Engine/blob/main/docs/decisions/"
+          ],
+          "verify": "read"
+        },
+        {
+          "claim": "Has run against live prospects",
+          "status": "stated",
+          "evidence": [],
+          "verify": "interview"
+        },
+        {
+          "claim": "Browser playground runs the identical classifier rules as the Python engine",
+          "status": "verifiable",
+          "evidence": [
+            "https://layllabs.github.io/GTM-Engine/rules.json",
+            "https://github.com/layllabs/GTM-Engine/blob/main/scripts/export_rules.py"
+          ],
+          "verify": "test_rules_json_matches_python"
+        },
+        {
+          "claim": "Nine tool connectors in one registry, each with a read-only credential probe",
+          "status": "verifiable",
+          "evidence": [
+            "https://github.com/layllabs/GTM-Engine/blob/main/gtm/integrations/registry.py",
+            "https://github.com/layllabs/GTM-Engine/blob/main/skills/connect-tools/SKILL.md"
+          ],
+          "verify": "python -m gtm connect --no-probe"
+        },
+        {
+          "claim": "Portfolio pages pass an SEO/AEO checklist enforced in CI",
+          "status": "verifiable",
+          "evidence": [
+            "https://github.com/layllabs/GTM-Engine/blob/main/docs/aeo/README.md",
+            "https://github.com/layllabs/GTM-Engine/blob/main/scripts/aeo_audit.py"
+          ],
+          "verify": "python scripts/aeo_audit.py"
+        }
+      ]
+    },
+    {
+      "name": "Email Reputation Center",
+      "status": "internal, prior employer, not public",
+      "summary": "Single view of every sending domain and mailbox: warmup, bounce and complaint rates, placement tests, rotation schedule. Replaced a paid monitoring tool.",
+      "status_of_claims": "stated"
+    },
+    {
+      "name": "Orchestration layer",
+      "status": "internal, prior employer, not public",
+      "summary": "n8n and Gumloop workflows syncing CRM, sequencer and enrichment. Removed a daily manual sync.",
+      "status_of_claims": "stated"
+    },
+    {
+      "name": "Outbound Center",
+      "status": "internal, prior employer, not public",
+      "summary": "Manager dashboard: activity by rep, pipeline created, reply and meeting rate by sequence, pace-to-goal mid-week. Used by a team of about 20.",
+      "status_of_claims": "stated"
+    },
+    {
+      "name": "Forecasting tool, VP dashboard, internal CRM",
+      "status": "internal, prior employer, not public",
+      "summary": "Stage-weighted bottoms-up forecast, one-page VP view, lightweight CRM for a motion the main system could not model.",
+      "status_of_claims": "stated"
+    }
+  ],
+  "skills": {
+    "outbound": [
+      "signal-based prospecting",
+      "ICP scoring",
+      "sequencing",
+      "cold email copy",
+      "reply handling",
+      "walk-in and phone outbound"
+    ],
+    "infrastructure": [
+      "email deliverability",
+      "domain warmup and rotation",
+      "bounce and complaint thresholds",
+      "placement testing"
+    ],
+    "systems": [
+      "CRM data modeling",
+      "lifecycle state machines",
+      "config-driven routing",
+      "n8n",
+      "Gumloop",
+      "SQLite shadow CRM"
+    ],
+    "ai": [
+      "Claude",
+      "prompt design with JSON schemas",
+      "rules-first classification with model fallback",
+      "labeled eval sets"
+    ],
+    "code": [
+      "Python (AI-assisted)",
+      "JSON Schema",
+      "GitHub Actions",
+      "Mermaid"
+    ],
+    "leadership": [
+      "SDR team leadership, 5+ direct reports, 2+ years, SMB and mid-market (stated)",
+      "built SDR onboarding program (stated)",
+      "call coaching from Gong recordings, team calls, role-plays (stated)"
+    ],
+    "sales_stack": [
+      "Salesforce",
+      "Outreach",
+      "Clay",
+      "6sense",
+      "Qualified",
+      "Sales Navigator",
+      "Gong"
+    ],
+    "methodology": [
+      "MEDDIC / MEDDPICC",
+      "Sandler"
+    ],
+    "integration": [
+      "connector registry pattern",
+      "OAuth vs static key auth styles",
+      "rate-limit aware batch sizing",
+      "read-only health probes"
+    ],
+    "seo_aeo": [
+      "canonical and Open Graph",
+      "Person and FAQPage JSON-LD",
+      "llms.txt",
+      "sitemap and robots",
+      "claim/evidence structure for answer engines"
+    ]
+  },
+  "claims_policy": "Numbers in the public repo are synthetic. Real campaign results are discussed in conversation. Past employers are named; the current employer and its systems are not described.",
+  "schema_note": "Each claim has status 'verifiable' (check the evidence path or run the command) or 'stated' (candidate's word; probe in interview).",
+  "verification_procedure": [
+    "git clone https://github.com/layllabs/GTM-Engine && cd GTM-Engine",
+    "python -m unittest discover -s tests -t .  # Ran 31 tests, OK",
+    "python -m gtm lint-copy  # 38 combinations, 0 failing",
+    "python -m gtm eval-replies  # 28/28",
+    "python -m gtm run",
+    "python -m gtm connect --no-probe  # 9 connectors listed",
+    "python scripts/aeo_audit.py  # 0 required checks failing"
+  ],
+  "anticipated_questions": [
+    {
+      "q": "Where are the scrapers and integrations?",
+      "a": "Not published; tied to employer vendors. Public repo is the decision layer with the same schemas."
+    },
+    {
+      "q": "Real results?",
+      "a": "Discussed in conversation, not published. Unverified until asked."
+    },
+    {
+      "q": "Why is history short?",
+      "a": "Extracted from a private repo in 2026-10."
+    },
+    {
+      "q": "How much code is the candidate's?",
+      "a": "AI-assisted code; design, rules, copy, prompts and decisions are the candidate's."
+    }
+  ],
+  "last_updated": "2026-10-22",
+  "pages": {
+    "agent": "https://layllabs.github.io/GTM-Engine/",
+    "human": "https://layllabs.github.io/GTM-Engine/human.html"
+  },
+  "independent_review": {
+    "date": "2026-10-15",
+    "score": "6/10, advance to screen",
+    "report": "https://github.com/layllabs/GTM-Engine/blob/main/docs/reviews/2026-10-15-cold-ai-screen.md",
+    "open_flags": [
+      "integrations not public",
+      "no published production results"
+    ]
+  },
+  "changelog": "https://github.com/layllabs/GTM-Engine/blob/main/CHANGELOG.md",
+  "signal_catalog": "https://github.com/layllabs/GTM-Engine/blob/main/docs/signals.md",
+  "experiments_log": "https://github.com/layllabs/GTM-Engine/tree/main/docs/experiments",
+  "documents": {
+    "glossary": "https://github.com/layllabs/GTM-Engine/blob/main/docs/glossary.md",
+    "open_questions": "https://github.com/layllabs/GTM-Engine/blob/main/docs/open-questions.md",
+    "sending_domain_runbook": "https://github.com/layllabs/GTM-Engine/blob/main/docs/runbooks/sending-domain-setup.md",
+    "sdr_onboarding_30_60_90": "https://github.com/layllabs/GTM-Engine/blob/main/docs/leadership/sdr-onboarding-30-60-90.md",
+    "eval_results": "https://github.com/layllabs/GTM-Engine/blob/main/docs/eval_results.md",
+    "architecture_svg": "https://layllabs.github.io/GTM-Engine/assets/architecture.svg"
+  }
+}

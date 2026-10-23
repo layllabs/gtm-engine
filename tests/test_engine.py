@@ -174,6 +174,56 @@ class TestLifecycle(unittest.TestCase):
         self.assertEqual(edges, code)
 
 
+class TestPlaygroundSync(unittest.TestCase):
+    def test_rules_json_matches_python(self):
+        import json, sys
+        sys.path.insert(0, str(ROOT / "scripts"))
+        from export_rules import build
+        on_disk = json.loads((ROOT / "docs" / "rules.json").read_text())
+        self.assertEqual(on_disk, build(), "run: python scripts/export_rules.py")
+
+
+class TestEvalExport(unittest.TestCase):
+    def test_eval_results_json_matches_current_rules(self):
+        import json, sys
+        sys.path.insert(0, str(ROOT / "scripts"))
+        from export_eval import run
+        on_disk = json.loads((ROOT / "docs" / "eval_results.json").read_text())
+        self.assertEqual(on_disk, run(), "run: python scripts/export_eval.py")
+
+
+class TestIntegrations(unittest.TestCase):
+    def test_registry_is_consistent(self):
+        from gtm.integrations import REGISTRY
+        keys = [c.key for c in REGISTRY]
+        self.assertEqual(len(keys), len(set(keys)))
+        example = (ROOT / ".env.example").read_text()
+        for c in REGISTRY:
+            for var in c.env:
+                self.assertIn(var + "=", example, f"{var} missing from .env.example")
+
+    def test_report_without_probe_makes_no_network_calls(self):
+        import os
+        from gtm.integrations import report
+        saved = {k: os.environ.pop(k) for k in list(os.environ) if k in ("GITHUB_TOKEN",)}
+        try:
+            rows = report(live=False)
+            self.assertTrue(all(r["status"] in ("missing", "configured") for r in rows))
+        finally:
+            os.environ.update(saved)
+
+
+class TestAeoAudit(unittest.TestCase):
+    def test_portfolio_pages_pass(self):
+        import sys
+        sys.path.insert(0, str(ROOT / "scripts"))
+        from aeo_audit import checks
+        for name in ("index.html", "human.html"):
+            path = ROOT / "docs" / name
+            failing = [c for c in checks(path.read_text(), path) if c[3] and not c[1]]
+            self.assertEqual(failing, [], name)
+
+
 class TestEndToEnd(unittest.TestCase):
     def test_run(self):
         out = Path(ROOT / "examples" / "_test_output")

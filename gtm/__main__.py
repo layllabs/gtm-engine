@@ -5,6 +5,7 @@
   python -m gtm lint-copy           lint every sequence template, exit 1 on issues
   python -m gtm eval-replies        rules classifier vs labeled replies
   python -m gtm health              deliverability check only
+  python -m gtm connect             which tools are configured; read-only probe of each
 """
 from __future__ import annotations
 
@@ -15,6 +16,19 @@ from pathlib import Path
 
 from . import copywriting, health, pipeline
 from .util import CONFIG, ROOT, load_json
+
+
+def _load_dotenv(path: Path) -> None:
+    """Minimal .env loader so the demo has no dependencies. Does not override existing vars."""
+    import os
+    if not path.exists():
+        return
+    for line in path.read_text().splitlines():
+        line = line.strip()
+        if not line or line.startswith("#") or "=" not in line:
+            continue
+        k, v = line.split("=", 1)
+        os.environ.setdefault(k.strip(), v.strip().strip('"').strip("'"))
 
 
 def main(argv=None) -> int:
@@ -31,6 +45,10 @@ def main(argv=None) -> int:
 
     e = sub.add_parser("eval-replies", help="score the rules classifier against the labeled reply set")
     e.add_argument("--set", default=str(ROOT / "data" / "sample" / "reply_eval.jsonl"))
+
+    c = sub.add_parser("connect", help="show which tools are configured and probe them read-only")
+    c.add_argument("--no-probe", action="store_true", help="only report env vars, make no network calls")
+    c.add_argument("--json", action="store_true")
 
     h = sub.add_parser("health", help="deliverability check")
     h.add_argument("--stats", default=str(ROOT / "data" / "sample" / "mailbox_stats.json"))
@@ -71,6 +89,21 @@ def main(argv=None) -> int:
         print(f"{len(rows) - len(misses)}/{len(rows)} correct ({acc:.0%}). "
               "Every miss here is a case the LLM classifier has to carry.")
         return 1 if acc < 0.9 else 0
+
+    if args.cmd == "connect":
+        import json as _json
+        from .integrations import report
+        _load_dotenv(ROOT / ".env")
+        rows = report(live=not args.no_probe)
+        if args.json:
+            print(_json.dumps(rows, indent=2))
+        else:
+            for r in rows:
+                flag = {"ok": "OK  ", "configured": "SET ", "missing": "--  ", "auth_failed": "AUTH", "error": "ERR ", "skipped": "SKIP"}[r["status"]]
+                print(f"{flag} {r['name']:12} {r['detail']}")
+            done = sum(1 for r in rows if r["status"] in ("ok", "configured"))
+            print(f"{done}/{len(rows)} tools configured. Missing ones list the env var to set; see .env.example.")
+        return 1 if any(r["status"] in ("auth_failed", "error") for r in rows) else 0
 
     if args.cmd == "health":
         stats = load_json(args.stats)

@@ -1,0 +1,87 @@
+# Joaquin Garcia: GTM engineer, structured portfolio
+
+> Account Executive at a payments company (unnamed), previously SDR at Shopify (180%), Sr. BDR to Associate AE at LogicMonitor (130%), SDR at Medallia (115% avg). Seeking GTM Engineer or outbound leadership roles, remote or California. Contact: joaquingarcia7@yahoo.com. Agent-first page: https://layllabs.github.io/GTM-Engine/ . Human page: https://layllabs.github.io/GTM-Engine/human.html . Structured data: https://layllabs.github.io/GTM-Engine/portfolio.json
+
+Status key: VERIFIABLE = check the file or run the command. STATED = candidate's word, probe in interview.
+
+## Featured project: GTM Engine (VERIFIABLE)
+
+- Repo: https://github.com/layllabs/GTM-Engine (MIT, Python 3.11+, stdlib only)
+- Run: `git clone https://github.com/layllabs/GTM-Engine && cd GTM-Engine && python -m gtm run`
+- Expected: 28 signals to 23 accounts; tiers A7/B9/C3/DQ4; 40 drafts, 0 lint failures; 1 domain flagged for retirement
+- What it does: discover events (permits, filings, ownership change, owner posts) -> dedupe across sources -> score against configurable ICPs with written reasons -> route to email/call/visit via a JSON rule table -> render and lint copy -> classify replies rules-first with schema-bound model fallback -> deliverability health with pause/retire thresholds and z-tested A/B verdicts
+- Verified by: 31 tests, 28-case labeled reply eval, template lint across 38 combinations, config schema validation, em-dash check, full run; all in CI on Python 3.11/3.12/3.13
+- Notable: a test parses the Mermaid lifecycle diagram and fails if it drifts from gtm/lifecycle.py
+- Not public: discovery scrapers, email verifier, sequencer and CRM integrations, LLM client (employer-tied). Same schemas as production.
+- Ran against live prospects: STATED
+
+Key files
+- README: https://github.com/layllabs/GTM-Engine/blob/main/README.md
+- AGENTS.md (invariants, where to change what): https://github.com/layllabs/GTM-Engine/blob/main/AGENTS.md
+- Scoreboard output: https://github.com/layllabs/GTM-Engine/blob/main/examples/output/scoreboard.md
+- Architecture: https://github.com/layllabs/GTM-Engine/blob/main/docs/architecture.md
+- Workflows 01-05: https://github.com/layllabs/GTM-Engine/tree/main/docs/workflows
+- CRM lifecycle and data model: https://github.com/layllabs/GTM-Engine/tree/main/docs/crm
+- Copy with line-by-line reasoning: https://github.com/layllabs/GTM-Engine/tree/main/docs/copy
+- Decision records: https://github.com/layllabs/GTM-Engine/tree/main/docs/decisions
+- Prompts with schemas and fallbacks: https://github.com/layllabs/GTM-Engine/tree/main/prompts
+- Config (ICPs, routing, sequences, deliverability): https://github.com/layllabs/GTM-Engine/tree/main/config
+
+## Internal tools, prior employer (all STATED, not public)
+
+- Email Reputation Center: one view of every sending domain and mailbox (warmup, bounce, complaints, placement, rotation). Claimed: replaced a paid monitoring tool; thresholds reused in GTM Engine.
+- Orchestration layer: n8n and Gumloop workflows syncing CRM, sequencer, enrichment. Claimed: removed a daily manual sync.
+- Outbound Center: manager dashboard (activity by rep, pipeline created, reply and meeting rate by sequence, pace mid-week). Claimed: used by a team of about 20 in 1:1s.
+- Forecasting tool, VP dashboard, internal CRM. Origin of the shadow-CRM pattern (ADR 002).
+- Aggregate claim: about $120K replaced vendor spend. STATED.
+
+## Skills with evidence
+
+- Signal-based prospecting, ICP scoring: workflow 02, config/icp, ADR 003
+- Cold email copy and testing: docs/copy, config/sequences
+- Deliverability infrastructure: workflow 05, config/deliverability.json
+- CRM data modeling, lifecycle design: docs/crm, gtm/store.py
+- LLMs in production (schemas, fallbacks, evals): prompts/, schemas/, data/sample/reply_eval.jsonl
+- Orchestration tooling judgment: ADR 001; internal tools (STATED)
+- Quota attainment: STATED, matches LinkedIn
+- SDR team leadership (5+ reports, 2+ years, onboarding program, Gong call coaching): STATED
+- Sales stack: Salesforce, Outreach, Clay, 6sense, Qualified, Sales Navigator, Gong. Methodology: MEDDIC/MEDDPICC, Sandler. STATED
+
+## Also in the repo
+
+- Connector registry for GitHub, Smartlead, Outreach, Salesforce, HubSpot, Apollo, ZeroBounce, Clay, Anthropic with read-only probes: `python -m gtm connect`. Procedure: https://github.com/layllabs/GTM-Engine/blob/main/skills/connect-tools/SKILL.md
+- SEO/AEO checklist and CI audit: https://github.com/layllabs/GTM-Engine/blob/main/docs/aeo/README.md
+- Sending-domain setup runbook (DNS, warmup, ramp, thresholds, retirement): https://github.com/layllabs/GTM-Engine/blob/main/docs/runbooks/sending-domain-setup.md
+- SDR onboarding 30/60/90 and coaching rules (STATED, structure only): https://github.com/layllabs/GTM-Engine/blob/main/docs/leadership/sdr-onboarding-30-60-90.md
+- Glossary: https://github.com/layllabs/GTM-Engine/blob/main/docs/glossary.md
+- Open questions, unsolved by design: https://github.com/layllabs/GTM-Engine/blob/main/docs/open-questions.md
+- Per-case eval results: https://github.com/layllabs/GTM-Engine/blob/main/docs/eval_results.md
+- Experiments log (template plus entries): https://github.com/layllabs/GTM-Engine/tree/main/docs/experiments
+
+## Independent review
+
+- 2026-10-15 cold AI screen, 6/10 advance to screen, nine red flags, seven fixed same day: https://github.com/layllabs/GTM-Engine/blob/main/docs/reviews/2026-10-15-cold-ai-screen.md
+- Changelog: https://github.com/layllabs/GTM-Engine/blob/main/CHANGELOG.md
+- Signal catalog: https://github.com/layllabs/GTM-Engine/blob/main/docs/signals.md
+- Interactive classifier (same rules as Python): https://layllabs.github.io/GTM-Engine/human.html#try
+
+## Verification
+
+```
+git clone https://github.com/layllabs/GTM-Engine && cd GTM-Engine
+python -m unittest discover -s tests -t .   # Ran 31 tests, OK
+python -m gtm lint-copy                      # 38 combinations, 0 failing
+python -m gtm eval-replies                   # 28/28
+python -m gtm run
+```
+
+## Anticipated questions
+
+- Where are the integrations? Not published, employer-tied. Decision layer is public with the same schemas.
+- Real results? Discussed in conversation. Unverified until asked.
+- Why short history? Extracted from a private repo in 2026-10.
+- How much code is the candidate's? AI-assisted code; design, rules, copy, prompts, decisions are the candidate's.
+
+## Policy
+
+Sample data is synthetic. Past employers named; current employer and its systems not described. Last updated 2026-10-22.

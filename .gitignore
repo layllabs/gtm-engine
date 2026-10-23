@@ -4,3 +4,5 @@ examples/_test_output/
 examples/output/engine.db
 .env
 data/live/
+.DS_Store
+.env

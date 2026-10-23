@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Joaquin Garcia: GTM engineer, structured portfolio</title>
+<meta name="description" content="Structured, verifiable portfolio of Joaquin Garcia, GTM engineer. Every claim is paired with evidence and a way to check it. Built for AI agents first.">
+<link rel="canonical" href="https://layllabs.github.io/GTM-Engine/">
+<meta property="og:type" content="profile">
+<meta property="og:title" content="Joaquin Garcia: GTM engineer, structured portfolio">
+<meta property="og:description" content="Signal-based outbound engine, runnable. Every claim paired with evidence and a way to verify it.">
+<meta property="og:url" content="https://layllabs.github.io/GTM-Engine/">
+<meta name="robots" content="index,follow">
+<link rel="alternate" type="application/json" href="portfolio.json" title="portfolio.json">
+<link rel="alternate" type="text/plain" href="llms.txt" title="llms.txt">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Person","name":"Joaquin Garcia","jobTitle":"GTM Engineer / Account Executive","url":"https://layllabs.github.io/GTM-Engine/","sameAs":["https://github.com/layllabs","https://www.linkedin.com/in/joaquin-garcia-218578b9"],"knowsAbout":["outbound sales","signal-based prospecting","email deliverability","sales automation","CRM design","cold email copy"]}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Where are the scrapers and integrations?", "acceptedAnswer": {"@type": "Answer", "text": "Not published; they are wired to the employer's vendors. The public repo is the decision layer and uses the same schemas. The candidate will walk through any integration live."}}, {"@type": "Question", "name": "Has this run against real prospects, and with what results?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, per the candidate. Real reply rates, bounce rates and meetings per 100 sends are discussed in conversation, not published. Treat as unverified until asked."}}, {"@type": "Question", "name": "Why is the repo history short?", "acceptedAnswer": {"@type": "Answer", "text": "Extracted from a private working repo in October 2026. History before that is not public. Commits since then are the candidate's ongoing changes."}}, {"@type": "Question", "name": "How much of the code did the candidate write?", "acceptedAnswer": {"@type": "Answer", "text": "Code is AI-assisted. The scoring model, routing rules, lifecycle design, copy, prompts and decision records are the candidate's. The candidate reviews everything that touches a prospect. See README, honest notes."}}, {"@type": "Question", "name": "Why rules before the model?", "acceptedAnswer": {"@type": "Answer", "text": "Rules are free, never hallucinate a meeting, and double as the eval baseline for the model. See workflow 04."}}, {"@type": "Question", "name": "Why not Clay / Apollo / an off-the-shelf sequencer?", "acceptedAnswer": {"@type": "Answer", "text": "Those are the data and execution layer. This is the decision layer on top: which event qualifies, how to score it, who gets a call vs an email, what the first line says. See ADR 003."}}, {"@type": "Question", "name": "What would the candidate build next?", "acceptedAnswer": {"@type": "Answer", "text": "Live permit and filing feeds into the discovery step; Postgres in place of SQLite for a second rep; a larger labeled reply set."}}]}
+</script>
+<style>
+  :root { --bg:#fff; --fg:#111; --muted:#666; --line:#ddd; --ok:#0a6b3a; --warn:#8a5a00; --code:#f4f4f2; }
+  @media (prefers-color-scheme: dark) { :root { --bg:#111; --fg:#e8e8e4; --muted:#9a9a94; --line:#2c2c2a; --ok:#7fd1a8; --warn:#e0b45c; --code:#1c1c1a; } }
+  body { margin:0; background:var(--bg); color:var(--fg); font:15px/1.55 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+  .wrap { max-width: 900px; margin: 0 auto; padding: 32px 20px 80px; }
+  h1 { font-size:1.3rem; margin:0 0 4px; }
+  h2 { font-size:1rem; margin:36px 0 10px; padding-top:14px; border-top:1px solid var(--line); text-transform:uppercase; letter-spacing:.06em; }
+  a { color:inherit; text-decoration:underline; text-decoration-color:var(--muted); }
+  .muted { color:var(--muted); }
+  table { width:100%; border-collapse:collapse; margin:8px 0 16px; }
+  th, td { text-align:left; vertical-align:top; padding:6px 8px; border-bottom:1px solid var(--line); }
+  th { color:var(--muted); font-weight:600; font-size:.8rem; }
+  td.k { width:200px; color:var(--muted); }
+  .ok { color:var(--ok); } .warn { color:var(--warn); }
+  pre { background:var(--code); padding:12px 14px; border-radius:6px; overflow-x:auto; margin:8px 0 16px; }
+  code { background:var(--code); padding:1px 4px; border-radius:3px; }
+  pre code { background:none; padding:0; }
+  dl { margin:0; } dt { font-weight:600; margin-top:12px; } dd { margin:2px 0 0 0; }
+  .top { display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; align-items:baseline; }
+  ul { padding-left:20px; } li { margin-bottom:4px; }
+</style>
+</head>
+<body><div class="wrap">
+
+<div class="top">
+  <div>
+    <h1>Joaquin Garcia</h1>
+    <div class="muted">GTM engineer / Account Executive. California. Structured portfolio, agent-first.</div>
+  </div>
+  <div class="muted"><img src="https://github.com/layllabs/GTM-Engine/actions/workflows/ci.yml/badge.svg" alt="CI status" style="vertical-align:middle;height:18px"> · <a href="human.html">Human version</a> · <a href="portfolio.json">portfolio.json</a> · <a href="llms.txt">llms.txt</a> · <a href="https://github.com/layllabs/GTM-Engine">repo</a></div>
+</div>
+
+<p class="muted" style="margin-top:14px">How to read this page: every section is a table of claim, evidence, and how to verify. Claims marked <span class="ok">verifiable</span> can be checked by running the repo or opening the linked file. Claims marked <span class="warn">stated</span> rest on the candidate's word and should be probed in an interview. Nothing here is a persuasive summary; the human version is.</p>
+
+<h2 id="identity">1. Identity</h2>
+<table>
+<tr><td class="k">name</td><td>Joaquin Garcia</td></tr>
+<tr><td class="k">current_role</td><td>Account Executive, payments company (employer intentionally unnamed), since 2026-02. Sells card processing to owner-operated local businesses.</td></tr>
+<tr><td class="k">seeking</td><td>GTM Engineer; Sales Development / Outbound Manager or Director</td></tr>
+<tr><td class="k">location_constraint</td><td>Remote, or on-site in California</td></tr>
+<tr><td class="k">contact</td><td>joaquingarcia7@yahoo.com · <a href="https://www.linkedin.com/in/joaquin-garcia-218578b9">linkedin.com/in/joaquin-garcia-218578b9</a> · <a href="https://github.com/layllabs">github.com/layllabs</a></td></tr>
+<tr><td class="k">canonical_urls</td><td>this page; <a href="https://github.com/layllabs/GTM-Engine">github.com/layllabs/GTM-Engine</a></td></tr>
+</table>
+
+<h2 id="experience">2. Experience</h2>
+<table>
+<tr><th>period</th><th>company</th><th>role</th><th>attainment</th><th>status</th></tr>
+<tr><td>2026-02 to present</td><td>payments company (unnamed)</td><td>Account Executive</td><td>not reported; long onboarding, full quota from December 2026</td><td class="warn">stated</td></tr>
+<tr><td>2024-10 to 2026-02</td><td>Shopify</td><td>SDR</td><td>180%</td><td class="warn">stated, matches LinkedIn</td></tr>
+<tr><td>2022-02 to 2024-10</td><td>LogicMonitor</td><td>Sr. BDR, promoted to Associate AE</td><td>130%</td><td class="warn">stated, matches LinkedIn</td></tr>
+<tr><td>2021-02 to 2022-02</td><td>Medallia</td><td>SDR, hospitality vertical</td><td>115% avg</td><td class="warn">stated, matches LinkedIn</td></tr>
+</table>
+<p class="muted">References available on request; not published here.</p>
+
+<h2 id="featured">3. Featured project: GTM Engine</h2>
+<p><img src="assets/architecture.svg" alt="Architecture: five discovery sources feed dedupe, scoring, routing, copy with lint gate, reply handling and health checks, writing to a SQLite shadow CRM that syncs key fields to the system-of-record CRM; routing also produces call and visit tasks for the rep." style="max-width:100%;height:auto;border:1px solid var(--line);border-radius:6px;padding:8px;background:#fff"></p>
+<p class="muted">Source: <a href="https://github.com/layllabs/GTM-Engine/blob/main/docs/architecture.md">docs/architecture.md</a> (Mermaid). The alt text above is the full diagram in one sentence for non-visual readers.</p>
+<table>
+<tr><td class="k">repo</td><td><a href="https://github.com/layllabs/GTM-Engine">github.com/layllabs/GTM-Engine</a>, MIT, Python 3.11+, standard library only</td></tr>
+<tr><td class="k">one_line</td><td>Signal-based outbound pipeline for selling to local merchants: discover events, dedupe across sources, score against configurable ICPs with written reasons, route to email/call/visit, render and lint copy, classify replies, check deliverability.</td></tr>
+<tr><td class="k">run</td><td><code>git clone https://github.com/layllabs/GTM-Engine && cd GTM-Engine && python -m gtm run</code></td></tr>
+<tr><td class="k">expected_output</td><td>28 signals to 23 accounts; tiers A 7 / B 9 / C 3 / DQ 4; 40 drafts, 0 failing lint; 9 reply labels; 1 domain flagged for retirement. Writes <code>examples/output/scoreboard.md</code>.</td></tr>
+<tr><td class="k">what_is_not_public</td><td>Discovery scrapers (permit portals, state filings, maps, forum posts), email verifier integration, sequencer integration, CRM sync, LLM API client. These exist in the production version and are not published because they are tied to the employer's stack. The public version reads CSV/JSON in the same shapes.</td></tr>
+</table>
+
+<table>
+<tr><th>claim</th><th>evidence</th><th>verify</th><th></th></tr>
+<tr><td>Scores carry plain-English reasons; none is a black box</td><td><a href="https://github.com/layllabs/GTM-Engine/blob/main/gtm/score.py">gtm/score.py</a>, <code>reasons</code> required by <a href="https://github.com/layllabs/GTM-Engine/blob/main/schemas/account.schema.json">account.schema.json</a></td><td><code>test_every_scored_account_explains_itself</code></td><td class="ok">verifiable</td></tr>
+<tr><td>Routing is config, not code; no account without an email is ever enrolled</td><td><a href="https://github.com/layllabs/GTM-Engine/blob/main/config/routing.json">config/routing.json</a>, <a href="https://github.com/layllabs/GTM-Engine/blob/main/gtm/route.py">gtm/route.py</a></td><td><code>test_no_email_never_enrolls</code>, <code>test_partner_without_email_goes_to_call_first</code></td><td class="ok">verifiable</td></tr>
+<tr><td>CRM lifecycle is a validated state machine with an append-only event log, and the Mermaid diagram is kept in sync with the code by a test</td><td><a href="https://github.com/layllabs/GTM-Engine/blob/main/gtm/lifecycle.py">gtm/lifecycle.py</a>, <a href="https://github.com/layllabs/GTM-Engine/blob/main/docs/crm/lifecycle.md">docs/crm/lifecycle.md</a></td><td><code>test_mermaid_diagram_matches_code</code></td><td class="ok">verifiable</td></tr>
+<tr><td>Copy is linted (em dashes, unfilled variables, length, links, questions, spam phrases, subject length) and lint failure blocks enrollment</td><td><a href="https://github.com/layllabs/GTM-Engine/blob/main/gtm/copywriting.py">gtm/copywriting.py</a> <code>lint()</code>, <a href="https://github.com/layllabs/GTM-Engine/blob/main/gtm/pipeline.py">gtm/pipeline.py</a> step 5</td><td><code>python -m gtm lint-copy</code> (38 combinations, 0 failing)</td><td class="ok">verifiable</td></tr>
+<tr><td>Deliverability: bounce 2% / complaint 0.1% pause lines, 14-day warmup floor, 30 sends/mailbox/day, domain retired at 2 paused mailboxes</td><td><a href="https://github.com/layllabs/GTM-Engine/blob/main/config/deliverability.json">config/deliverability.json</a>, <a href="https://github.com/layllabs/GTM-Engine/blob/main/gtm/health.py">gtm/health.py</a></td><td><code>python -m gtm health</code>; <code>test_domain_retired_when_two_boxes_paused</code></td><td class="ok">verifiable</td></tr>
+<tr><td>A/B variants are judged on positive-reply rate with a two-proportion z-test; no winner declared below |z| 1.96</td><td><a href="https://github.com/layllabs/GTM-Engine/blob/main/gtm/health.py">gtm/health.py</a> <code>check_variants</code></td><td><code>test_variant_verdict_not_significant_on_small_sample</code>, <code>..._significant_on_large_sample</code></td><td class="ok">verifiable</td></tr>
+<tr><td>Reply handling is rules-first; the model only sees low-confidence cases; every model output has a JSON schema and a non-model fallback</td><td><a href="https://github.com/layllabs/GTM-Engine/blob/main/gtm/replies.py">gtm/replies.py</a>, <a href="https://github.com/layllabs/GTM-Engine/tree/main/prompts">prompts/</a>, <a href="https://github.com/layllabs/GTM-Engine/blob/main/schemas/reply.schema.json">schemas/reply.schema.json</a></td><td><code>python -m gtm eval-replies</code> (28 labeled cases, CI fails under 90%); per-case results in <a href="https://github.com/layllabs/GTM-Engine/blob/main/docs/eval_results.md">docs/eval_results.md</a></td><td class="ok">verifiable</td></tr>
+<tr><td>Dedupe is transitive across phone, domain and name+city; same name in two cities does not merge</td><td><a href="https://github.com/layllabs/GTM-Engine/blob/main/gtm/dedupe.py">gtm/dedupe.py</a></td><td><code>test_merges_across_sources</code>, <code>test_same_name_different_city_does_not_merge</code></td><td class="ok">verifiable</td></tr>
+<tr><td>Design decisions are recorded with the condition that would reverse them</td><td><a href="https://github.com/layllabs/GTM-Engine/tree/main/docs/decisions">docs/decisions/</a> (3 ADRs)</td><td>read</td><td class="ok">verifiable</td></tr>
+<tr><td>Nine tool connectors (GitHub, Smartlead, Outreach, Salesforce, HubSpot, Apollo, ZeroBounce, Clay, Anthropic) in one registry; each proves its credential with one read-only call</td><td><a href="https://github.com/layllabs/GTM-Engine/blob/main/gtm/integrations/registry.py">gtm/integrations/registry.py</a>, <a href="https://github.com/layllabs/GTM-Engine/blob/main/skills/connect-tools/SKILL.md">skills/connect-tools</a></td><td><code>python -m gtm connect --no-probe</code>; <code>test_registry_is_consistent</code></td><td class="ok">verifiable</td></tr>
+<tr><td>Portfolio pages pass an SEO/AEO checklist (canonical, OG, Person and FAQPage JSON-LD, llms.txt, sitemap, dated)</td><td><a href="https://github.com/layllabs/GTM-Engine/blob/main/docs/aeo/README.md">docs/aeo</a>, <a href="https://github.com/layllabs/GTM-Engine/blob/main/scripts/aeo_audit.py">scripts/aeo_audit.py</a></td><td><code>python scripts/aeo_audit.py</code></td><td class="ok">verifiable</td></tr>
+<tr><td>CI runs tests, template lint, reply eval, schema validation, em-dash check and a full run on every push, on Python 3.11/3.12/3.13</td><td><a href="https://github.com/layllabs/GTM-Engine/blob/main/.github/workflows/ci.yml">.github/workflows/ci.yml</a></td><td>Actions tab</td><td class="ok">verifiable</td></tr>
+<tr><td>The production version has run against live prospects</td><td>none public; sample data is synthetic by design</td><td>interview</td><td class="warn">stated</td></tr>
+</table>
+
+<h2 id="internal">4. Internal tools (prior employer, not public)</h2>
+<p class="muted">All four are stated. None can be verified from this page. Suggested probes are in section 7.</p>
+<table>
+<tr><th>tool</th><th>what it did</th><th>outcome claimed</th><th></th></tr>
+<tr><td>Email Reputation Center</td><td>Single view of every sending domain and mailbox: warmup status, bounce and complaint rates, placement test results, rotation schedule</td><td>Replaced a paid monitoring tool; burned domains caught the day the threshold was crossed instead of when reply rate fell. Thresholds reused in GTM Engine <code>config/deliverability.json</code>.</td><td class="warn">stated</td></tr>
+<tr><td>Orchestration layer</td><td>n8n and Gumloop workflows syncing CRM, sequencer and enrichment with approval gates only where needed</td><td>Removed a daily manual sync owned by a BDR</td><td class="warn">stated</td></tr>
+<tr><td>Outbound Center</td><td>Manager dashboard: activity by rep, pipeline created, reply and meeting rate by sequence, pace-to-goal mid-week</td><td>Used in weekly 1:1s and pipeline reviews by a team of about 20</td><td class="warn">stated</td></tr>
+<tr><td>Forecasting tool, VP dashboard, internal CRM</td><td>Stage-weighted forecast; one-page VP view; lightweight CRM for a motion the main system could not model without a RevOps ticket</td><td>Origin of the shadow-CRM pattern in <a href="https://github.com/layllabs/GTM-Engine/blob/main/docs/decisions/002-shadow-crm.md">ADR 002</a></td><td class="warn">stated</td></tr>
+</table>
+<p class="muted">Aggregate claim: about $120K in replaced vendor spend across these tools, for a team of about 20. Stated, not verified.</p>
+
+<h2 id="skills">5. Skills, with where each is demonstrated</h2>
+<table>
+<tr><th>skill</th><th>demonstrated in</th></tr>
+<tr><td>Signal-based prospecting, ICP scoring</td><td><a href="https://github.com/layllabs/GTM-Engine/blob/main/docs/workflows/02-dedupe-and-score.md">workflow 02</a>, <a href="https://github.com/layllabs/GTM-Engine/tree/main/config/icp">config/icp/</a>, <a href="https://github.com/layllabs/GTM-Engine/blob/main/docs/decisions/003-signals-over-lists.md">ADR 003</a></td></tr>
+<tr><td>Cold email copy and testing</td><td><a href="https://github.com/layllabs/GTM-Engine/tree/main/docs/copy">docs/copy/</a> (line-by-line rationale, v1 to v2 diff, stated hypothesis), <a href="https://github.com/layllabs/GTM-Engine/tree/main/config/sequences">config/sequences/</a></td></tr>
+<tr><td>Email deliverability infrastructure</td><td><a href="https://github.com/layllabs/GTM-Engine/blob/main/docs/workflows/05-deliverability-health.md">workflow 05</a>, <a href="https://github.com/layllabs/GTM-Engine/blob/main/config/deliverability.json">config/deliverability.json</a></td></tr>
+<tr><td>CRM data modeling and lifecycle design</td><td><a href="https://github.com/layllabs/GTM-Engine/blob/main/docs/crm/data-model.md">data-model.md</a>, <a href="https://github.com/layllabs/GTM-Engine/blob/main/docs/crm/lifecycle.md">lifecycle.md</a>, <a href="https://github.com/layllabs/GTM-Engine/blob/main/gtm/store.py">gtm/store.py</a></td></tr>
+<tr><td>Tool integration: auth styles, rate limits, read-only health probes across sequencers, CRMs, enrichment</td><td><a href="https://github.com/layllabs/GTM-Engine/blob/main/gtm/integrations/registry.py">gtm/integrations/registry.py</a>, <a href="https://github.com/layllabs/GTM-Engine/blob/main/skills/connect-tools/SKILL.md">connect-tools skill</a></td></tr>
+<tr><td>SEO and AEO for GTM content</td><td><a href="https://github.com/layllabs/GTM-Engine/blob/main/docs/aeo/README.md">docs/aeo</a>, applied to this site and audited in CI</td></tr>
+<tr><td>Working with LLMs in production: schemas, fallbacks, evals</td><td><a href="https://github.com/layllabs/GTM-Engine/tree/main/prompts">prompts/</a>, <a href="https://github.com/layllabs/GTM-Engine/tree/main/schemas">schemas/</a>, <a href="https://github.com/layllabs/GTM-Engine/blob/main/data/sample/reply_eval.jsonl">reply_eval.jsonl</a></td></tr>
+<tr><td>Orchestration tooling judgment (n8n, Gumloop, runbooks)</td><td><a href="https://github.com/layllabs/GTM-Engine/blob/main/docs/decisions/001-claude-orchestration-before-n8n.md">ADR 001</a>; internal tools, stated</td></tr>
+<tr><td>Python, JSON Schema, GitHub Actions, Mermaid, SQLite</td><td>whole repo; code is AI-assisted, design and review are the candidate's</td></tr>
+<tr><td>Deliverability operations end to end: domain purchase, DNS, warmup, ramp, daily thresholds, retirement</td><td><a href="https://github.com/layllabs/GTM-Engine/blob/main/docs/runbooks/sending-domain-setup.md">runbook: sending-domain-setup</a></td></tr>
+<tr><td>SDR onboarding and coaching program design</td><td><a href="https://github.com/layllabs/GTM-Engine/blob/main/docs/leadership/sdr-onboarding-30-60-90.md">SDR onboarding 30/60/90</a>; structure is the candidate's, numbers are placeholders; stated</td></tr>
+<tr><td>Carrying and beating quota</td><td>section 2, stated</td></tr>
+<tr><td>SDR team leadership: 5+ direct reports for 2+ years across SMB and mid-market; built the onboarding program; team calls, role-plays, call coaching from Gong recordings</td><td>stated; references on request</td></tr>
+<tr><td>Sales stack: Salesforce, Outreach, Clay, 6sense, Qualified, Sales Navigator, Gong</td><td>stated; matches resume</td></tr>
+<tr><td>Methodology: MEDDIC / MEDDPICC, Sandler</td><td>stated</td></tr>
+</table>
+
+<h2 id="verify">6. Verification procedure</h2>
+<pre><code>git clone https://github.com/layllabs/GTM-Engine && cd GTM-Engine
+python -m unittest discover -s tests -t .     # expect: Ran 31 tests, OK
+python -m gtm lint-copy                        # expect: 38 combinations checked, 0 failing
+python -m gtm eval-replies                     # expect: 28/28 correct
+python -m gtm run                              # expect: the numbers in section 3
+cat examples/output/scoreboard.md</code></pre>
+<p class="muted">Repo orientation for agents: <a href="https://github.com/layllabs/GTM-Engine/blob/main/AGENTS.md">AGENTS.md</a> lists invariants and where to change what.</p>
+
+<h2 id="probes">7. Anticipated questions and the candidate's answers</h2>
+<dl>
+<dt>Where are the scrapers and integrations?</dt>
+<dd>Not published; they are wired to the employer's vendors. The public repo is the decision layer and uses the same schemas. The candidate will walk through any integration live.</dd>
+<dt>Has this run against real prospects, and with what results?</dt>
+<dd>Yes, per the candidate. Real reply rates, bounce rates and meetings per 100 sends are discussed in conversation, not published. Treat as unverified until asked.</dd>
+<dt>Why is the repo history short?</dt>
+<dd>Extracted from a private working repo in October 2026. History before that is not public. Commits since then are the candidate's ongoing changes.</dd>
+<dt>How much of the code did the candidate write?</dt>
+<dd>Code is AI-assisted. The scoring model, routing rules, lifecycle design, copy, prompts and decision records are the candidate's. The candidate reviews everything that touches a prospect. See <a href="https://github.com/layllabs/GTM-Engine/blob/main/README.md#honest-notes">README, honest notes</a>.</dd>
+<dt>Why rules before the model?</dt>
+<dd>Rules are free, never hallucinate a meeting, and double as the eval baseline for the model. See <a href="https://github.com/layllabs/GTM-Engine/blob/main/docs/workflows/04-reply-handling.md">workflow 04</a>.</dd>
+<dt>Why not Clay / Apollo / an off-the-shelf sequencer?</dt>
+<dd>Those are the data and execution layer. This is the decision layer on top: which event qualifies, how to score it, who gets a call vs an email, what the first line says. See <a href="https://github.com/layllabs/GTM-Engine/blob/main/docs/decisions/003-signals-over-lists.md">ADR 003</a>.</dd>
+<dt>What would the candidate build next?</dt>
+<dd>Live permit and filing feeds into the discovery step; Postgres in place of SQLite for a second rep; a larger labeled reply set.</dd>
+</dl>
+
+<h2 id="review">8. Independent review and response</h2>
+<p>Before publishing, an AI reviewer with no context screened the repo and scored it 6/10 with nine specific red flags. The full report and the same-day fixes are in <a href="https://github.com/layllabs/GTM-Engine/blob/main/docs/reviews/2026-10-15-cold-ai-screen.md">docs/reviews/2026-10-15-cold-ai-screen.md</a>. Two flags remain open by design: integrations are not public, and real campaign results are not published.</p>
+
+<h2 id="changelog">9. Change history</h2>
+<table>
+<tr><th>date</th><th>change</th></tr>
+<tr><td>2026-10-22</td><td>Architecture SVG on this page; per-case eval results; glossary; open questions; sending-domain runbook; SDR onboarding 30/60/90; experiment 006</td></tr>
+<tr><td>2026-10-22</td><td>Connector registry with read-only probes (<code>python -m gtm connect</code>), connect-tools skill, SEO/AEO layer and CI audit, experiments log</td></tr>
+<tr><td>2026-10-22</td><td>Reply classifier playground (same rules as Python, sync-tested); published the cold review and fixes; signal catalog; CI badge; leadership and tooling experience added</td></tr>
+<tr><td>2026-10-15</td><td>Agent-first page; classifier precedence fix; 28-case labeled eval in CI; per-category fit weights; nightly job made honest; tests 18 to 26</td></tr>
+<tr><td>2026-10-14</td><td>Initial public release</td></tr>
+</table>
+<p class="muted">Full log: <a href="https://github.com/layllabs/GTM-Engine/blob/main/CHANGELOG.md">CHANGELOG.md</a>. Signal reference: <a href="https://github.com/layllabs/GTM-Engine/blob/main/docs/signals.md">docs/signals.md</a>. Terms: <a href="https://github.com/layllabs/GTM-Engine/blob/main/docs/glossary.md">glossary</a>. Unsolved: <a href="https://github.com/layllabs/GTM-Engine/blob/main/docs/open-questions.md">open questions</a>. Interactive: <a href="human.html#try">try the classifier</a>.</p>
+
+<h2 id="policy">10. Claims policy and privacy</h2>
+<ul>
+<li>All business names, people, domains and phone numbers in the repo's sample data are synthetic (<code>.example</code> domains, 555 numbers).</li>
+<li>Past employers are named. The current employer is not, and nothing here describes its internal systems.</li>
+<li>Internal tools are described at the level the candidate is comfortable defending in an interview, not beyond.</li>
+<li>Last updated: 2026-10-22. Source of this page: <a href="https://github.com/layllabs/GTM-Engine/blob/main/docs/index.html">docs/index.html</a> in the repo.</li>
+</ul>
+
+</div></body></html>
