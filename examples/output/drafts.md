@@ -212,35 +212,6 @@ Every email below passed the lint gate. Call steps are scripts for the rep.
 >
 > Joaquin
 
-## Bright Spin Dry Cleaners (San Luis Obispo)
-`local-merchant-v2` variant A, opener from signal `ownership_change`
-
-**Day 0 email.** Subject: `Bright Spin Dry Cleaners card fees`
-
-> Hi Helen,
->
-> Heard Bright Spin Dry Cleaners recently changed hands. New owners usually inherit the old processing contract without looking at it.
->
-> Most owners I talk to are paying a markup they never agreed to, buried in the statement. If you send me one recent statement, I'll show you line by line what you're paying and what it should be. No pitch until you've seen the math.
->
-> Worth a look?
->
-> Joaquin
-
-**Day 3 email.** Subject: `one photo is enough`
-
-> Helen, the fastest version: snap a photo of page one of your statement and reply here. I'll send back your effective rate and where the extra is coming from.
->
-> Joaquin
-
-**Day 7 call.** Call script: reference the email, ask who handles the processing statement, offer the free statement review. Voicemail: name, one line on the review, callback number.
-
-**Day 12 email.** Subject: `closing the loop`
-
-> Helen, I'll stop here. If fees ever come up, reply with a statement and I'll run the numbers. Good luck with Bright Spin Dry Cleaners.
->
-> Joaquin
-
 ## Sunset Nail Studio (Torrance)
 `local-merchant-v2` variant A, opener from signal `processor_complaint`
 
@@ -267,6 +238,35 @@ Every email below passed the lint gate. Call steps are scripts for the rep.
 **Day 12 email.** Subject: `closing the loop`
 
 > Tina, I'll stop here. If fees ever come up, reply with a statement and I'll run the numbers. Good luck with Sunset Nail Studio.
+>
+> Joaquin
+
+## Bright Spin Dry Cleaners (San Luis Obispo)
+`local-merchant-v2` variant A, opener from signal `ownership_change`
+
+**Day 0 email.** Subject: `Bright Spin Dry Cleaners card fees`
+
+> Hi Helen,
+>
+> Heard Bright Spin Dry Cleaners recently changed hands. New owners usually inherit the old processing contract without looking at it.
+>
+> Most owners I talk to are paying a markup they never agreed to, buried in the statement. If you send me one recent statement, I'll show you line by line what you're paying and what it should be. No pitch until you've seen the math.
+>
+> Worth a look?
+>
+> Joaquin
+
+**Day 3 email.** Subject: `one photo is enough`
+
+> Helen, the fastest version: snap a photo of page one of your statement and reply here. I'll send back your effective rate and where the extra is coming from.
+>
+> Joaquin
+
+**Day 7 call.** Call script: reference the email, ask who handles the processing statement, offer the free statement review. Voicemail: name, one line on the review, callback number.
+
+**Day 12 email.** Subject: `closing the loop`
+
+> Helen, I'll stop here. If fees ever come up, reply with a statement and I'll run the numbers. Good luck with Bright Spin Dry Cleaners.
 >
 > Joaquin
 
