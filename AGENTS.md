@@ -29,6 +29,15 @@ data and writes a scoreboard.
 - No real business, person, domain or phone number appears anywhere.
   All sample data is synthetic and uses `.example` domains and 555 numbers.
 
+## Payments vertical
+
+`docs/payments/` holds the domain knowledge: economics, statement review,
+enterprise orchestration, personas, objections. `gtm/statement.py` is the
+calculator; its thresholds are module constants, not config, on purpose
+(they are opinions and should be read as such). Lanes: `direct`, `partner`,
+`enterprise`. The enterprise lane never enrolls without a contact; it
+routes to `find_contact` instead.
+
 ## Where to change what
 
 | Want to | Edit |

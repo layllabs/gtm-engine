@@ -261,6 +261,42 @@ class TestSqlQueries(unittest.TestCase):
             con.execute(q).fetchall()
 
 
+class TestStatement(unittest.TestCase):
+    def test_sample_statement_math(self):
+        from gtm import statement
+        stmt = json.loads((DATA / "statement.json").read_text())
+        r = statement.review(stmt, as_of=AS_OF)
+        self.assertAlmostEqual(r["effective_rate"], 1706.40 / 48250.00, places=4)
+        self.assertAlmostEqual(r["passthrough"], 892.63 + 66.58, places=2)
+        self.assertTrue(r["can_estimate_savings"])
+        self.assertGreater(r["annual_difference"], 0)
+        self.assertIn("etf_payback_months", r["contract"])
+        self.assertTrue(any("PCI" in f for f in r["flags"]))
+
+    def test_tiered_statement_refuses_to_estimate(self):
+        from gtm import statement
+        stmt = {"period": "2026-09", "volume": 20000, "transactions": 900, "pricing_model": "tiered",
+                "fees": {"total": 640, "interchange": None}}
+        r = statement.review(stmt, as_of=AS_OF)
+        self.assertFalse(r["can_estimate_savings"])
+        self.assertNotIn("annual_difference", r)
+        self.assertTrue(any("markup not visible" in f for f in r["flags"]))
+
+
+class TestEnterpriseLane(unittest.TestCase):
+    def test_enterprise_sample_routes_to_orchestration_sequence(self):
+        from gtm.pipeline import run
+        out = ROOT / "examples" / "_test_output_ent"
+        res = run(ROOT / "data" / "sample_enterprise", out, AS_OF)
+        by = {a["business_name"]: a for a in res["accounts"]}
+        self.assertEqual(by["Andora Travel Group"]["lane"], "enterprise")
+        self.assertEqual(by["Andora Travel Group"]["sequence"], "payments-orchestration-v1")
+        self.assertEqual(by["Andora Travel Group"]["owner"], "rep_enterprise")
+        self.assertEqual(by["Orbit Digital Goods"]["action"], "find_contact")
+        self.assertEqual(by["PayCore Acquiring"]["tier"], "DQ")
+        import shutil; shutil.rmtree(out, ignore_errors=True)
+
+
 class TestEvalExport(unittest.TestCase):
     def test_eval_results_json_matches_current_rules(self):
         import json, sys

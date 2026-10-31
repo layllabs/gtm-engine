@@ -7,6 +7,7 @@
   python -m gtm health              deliverability check only
   python -m gtm connect             which tools are configured; read-only probe of each
   python -m gtm sql                 run the analysis queries against the last run
+  python -m gtm statement [file]    statement review on a normalized processing statement
 """
 from __future__ import annotations
 
@@ -54,6 +55,11 @@ def main(argv=None) -> int:
     q = sub.add_parser("sql", help="run the named queries in docs/sql/analysis.sql against the last run's engine.db")
     q.add_argument("--db", default=str(ROOT / "examples" / "output" / "engine.db"))
     q.add_argument("--name", help="run only this query")
+
+    st = sub.add_parser("statement", help="statement review: effective rate, markup, fair offer, flags")
+    st.add_argument("path", nargs="?", default=str(ROOT / "data" / "sample" / "statement.json"))
+    st.add_argument("--markup-bps", type=float, default=None, help="offer markup in bps over interchange")
+    st.add_argument("--json", action="store_true")
 
     h = sub.add_parser("health", help="deliverability check")
     h.add_argument("--stats", default=str(ROOT / "data" / "sample" / "mailbox_stats.json"))
@@ -131,6 +137,15 @@ def main(argv=None) -> int:
                 print(" | ".join(str(v)[:60] for v in r))
             if len(rows) > 25:
                 print(f"... {len(rows) - 25} more")
+        return 0
+
+    if args.cmd == "statement":
+        import json as _json
+        from . import statement
+        stmt = load_json(args.path)
+        offer = {"markup_bps": args.markup_bps} if args.markup_bps is not None else None
+        r = statement.review(stmt, offer, as_of=date.fromisoformat(load_json(CONFIG / "sender.json")["as_of_default"]))
+        print(_json.dumps(r, indent=2, default=str) if args.json else statement.summary(r))
         return 0
 
     if args.cmd == "health":

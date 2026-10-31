@@ -36,3 +36,31 @@ the difference is noted so an agent does not misparse.
 | **stated / verifiable** | Labels on the portfolio pages. Verifiable: check the file or run the command. Stated: the candidate's word, probe in interview. |
 | **connector** | One entry in `gtm/integrations/registry.py`: how a tool authenticates, which env var holds the credential, a read-only probe endpoint, rate limit. |
 | **AEO** | Answer engine optimization: structuring content so an AI assistant can extract and cite it. See `docs/aeo/`. |
+
+## Payments terms
+
+**Interchange.** The fee the card-issuing bank takes, set by the networks by card type and presentation. Pass-through; the same at any processor.
+
+**Assessments.** The card network's own fee. Pass-through.
+
+**Processor markup.** Everything above interchange and assessments: percentage, per-item, monthly, PCI, equipment. The only negotiable layer.
+
+**Effective rate.** Total fees divided by volume, all-in. The first number read back in a statement review.
+
+**Basis point (bps).** One hundredth of a percent. Markup is quoted in bps over interchange.
+
+**Interchange-plus.** Pricing that shows interchange and markup separately. The only model the calculator will estimate savings on.
+
+**Tiered pricing.** Qualified / mid / non-qualified blended rates that hide the markup. The calculator flags and declines.
+
+**ETF.** Early termination fee. Payback in months is the ETF divided by the monthly difference.
+
+**PSP.** Payment service provider: the party that processes the merchant's transactions.
+
+**Payment orchestration.** A layer that routes transactions across more than one PSP by rules: first attempt, retry, failover, local methods.
+
+**Authorization rate.** Approved transactions over attempted. The enterprise unit of value.
+
+**Soft decline.** A decline the issuer may approve on retry or via another route; the first discovery question in the enterprise lane.
+
+**Routing diagram.** The enterprise lane's first ask: a one-page map of where a merchant's transactions would go, built from their provider and country list.

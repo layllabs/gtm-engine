@@ -76,6 +76,7 @@ Three public GTM Engineer postings mapped line by line: https://github.com/layll
 
 - 2026-10-15 cold AI screen, 6/10 advance to screen, nine red flags, seven fixed same day: https://github.com/layllabs/GTM-Engine/blob/main/docs/reviews/2026-10-15-cold-ai-screen.md
 - Changelog: https://github.com/layllabs/GTM-Engine/blob/main/CHANGELOG.md
+- Payments vertical resource (economics with sources, statement calculator, enterprise orchestration lane, personas, objections): https://github.com/layllabs/GTM-Engine/blob/main/docs/payments/README.md
 - Signal catalog: https://github.com/layllabs/GTM-Engine/blob/main/docs/signals.md
 - Interactive classifier (same rules as Python): https://layllabs.github.io/GTM-Engine/human.html#try
 
@@ -83,10 +84,11 @@ Three public GTM Engineer postings mapped line by line: https://github.com/layll
 
 ```
 git clone https://github.com/layllabs/GTM-Engine && cd GTM-Engine
-python -m unittest discover -s tests -t .   # Ran 38 tests, OK
-python -m gtm lint-copy                      # 38 combinations, 0 failing
+python -m unittest discover -s tests -t .   # Ran 41 tests, OK
+python -m gtm lint-copy                      # 66 combinations, 0 failing
 python -m gtm eval-replies                   # 28/28
 python -m gtm run
+python -m gtm statement                      # statement review on the sample
 ```
 
 ## Anticipated questions
@@ -98,4 +100,4 @@ python -m gtm run
 
 ## Policy
 
-Sample data is synthetic. Past employers named; current employer and its systems not described. Last updated 2026-10-22.
+Sample data is synthetic. Past employers named; current employer and its systems not described. Last updated 2026-10-24.

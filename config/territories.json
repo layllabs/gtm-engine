@@ -1,17 +1,97 @@
 {
   "description": "Automatic territory assignment. First matching rule wins; evaluated on state, then zip prefix, then city. Owners are rep handles, not names. Round-robin pools split a territory evenly and deterministically by account id.",
   "rules": [
-    { "name": "central-coast", "match": { "zip_prefix": ["930", "931", "934"] }, "owner": "rep_cc" },
-    { "name": "la-metro",      "match": { "zip_prefix": ["900", "901", "902", "903", "904", "905", "906", "907", "908", "910", "911", "912", "913", "914", "915", "916", "917", "918"] }, "owner": { "round_robin": ["rep_la1", "rep_la2"] } },
-    { "name": "inland-empire", "match": { "zip_prefix": ["917", "918", "919", "920", "921", "922", "923", "924", "925"] }, "owner": "rep_ie" },
-    { "name": "san-diego",     "match": { "zip_prefix": ["919", "920", "921"] }, "owner": "rep_sd" },
-    { "name": "california-other", "match": { "state": ["CA"] }, "owner": "rep_ca_overflow" },
-    { "name": "unassigned",    "match": {}, "owner": null }
+    {
+      "name": "central-coast",
+      "match": {
+        "zip_prefix": [
+          "930",
+          "931",
+          "934"
+        ]
+      },
+      "owner": "rep_cc"
+    },
+    {
+      "name": "la-metro",
+      "match": {
+        "zip_prefix": [
+          "900",
+          "901",
+          "902",
+          "903",
+          "904",
+          "905",
+          "906",
+          "907",
+          "908",
+          "910",
+          "911",
+          "912",
+          "913",
+          "914",
+          "915",
+          "916",
+          "917",
+          "918"
+        ]
+      },
+      "owner": {
+        "round_robin": [
+          "rep_la1",
+          "rep_la2"
+        ]
+      }
+    },
+    {
+      "name": "inland-empire",
+      "match": {
+        "zip_prefix": [
+          "917",
+          "918",
+          "919",
+          "920",
+          "921",
+          "922",
+          "923",
+          "924",
+          "925"
+        ]
+      },
+      "owner": "rep_ie"
+    },
+    {
+      "name": "san-diego",
+      "match": {
+        "zip_prefix": [
+          "919",
+          "920",
+          "921"
+        ]
+      },
+      "owner": "rep_sd"
+    },
+    {
+      "name": "california-other",
+      "match": {
+        "state": [
+          "CA"
+        ]
+      },
+      "owner": "rep_ca_overflow"
+    },
+    {
+      "name": "unassigned",
+      "match": {},
+      "owner": null
+    }
   ],
   "partner_lane_override": "rep_partners",
   "rules_notes": [
     "Partner-lane accounts always go to the partner owner regardless of geography.",
     "A rule with an empty match is the catch-all and must be last.",
-    "Zip prefixes are checked before state so a specific territory beats the state fallback."
-  ]
+    "Zip prefixes are checked before state so a specific territory beats the state fallback.",
+    "Enterprise-lane accounts go to the enterprise owner regardless of geography."
+  ],
+  "enterprise_lane_override": "rep_enterprise"
 }

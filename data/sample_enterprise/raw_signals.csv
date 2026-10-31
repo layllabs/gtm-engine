@@ -1,0 +1,10 @@
+source,source_id,business_name,category,address,city,state,zip,phone,website,email,contact_name,signal_type,signal_date,signal_text,review_count,rating
+web_scan,ws-2001,Andora Travel Group,travel,,Miami,FL,33131,,andoratravel.example,payments@andoratravel.example,Lucia Ferreira,multi_psp_detected,2026-09-20,Checkout loads scripts from two PSPs plus a wallet provider,1800,4.3
+job_boards,jb-5102,Andora Travel Group,travel,,Miami,FL,33131,,andoratravel.example,,,payments_hiring,2026-09-25,Hiring Payments Engineering Manager,,
+web_scan,ws-2002,Kestrel Marketplace,marketplace,,Austin,TX,78701,,kestrelmkt.example,head.payments@kestrelmkt.example,Daniel Okafor,new_market_launch,2026-09-18,Launched sellers in Mexico and Colombia,4200,4.5
+status_pages,sp-3001,Kestrel Marketplace,marketplace,,Austin,TX,78701,,kestrelmkt.example,,,psp_outage_complaint,2026-09-28,Engineering post about a 40 minute checkout outage tied to a provider,,
+web_scan,ws-2003,Nimbus Mobility,mobility,,Denver,CO,80202,,nimbusride.example,cto@nimbusride.example,Priya Natarajan,checkout_conversion_post,2026-09-15,Blog post on in-app payment failures in LATAM,900,4.1
+job_boards,jb-5103,Orbit Digital Goods,digital_goods,,Seattle,WA,98101,,orbitdg.example,,,payments_hiring,2026-09-22,Hiring Senior Engineer Payments Platform,650,4.0
+web_scan,ws-2004,Harbor Subscription Co,subscription_saas,,Boston,MA,02110,,harborsub.example,finance@harborsub.example,Mei Lin,listing_only,2026-09-30,Single PSP detected,300,4.4
+web_scan,ws-2005,Vega Games,gaming,,Los Angeles,CA,90013,,vegagames.example,,,hiring_post,2026-09-10,Hiring community manager,2600,4.2
+web_scan,ws-2006,PayCore Acquiring,payments_competitor,,New York,NY,10001,,paycore.example,,,listing_only,2026-09-30,Competitor,500,3.9

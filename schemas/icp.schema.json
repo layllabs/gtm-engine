@@ -27,7 +27,8 @@
     "lane": {
       "enum": [
         "direct",
-        "partner"
+        "partner",
+        "enterprise"
       ]
     },
     "include_categories": {

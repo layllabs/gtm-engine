@@ -73,6 +73,36 @@
       "task": null
     },
     {
+      "name": "enterprise-A",
+      "when": {
+        "lane": "enterprise",
+        "tier": [
+          "A"
+        ],
+        "has_email": true
+      },
+      "action": "sequence_and_call",
+      "sequence": "payments-orchestration-v1",
+      "task": {
+        "type": "call",
+        "due_hours": 24,
+        "note": "Find who owns checkout. Ask if auth rate is tracked. Offer the routing diagram."
+      }
+    },
+    {
+      "name": "enterprise-B",
+      "when": {
+        "lane": "enterprise",
+        "tier": [
+          "B"
+        ],
+        "has_email": true
+      },
+      "action": "sequence",
+      "sequence": "payments-orchestration-v1",
+      "task": null
+    },
+    {
       "name": "A-or-B-phone-only",
       "when": {
         "tier": [
@@ -88,6 +118,24 @@
         "type": "call",
         "due_hours": 24,
         "note": "No email found. Call, get the owner's email, then enroll."
+      }
+    },
+    {
+      "name": "A-or-B-no-contact",
+      "when": {
+        "tier": [
+          "A",
+          "B"
+        ],
+        "has_email": false,
+        "has_phone": false
+      },
+      "action": "find_contact",
+      "sequence": null,
+      "task": {
+        "type": "research",
+        "due_hours": 48,
+        "note": "Strong fit, no contact data. Run the enrichment waterfall again with a named role (Head of Payments, owner) or find the contact by hand."
       }
     },
     {

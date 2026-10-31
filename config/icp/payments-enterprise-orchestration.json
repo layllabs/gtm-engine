@@ -1,0 +1,58 @@
+{
+  "id": "payments-enterprise-orchestration",
+  "name": "Enterprise merchant needing payment orchestration",
+  "lane": "enterprise",
+  "description": "Merchants with enough volume and geographic spread that routing across multiple PSPs, failover and local payment methods move revenue. The buyer is a Head of Payments or engineering leader, not an owner. Sold with a technical conversation, not a statement review.",
+  "include_categories": [
+    "ecommerce",
+    "marketplace",
+    "travel",
+    "digital_goods",
+    "subscription_saas",
+    "mobility",
+    "gaming"
+  ],
+  "exclude_categories": [
+    "payments_competitor",
+    "bank",
+    "government"
+  ],
+  "category_fit": {
+    "marketplace": 1.0,
+    "travel": 1.0,
+    "ecommerce": 0.9,
+    "mobility": 0.9,
+    "digital_goods": 0.8,
+    "subscription_saas": 0.8,
+    "gaming": 0.7
+  },
+  "geo": {
+    "states": []
+  },
+  "weights": {
+    "category_fit": 20,
+    "signal_strength": 35,
+    "recency": 15,
+    "reachability": 15,
+    "size_proxy": 15
+  },
+  "signal_strength": {
+    "multi_psp_detected": 1.0,
+    "new_market_launch": 0.95,
+    "payments_hiring": 0.9,
+    "psp_outage_complaint": 0.85,
+    "checkout_conversion_post": 0.7,
+    "hiring_post": 0.4,
+    "listing_only": 0.2
+  },
+  "recency_half_life_days": 60,
+  "size_proxy": {
+    "review_count_floor": 50,
+    "review_count_ceiling": 5000
+  },
+  "tiers": {
+    "A": 75,
+    "B": 55,
+    "C": 35
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "merchant_statement.schema.json",
+  "title": "MerchantStatement",
+  "description": "One month of a merchant's card processing statement, normalized. This is the input to the statement review, which is the sales conversation in SMB payments. Fill what the statement shows; leave unknown fees null and the calculator will say what it cannot conclude.",
+  "type": "object",
+  "required": ["period", "volume", "transactions", "pricing_model", "fees"],
+  "additionalProperties": false,
+  "properties": {
+    "merchant_id": { "type": "string", "description": "Engine account_id if known." },
+    "period": { "type": "string", "pattern": "^\\d{4}-\\d{2}$", "description": "YYYY-MM" },
+    "processor": { "type": ["string", "null"], "description": "Current processor as printed. Used for the competitor field, never in copy." },
+    "volume": { "type": "number", "minimum": 0, "description": "Gross card volume in dollars." },
+    "transactions": { "type": "integer", "minimum": 0 },
+    "card_present_share": { "type": ["number", "null"], "minimum": 0, "maximum": 1, "description": "Share of volume swiped/dipped/tapped. Null if the statement does not split it." },
+    "pricing_model": {
+      "enum": ["interchange_plus", "tiered", "flat_rate", "subscription", "unknown"],
+      "description": "interchange_plus itemizes interchange and markup. tiered shows qualified/mid/non-qualified buckets. flat_rate is one blended percent plus per item. subscription is a monthly fee plus pass-through."
+    },
+    "fees": {
+      "type": "object",
+      "description": "Dollar amounts for the period. Null means not shown on the statement, which is itself a finding.",
+      "required": ["total"],
+      "additionalProperties": false,
+      "properties": {
+        "total": { "type": "number", "minimum": 0, "description": "Everything the merchant paid for processing this month." },
+        "interchange": { "type": ["number", "null"], "minimum": 0, "description": "Pass-through to issuing banks. Only itemized on interchange_plus statements." },
+        "assessments": { "type": ["number", "null"], "minimum": 0, "description": "Card brand fees (Visa, Mastercard, Discover, Amex network). Pass-through." },
+        "processor_percentage": { "type": ["number", "null"], "minimum": 0, "description": "Processor's percentage markup in dollars." },
+        "processor_per_item": { "type": ["number", "null"], "minimum": 0, "description": "Processor's per-transaction fees in dollars." },
+        "monthly_fixed": { "type": ["number", "null"], "minimum": 0, "description": "Statement fee, gateway, batch, account fees." },
+        "pci": { "type": ["number", "null"], "minimum": 0, "description": "PCI compliance or non-compliance fee." },
+        "equipment": { "type": ["number", "null"], "minimum": 0, "description": "Terminal lease or rental." },
+        "other": { "type": ["number", "null"], "minimum": 0, "description": "Anything not above. Chargeback fees, annual fees prorated, junk fees." }
+      }
+    },
+    "contract": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "end_date": { "type": ["string", "null"], "format": "date" },
+        "early_termination_fee": { "type": ["number", "null"], "minimum": 0 },
+        "equipment_lease_end": { "type": ["string", "null"], "format": "date" },
+        "auto_renews": { "type": ["boolean", "null"] }
+      }
+    },
+    "notes": { "type": "string", "description": "What the rep noticed that the fields do not capture." }
+  }
+}

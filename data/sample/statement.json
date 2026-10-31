@@ -1,0 +1,27 @@
+{
+  "merchant_id": "acc_sample_taqueria",
+  "period": "2026-09",
+  "processor": "Current Processor (redacted)",
+  "volume": 48250.00,
+  "transactions": 2130,
+  "card_present_share": 0.92,
+  "pricing_model": "interchange_plus",
+  "fees": {
+    "total": 1706.40,
+    "interchange": 892.63,
+    "assessments": 66.58,
+    "processor_percentage": 410.13,
+    "processor_per_item": 213.00,
+    "monthly_fixed": 29.95,
+    "pci": 24.95,
+    "equipment": 49.00,
+    "other": 20.16
+  },
+  "contract": {
+    "end_date": "2027-03-31",
+    "early_termination_fee": 495.00,
+    "equipment_lease_end": "2028-01-31",
+    "auto_renews": true
+  },
+  "notes": "Synthetic statement for the demo. Numbers chosen to be typical of a card-present restaurant, not copied from any real merchant."
+}

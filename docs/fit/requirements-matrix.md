@@ -37,7 +37,7 @@ demonstrated. Status uses the same labels as the portfolio pages:
 | Strong SQL and working Python | `docs/sql/analysis.sql`, `python -m gtm sql`; about 1,800 lines of stdlib Python | verifiable |
 | Local business or multi-location data | the whole ICP; dedupe across permits, filings, maps | verifiable |
 | Restaurant tech, hospitality, vertical SaaS background | hospitality vertical at Medallia; restaurants as primary ICP | stated |
-| Fintech, payments, embedded finance | current role, payments | stated |
+| Fintech, payments, embedded finance | `docs/payments/`: processing economics with sources, statement-review calculator (`python -m gtm statement`), enterprise orchestration lane with its own ICP, signals and sequence, statement and merchant-profile schemas | verifiable |
 | Apollo, Demandbase, Gong, Chili Piper | Apollo in registry; Gong spec; territory module is the Chili Piper / LeanData equivalent; Demandbase not covered | partial |
 | Looker, Tableau, attribution tools | attribution fields captured in `gtm/inbound.py`; dashboards built internally (Outbound Center) | stated |
 | Salesforce admin | field map and validation rules designed; not certified | stated |

@@ -54,7 +54,7 @@
 | 19 | Mesa Verde Market | direct | rep_ie | 41.5 | C | nurture | secondary category (retail); direct email found; small footprint (8 reviews) |
 | 20 | Burger Kingdom #4412 | direct | rep_cc | 0 | DQ | disqualify | excluded category: franchise_corporate |
 | 21 | First Coastal Bank | direct | rep_la1 | 0 | DQ | disqualify | excluded category: bank |
-| 22 | SwiftPay Merchant Services | partner | rep_partners | 0 | DQ | disqualify | excluded category: payments_competitor |
+| 22 | SwiftPay Merchant Services | enterprise | rep_enterprise | 0 | DQ | disqualify | excluded category: payments_competitor |
 | 23 | Neon Taco Co | direct | - | 0 | DQ | disqualify | out of territory: NV |
 
 ## Replies
@@ -107,7 +107,7 @@
 
 ## Template lint
 
-38 opener x step combinations checked, 0 with issues.
+66 opener x step combinations checked, 0 with issues.
 
 ## End states
 

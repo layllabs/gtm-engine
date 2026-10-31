@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "merchant_profile.schema.json",
+  "title": "MerchantProfile",
+  "description": "Qualification fields for a payments prospect, SMB or enterprise. The engine's account record carries discovery fields; this is what a rep fills in during the first conversation and what the CRM opportunity needs. Null means not yet known, which is fine; the point is to know what you do not know.",
+  "type": "object",
+  "required": ["account_id", "segment"],
+  "additionalProperties": false,
+  "properties": {
+    "account_id": { "type": "string" },
+    "segment": { "enum": ["smb_card_present", "smb_ecommerce", "mid_market", "enterprise_orchestration"] },
+    "mcc": { "type": ["string", "null"], "pattern": "^\\d{4}$", "description": "Merchant category code. Drives interchange and risk." },
+    "monthly_volume": { "type": ["number", "null"], "minimum": 0 },
+    "annual_volume": { "type": ["number", "null"], "minimum": 0 },
+    "avg_ticket": { "type": ["number", "null"], "minimum": 0 },
+    "card_present_share": { "type": ["number", "null"], "minimum": 0, "maximum": 1 },
+    "current_processors": { "type": "array", "items": { "type": "string" }, "description": "One for SMB. Two or more is the orchestration signal." },
+    "pricing_model": { "enum": ["interchange_plus", "tiered", "flat_rate", "subscription", "unknown", null] },
+    "contract_end": { "type": ["string", "null"], "format": "date" },
+    "early_termination_fee": { "type": ["number", "null"] },
+    "equipment": { "type": "array", "items": { "enum": ["countertop_terminal", "pos_system", "mobile_reader", "online_gateway", "hosted_checkout", "api_integration"] } },
+    "pos_or_platform": { "type": ["string", "null"], "description": "Clover, Toast, Square, Shopify, custom, etc. Determines integration path." },
+    "geographies": { "type": "array", "items": { "type": "string", "minLength": 2, "maxLength": 2 }, "description": "ISO country codes the merchant sells in. More than one is an orchestration signal." },
+    "currencies": { "type": "array", "items": { "type": "string", "minLength": 3, "maxLength": 3 } },
+    "payment_methods_needed": { "type": "array", "items": { "enum": ["cards", "ach", "wallets", "bnpl", "local_apm", "crypto"] } },
+    "pain": { "type": "array", "items": { "enum": ["fees", "auth_rates", "downtime", "reconciliation", "chargebacks", "new_market", "dev_bandwidth", "reporting", "none_stated"] } },
+    "decision_maker": { "type": ["string", "null"], "description": "Owner for SMB; Head of Payments, VP Eng, CFO for enterprise." },
+    "statement_received": { "type": "boolean", "default": false },
+    "qualification": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "fit": { "enum": ["strong", "possible", "weak", "disqualified", null] },
+        "reason": { "type": "string" },
+        "next_step": { "type": ["string", "null"] }
+      }
+    }
+  }
+}

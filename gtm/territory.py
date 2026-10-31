@@ -29,6 +29,8 @@ def assign(acct: dict, cfg: dict | None = None) -> tuple[str | None, str]:
     cfg = cfg or load_json(CONFIG / "territories.json")
     if acct.get("lane") == "partner" and cfg.get("partner_lane_override"):
         return cfg["partner_lane_override"], "partner-lane-override"
+    if acct.get("lane") == "enterprise" and cfg.get("enterprise_lane_override"):
+        return cfg["enterprise_lane_override"], "enterprise-lane-override"
     for rule in cfg["rules"]:
         if _matches(rule["match"], acct):
             owner = rule["owner"]

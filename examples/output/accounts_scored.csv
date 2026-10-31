@@ -20,5 +20,5 @@ acc_ae5b148c2f,Pier Avenue Books,retail,Hermosa Beach,CA,rep_la2,la-metro,local-
 acc_5e4e777dd0,Mesa Verde Market,retail,Escondido,CA,rep_ie,inland-empire,local-merchant,direct,41.5,C,nurture,,,nurture,secondary category (retail); direct email found; small footprint (8 reviews),maps,1,
 acc_9e5abe86ac,Burger Kingdom #4412,franchise_corporate,Oxnard,CA,rep_cc,central-coast,local-merchant,direct,0,DQ,disqualify,,,disqualified,excluded category: franchise_corporate,maps,1,
 acc_ffa0ecf436,First Coastal Bank,bank,Long Beach,CA,rep_la1,la-metro,local-merchant,direct,0,DQ,disqualify,,,disqualified,excluded category: bank,maps,1,
-acc_8af6b5f656,SwiftPay Merchant Services,payments_competitor,San Diego,CA,rep_partners,partner-lane-override,referral-partner,partner,0,DQ,disqualify,,,disqualified,excluded category: payments_competitor,partner_scan,1,
+acc_8af6b5f656,SwiftPay Merchant Services,payments_competitor,San Diego,CA,rep_enterprise,enterprise-lane-override,payments-enterprise-orchestration,enterprise,0,DQ,disqualify,,,disqualified,excluded category: payments_competitor,partner_scan,1,
 acc_2fcce5b26a,Neon Taco Co,restaurant,Venice,NV,,unassigned,local-merchant,direct,0,DQ,disqualify,,,disqualified,out of territory: NV,maps,1,

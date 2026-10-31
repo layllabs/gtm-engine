@@ -4,7 +4,10 @@
   "title": "Signal",
   "description": "Something that happened to a business that makes now a good time to reach out. Every discovery agent emits this shape.",
   "type": "object",
-  "required": ["type", "source"],
+  "required": [
+    "type",
+    "source"
+  ],
   "properties": {
     "type": {
       "enum": [
@@ -15,15 +18,44 @@
         "review_spike",
         "hiring_post",
         "partner_program_page",
-        "listing_only"
+        "listing_only",
+        "multi_psp_detected",
+        "new_market_launch",
+        "payments_hiring",
+        "psp_outage_complaint",
+        "checkout_conversion_post",
+        "inbound_request"
       ]
     },
-    "date": { "type": ["string", "null"], "format": "date" },
+    "date": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date"
+    },
     "source": {
-      "enum": ["maps", "county_permits", "sos_filings", "reddit", "craigslist", "partner_scan"],
+      "enum": [
+        "maps",
+        "county_permits",
+        "sos_filings",
+        "reddit",
+        "craigslist",
+        "partner_scan",
+        "web_scan",
+        "job_boards",
+        "status_pages",
+        "inbound"
+      ],
       "description": "Which discovery agent found it."
     },
-    "source_id": { "type": "string", "description": "ID in the source system, for audit and dedupe." },
-    "text": { "type": "string", "description": "The raw evidence. Used to write the opener." }
+    "source_id": {
+      "type": "string",
+      "description": "ID in the source system, for audit and dedupe."
+    },
+    "text": {
+      "type": "string",
+      "description": "The raw evidence. Used to write the opener."
+    }
   }
 }

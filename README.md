@@ -79,6 +79,16 @@ Rules handle the easy 80% of replies; Claude only sees what's left.
 it 6/10 with nine red flags. [The report and the fixes](docs/reviews/2026-10-15-cold-ai-screen.md)
 are published. Changes since: [CHANGELOG.md](CHANGELOG.md).
 
+**Payments, as a vertical resource.** [`docs/payments/`](docs/payments) is the
+knowledge behind the engine made usable for any payments company, SMB
+acquiring or enterprise orchestration: [economics with sources](docs/payments/economics.md),
+the [statement review](docs/payments/statement-review-playbook.md) as a runnable
+calculator (`python -m gtm statement`), the [enterprise orchestration play](docs/payments/enterprise-orchestration-play.md)
+with its own ICP, signals and sequence, [buyer personas](docs/payments/buyer-personas.md),
+and an [objection library](docs/payments/objections.md). Schemas for a
+[normalized statement](schemas/merchant_statement.schema.json) and a
+[merchant profile](schemas/merchant_profile.schema.json).
+
 **Built to the job description.** [docs/fit/requirements-matrix.md](docs/fit/requirements-matrix.md)
 maps three real GTM Engineer postings to this repo line by line. What was
 missing got built: waterfall enrichment ([`gtm/enrich.py`](gtm/enrich.py)),
@@ -136,6 +146,8 @@ python -m gtm eval-replies        rules classifier vs 28 labeled replies (CI run
 python -m gtm health              deliverability check only
 python -m gtm connect             which tools are configured; read-only probe of each
 python -m gtm sql                 nine analysis queries against the last run's shadow CRM
+python -m gtm statement [file]    statement review: effective rate, markup, fair offer, flags
+python -m gtm run --data data/sample_enterprise --out examples/output_enterprise   enterprise lane
 python scripts/aeo_audit.py       SEO/AEO checklist against the portfolio pages
 python -m unittest discover -s tests -t .
 ```

@@ -1,0 +1,16 @@
+{"at": "2026-10-01T08:00", "account_id": "acc_72969d3b6a", "from": "new", "to": "scored", "reason": "payments-enterprise-orchestration score 93.4 tier A"}
+{"at": "2026-10-01T08:00", "account_id": "acc_a7fae72939", "from": "new", "to": "scored", "reason": "payments-enterprise-orchestration score 91.3 tier A"}
+{"at": "2026-10-01T08:00", "account_id": "acc_72d1e5e4d5", "from": "new", "to": "scored", "reason": "payments-enterprise-orchestration score 77.9 tier A"}
+{"at": "2026-10-01T08:00", "account_id": "acc_1b691a9248", "from": "new", "to": "scored", "reason": "payments-enterprise-orchestration score 69.4 tier B"}
+{"at": "2026-10-01T08:00", "account_id": "acc_908175de91", "from": "new", "to": "scored", "reason": "payments-enterprise-orchestration score 52.6 tier C"}
+{"at": "2026-10-01T08:00", "account_id": "acc_2d4897acac", "from": "new", "to": "scored", "reason": "payments-enterprise-orchestration score 43.8 tier C"}
+{"at": "2026-10-01T08:00", "account_id": "acc_919a6c496c", "from": "new", "to": "disqualified", "reason": "excluded category: payments_competitor"}
+{"at": "2026-10-01T08:00", "account_id": "acc_72969d3b6a", "from": "scored", "to": "queued", "reason": "rule enterprise-A"}
+{"at": "2026-10-01T08:00", "account_id": "acc_a7fae72939", "from": "scored", "to": "queued", "reason": "rule enterprise-A"}
+{"at": "2026-10-01T08:00", "account_id": "acc_72d1e5e4d5", "from": "scored", "to": "queued", "reason": "rule enterprise-A"}
+{"at": "2026-10-01T08:00", "account_id": "acc_1b691a9248", "from": "scored", "to": "task_pending", "reason": "rule A-or-B-no-contact"}
+{"at": "2026-10-01T08:00", "account_id": "acc_908175de91", "from": "scored", "to": "nurture", "reason": "rule tier-C"}
+{"at": "2026-10-01T08:00", "account_id": "acc_2d4897acac", "from": "scored", "to": "nurture", "reason": "rule tier-C"}
+{"at": "2026-10-01T08:00", "account_id": "acc_72969d3b6a", "from": "queued", "to": "sequenced", "reason": "payments-orchestration-v1 enrolled, lint clean"}
+{"at": "2026-10-01T08:00", "account_id": "acc_a7fae72939", "from": "queued", "to": "sequenced", "reason": "payments-orchestration-v1 enrolled, lint clean"}
+{"at": "2026-10-01T08:00", "account_id": "acc_72d1e5e4d5", "from": "queued", "to": "sequenced", "reason": "payments-orchestration-v1 enrolled, lint clean"}

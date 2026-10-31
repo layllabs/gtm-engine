@@ -31,6 +31,7 @@ ACTION_TO_STATE = {
     "sequence_and_call": "queued",
     "visit_and_sequence": "queued",
     "call_first": "task_pending",
+    "find_contact": "task_pending",
     "nurture": "nurture",
     "suppress": "suppressed",
     "disqualify": "disqualified",

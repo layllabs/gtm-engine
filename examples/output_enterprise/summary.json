@@ -1,0 +1,39 @@
+{
+  "as_of": "2026-10-01",
+  "raw_signals": 9,
+  "accounts_after_dedupe": 7,
+  "tiers": {
+    "A": 3,
+    "B": 1,
+    "C": 2,
+    "DQ": 1
+  },
+  "actions": {
+    "sequence_and_call": 3,
+    "find_contact": 1,
+    "nurture": 2,
+    "disqualify": 1
+  },
+  "drafts": 12,
+  "drafts_failing_lint": 0,
+  "replies": {},
+  "mailboxes": {
+    "ok": 2,
+    "watch": 1,
+    "pause": 2,
+    "warming": 1
+  },
+  "domains_to_retire": [
+    "sender-two.example"
+  ],
+  "final_states": {
+    "sequenced": 3,
+    "task_pending": 1,
+    "nurture": 2,
+    "disqualified": 1
+  },
+  "owners": {
+    "rep_enterprise": 7
+  },
+  "enrichment_spend_cents": 75
+}

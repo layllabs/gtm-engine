@@ -52,11 +52,12 @@
     "disqualified": 4
   },
   "owners": {
-    "rep_partners": 6,
+    "rep_partners": 5,
     "rep_la2": 4,
     "rep_cc": 7,
     "rep_la1": 2,
     "rep_ie": 3,
+    "rep_enterprise": 1,
     "unassigned": 1
   },
   "enrichment_spend_cents": 58

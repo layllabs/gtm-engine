@@ -21,6 +21,8 @@ CATEGORY_NOUN = {
     "auto_repair": "auto shop", "salon": "salon", "barbershop": "barbershop",
     "retail": "shop", "dry_cleaner": "dry cleaner", "food_truck": "food truck",
     "veterinary": "clinic",
+    "ecommerce": "online store", "marketplace": "marketplace", "travel": "travel company",
+    "digital_goods": "digital business", "subscription_saas": "software company", "mobility": "mobility company", "gaming": "gaming company",
 }
 CUSTOMER_NOUN = {
     "restaurant_supply": "restaurant owners", "pos_reseller": "merchants",

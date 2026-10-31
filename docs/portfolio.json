@@ -380,7 +380,7 @@
       "a": "AI-assisted code; design, rules, copy, prompts and decisions are the candidate's."
     }
   ],
-  "last_updated": "2026-10-22",
+  "last_updated": "2026-10-24",
   "pages": {
     "agent": "https://layllabs.github.io/GTM-Engine/",
     "human": "https://layllabs.github.io/GTM-Engine/human.html"
@@ -417,5 +417,23 @@
     "paid ads / ABM ad platforms",
     "global markets",
     "post-sale automation and account health scoring"
-  ]
+  ],
+  "payments_resource": {
+    "url": "https://github.com/layllabs/GTM-Engine/blob/main/docs/payments/README.md",
+    "contents": [
+      "economics.md (sourced benchmarks)",
+      "statement-review-playbook.md",
+      "enterprise-orchestration-play.md",
+      "buyer-personas.md",
+      "objections.md"
+    ],
+    "code": [
+      "https://github.com/layllabs/GTM-Engine/blob/main/gtm/statement.py",
+      "https://github.com/layllabs/GTM-Engine/blob/main/schemas/merchant_statement.schema.json",
+      "https://github.com/layllabs/GTM-Engine/blob/main/schemas/merchant_profile.schema.json",
+      "https://github.com/layllabs/GTM-Engine/blob/main/config/icp/payments-enterprise-orchestration.json"
+    ],
+    "status": "verifiable",
+    "command": "python -m gtm statement"
+  }
 }

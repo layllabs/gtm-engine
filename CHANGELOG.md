@@ -2,6 +2,26 @@
 
 Dated record of what changed and why. Newest first.
 
+## 2026-10-24 (fifth batch: payments vertical resource)
+
+- `docs/payments/`: economics with cited public sources (fair markup,
+  effective rate, pricing models, auth-rate uplift), the statement review
+  as a playbook, the enterprise orchestration play, buyer personas, an
+  objection library. Numbers policy stated: public figures cited with
+  source and caveat; own campaign numbers not published.
+- `python -m gtm statement`: statement-review calculator. Effective rate,
+  pass-through vs processor markup, fair offer in dollars, monthly and
+  annual difference, ETF payback, auto-renew note, junk-fee flags. Refuses
+  to estimate savings on tiered or flat-rate statements.
+- Schemas: `merchant_statement.schema.json`, `merchant_profile.schema.json`.
+- Enterprise lane end to end: ICP `payments-enterprise-orchestration`,
+  sequence `payments-orchestration-v1`, five new signal types, routing
+  rules `enterprise-A`, `enterprise-B` and `find_contact` for a qualified
+  account with no contact, `rep_enterprise` territory override, synthetic
+  dataset `data/sample_enterprise/`.
+- Requirements matrix: fintech/payments row moves from stated to verifiable.
+- Tests 38 to 41. Lint covers 66 template combinations.
+
 ## 2026-10-22 (fourth batch: built to the postings)
 
 - Mapped three public GTM Engineer postings to the repo

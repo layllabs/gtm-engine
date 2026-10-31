@@ -4,36 +4,141 @@
   "title": "Account",
   "description": "One business after dedupe and scoring. This is the unit every downstream step works on.",
   "type": "object",
-  "required": ["account_id", "business_name", "category", "state", "signals", "icp", "lane", "score", "tier", "reasons"],
+  "required": [
+    "account_id",
+    "business_name",
+    "category",
+    "state",
+    "signals",
+    "icp",
+    "lane",
+    "score",
+    "tier",
+    "reasons"
+  ],
   "properties": {
-    "account_id": { "type": "string", "pattern": "^acc_[0-9a-f]{10}$", "description": "sha1 of normalized name + city. Stable across runs." },
-    "business_name": { "type": "string" },
-    "category": { "type": "string", "description": "Must appear in some ICP include or exclude list, otherwise DQ." },
-    "address": { "type": "string" },
-    "city": { "type": "string" },
-    "state": { "type": "string", "minLength": 2, "maxLength": 2 },
-    "phone": { "type": "string" },
-    "website": { "type": "string" },
-    "email": { "type": "string" },
-    "contact_name": { "type": "string" },
-    "review_count": { "type": ["integer", "null"] },
-    "sources": { "type": "array", "items": { "type": "string" } },
-    "merged_rows": { "type": "integer", "minimum": 1 },
-    "signals": { "type": "array", "items": { "$ref": "signal.schema.json" } },
-    "icp": { "type": ["string", "null"] },
-    "lane": { "enum": ["direct", "partner", null] },
-    "score": { "type": "number", "minimum": 0, "maximum": 100 },
-    "tier": { "enum": ["A", "B", "C", "D", "DQ"] },
+    "account_id": {
+      "type": "string",
+      "pattern": "^acc_[0-9a-f]{10}$",
+      "description": "sha1 of normalized name + city. Stable across runs."
+    },
+    "business_name": {
+      "type": "string"
+    },
+    "category": {
+      "type": "string",
+      "description": "Must appear in some ICP include or exclude list, otherwise DQ."
+    },
+    "address": {
+      "type": "string"
+    },
+    "city": {
+      "type": "string"
+    },
+    "state": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 2
+    },
+    "phone": {
+      "type": "string"
+    },
+    "website": {
+      "type": "string"
+    },
+    "email": {
+      "type": "string"
+    },
+    "contact_name": {
+      "type": "string"
+    },
+    "review_count": {
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "merged_rows": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "signals": {
+      "type": "array",
+      "items": {
+        "$ref": "signal.schema.json"
+      }
+    },
+    "icp": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "lane": {
+      "enum": [
+        "direct",
+        "partner",
+        "enterprise",
+        null
+      ]
+    },
+    "score": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "tier": {
+      "enum": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "DQ"
+      ]
+    },
     "components": {
       "type": "object",
       "properties": {
-        "category_fit": { "type": "number", "minimum": 0, "maximum": 1 },
-        "signal_strength": { "type": "number", "minimum": 0, "maximum": 1 },
-        "recency": { "type": "number", "minimum": 0, "maximum": 1 },
-        "reachability": { "type": "number", "minimum": 0, "maximum": 1 },
-        "size_proxy": { "type": "number", "minimum": 0, "maximum": 1 }
+        "category_fit": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "signal_strength": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "recency": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "reachability": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "size_proxy": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        }
       }
     },
-    "reasons": { "type": "array", "minItems": 1, "items": { "type": "string" }, "description": "Plain-English why. Required so no score is a black box." }
+    "reasons": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string"
+      },
+      "description": "Plain-English why. Required so no score is a black box."
+    }
   }
 }
