@@ -1,17 +1,17 @@
 {
-  "as_of": "2026-10-01",
+  "as_of": "2026-10-30",
   "raw_signals": 28,
   "accounts_after_dedupe": 23,
   "tiers": {
-    "A": 8,
-    "B": 8,
+    "A": 5,
+    "B": 11,
     "C": 3,
     "DQ": 4
   },
   "actions": {
     "sequence_and_call": 2,
-    "visit_and_sequence": 5,
-    "sequence": 7,
+    "visit_and_sequence": 3,
+    "sequence": 9,
     "call_first": 2,
     "suppress": 2,
     "nurture": 1,
@@ -42,8 +42,8 @@
   "final_states": {
     "meeting": 1,
     "nurture": 3,
-    "engaged": 2,
     "paused": 1,
+    "engaged": 2,
     "rerouted": 1,
     "closed_no": 1,
     "sequenced": 5,
