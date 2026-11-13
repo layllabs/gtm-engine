@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-11-12",
+  "as_of": "2026-11-13",
   "raw_signals": 28,
   "accounts_after_dedupe": 23,
   "tiers": {
@@ -45,8 +45,8 @@
     "nurture": 3,
     "engaged": 2,
     "rerouted": 1,
-    "closed_no": 1,
     "sequenced": 5,
+    "closed_no": 1,
     "suppressed": 3,
     "task_pending": 2,
     "disqualified": 4
