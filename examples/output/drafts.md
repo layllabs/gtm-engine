@@ -214,33 +214,6 @@ Every email below passed the lint gate. Call steps are scripts for the rep.
 >
 > Joaquin
 
-## Tacos El Guero Truck (Oxnard)
-`local-merchant-v2` variant B, opener from signal `new_health_permit`
-
-**Day 0 email.** Subject: `quick question, Luis`
-
-> Hi Luis,
->
-> Congrats on the new permit for Tacos El Guero Truck. Opening month is usually when the processing contract gets signed in a rush.
->
-> Do you know your effective rate, all fees in, divided by what you processed last month? Most owners guess low by about a point. I can work it out from one statement and send it back the same day.
->
-> Joaquin
-
-**Day 3 email.** Subject: `one photo is enough`
-
-> Luis, the fastest version: snap a photo of page one of your statement and reply here. I'll send back your effective rate and where the extra is coming from.
->
-> Joaquin
-
-**Day 7 call.** Call script: reference the email, ask who handles the processing statement, offer the free statement review. Voicemail: name, one line on the review, callback number.
-
-**Day 12 email.** Subject: `closing the loop`
-
-> Luis, I'll stop here. If fees ever come up, reply with a statement and I'll run the numbers. Good luck with Tacos El Guero Truck.
->
-> Joaquin
-
 ## Bright Spin Dry Cleaners (San Luis Obispo)
 `local-merchant-v2` variant A, opener from signal `ownership_change`
 
@@ -267,6 +240,33 @@ Every email below passed the lint gate. Call steps are scripts for the rep.
 **Day 12 email.** Subject: `closing the loop`
 
 > Helen, I'll stop here. If fees ever come up, reply with a statement and I'll run the numbers. Good luck with Bright Spin Dry Cleaners.
+>
+> Joaquin
+
+## Tacos El Guero Truck (Oxnard)
+`local-merchant-v2` variant B, opener from signal `new_health_permit`
+
+**Day 0 email.** Subject: `quick question, Luis`
+
+> Hi Luis,
+>
+> Congrats on the new permit for Tacos El Guero Truck. Opening month is usually when the processing contract gets signed in a rush.
+>
+> Do you know your effective rate, all fees in, divided by what you processed last month? Most owners guess low by about a point. I can work it out from one statement and send it back the same day.
+>
+> Joaquin
+
+**Day 3 email.** Subject: `one photo is enough`
+
+> Luis, the fastest version: snap a photo of page one of your statement and reply here. I'll send back your effective rate and where the extra is coming from.
+>
+> Joaquin
+
+**Day 7 call.** Call script: reference the email, ask who handles the processing statement, offer the free statement review. Voicemail: name, one line on the review, callback number.
+
+**Day 12 email.** Subject: `closing the loop`
+
+> Luis, I'll stop here. If fees ever come up, reply with a statement and I'll run the numbers. Good luck with Tacos El Guero Truck.
 >
 > Joaquin
 
