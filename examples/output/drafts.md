@@ -293,33 +293,6 @@ Every email below passed the lint gate. Call steps are scripts for the rep.
 >
 > Joaquin
 
-## Fade Factory Barbers (Santa Maria)
-`local-merchant-v2` variant B, opener from signal `hiring_post`
-
-**Day 0 email.** Subject: `quick question, Marco`
-
-> Hi Marco,
->
-> Saw Fade Factory Barbers is hiring. Growing shops usually feel processing fees most right about now.
->
-> Do you know your effective rate, all fees in, divided by what you processed last month? Most owners guess low by about a point. I can work it out from one statement and send it back the same day.
->
-> Joaquin
-
-**Day 3 email.** Subject: `one photo is enough`
-
-> Marco, the fastest version: snap a photo of page one of your statement and reply here. I'll send back your effective rate and where the extra is coming from.
->
-> Joaquin
-
-**Day 7 call.** Call script: reference the email, ask who handles the processing statement, offer the free statement review. Voicemail: name, one line on the review, callback number.
-
-**Day 12 email.** Subject: `closing the loop`
-
-> Marco, I'll stop here. If fees ever come up, reply with a statement and I'll run the numbers. Good luck with Fade Factory Barbers.
->
-> Joaquin
-
 ## Glow Up Salon (Palm Springs)
 `local-merchant-v2` variant B, opener from signal `hiring_post`
 
@@ -344,6 +317,33 @@ Every email below passed the lint gate. Call steps are scripts for the rep.
 **Day 12 email.** Subject: `closing the loop`
 
 > Jasmine, I'll stop here. If fees ever come up, reply with a statement and I'll run the numbers. Good luck with Glow Up Salon.
+>
+> Joaquin
+
+## Fade Factory Barbers (Santa Maria)
+`local-merchant-v2` variant B, opener from signal `hiring_post`
+
+**Day 0 email.** Subject: `quick question, Marco`
+
+> Hi Marco,
+>
+> Saw Fade Factory Barbers is hiring. Growing shops usually feel processing fees most right about now.
+>
+> Do you know your effective rate, all fees in, divided by what you processed last month? Most owners guess low by about a point. I can work it out from one statement and send it back the same day.
+>
+> Joaquin
+
+**Day 3 email.** Subject: `one photo is enough`
+
+> Marco, the fastest version: snap a photo of page one of your statement and reply here. I'll send back your effective rate and where the extra is coming from.
+>
+> Joaquin
+
+**Day 7 call.** Call script: reference the email, ask who handles the processing statement, offer the free statement review. Voicemail: name, one line on the review, callback number.
+
+**Day 12 email.** Subject: `closing the loop`
+
+> Marco, I'll stop here. If fees ever come up, reply with a statement and I'll run the numbers. Good luck with Fade Factory Barbers.
 >
 > Joaquin
 
